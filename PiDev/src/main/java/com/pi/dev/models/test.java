@@ -25,8 +25,8 @@ public class test implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
 	private String test;
-	private String tet;
+	private String sla;
+	private int red;
 
 }
