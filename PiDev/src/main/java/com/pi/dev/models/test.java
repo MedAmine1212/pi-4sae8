@@ -27,4 +27,6 @@ public class test implements Serializable {
 	private Long id;
 	private String name;
 	private String test;
+	private String tet;
+
 }
