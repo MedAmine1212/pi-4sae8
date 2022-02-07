@@ -29,6 +29,7 @@ public class test implements Serializable {
 	private String sla;
 	private int red;
 	private int yellow;
+	private  int green;
 
-
+    
 }
