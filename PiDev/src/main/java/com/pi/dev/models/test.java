@@ -32,6 +32,9 @@ public class test implements Serializable {
 	private  int green;
 	private  int purple;
 	private int mido;
+	private int akram;
+
+	
 
     
 }
