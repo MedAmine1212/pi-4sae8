@@ -26,7 +26,7 @@ public class Post implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date postDate;
 	private String postTitle;
-	private String postContetn;
+	private String postContent;
 	@ElementCollection
 	private List<String> postFiles;
 
