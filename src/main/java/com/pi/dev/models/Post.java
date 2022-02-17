@@ -1,16 +1,11 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,5 +22,27 @@ public class Post implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long postId;
+
+	@Temporal(TemporalType.DATE)
+	private Date postDate;
+	private String postTitle;
+	private String postContetn;
+	@ElementCollection
+	private List<String> postFiles;
+
+	@JsonIgnore
+	@ManyToOne
+	private User postOwner;
+
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Comment> listComments;
+
+
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Like> listLikes;
+
+
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Rating> listRating;
 
 }
