@@ -34,7 +34,7 @@ public class test implements Serializable {
 	private int mido;
 	private int akram;
 	private int ouss;
-	private int gaa3;
+	private int ffffffff;
 
 
 
