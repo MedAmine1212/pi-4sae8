@@ -9,7 +9,7 @@
 		<relativePath />
 		<!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.pi</groupId>
+	<groupId>com.pi.dev</groupId>
 	<artifactId>PiDev</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>PiDev</name>
