@@ -39,7 +39,7 @@ public class Post implements Serializable {
 
 
 	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Like> listLikes;
+	private List<PostLike> listLikes;
 
 
 	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)

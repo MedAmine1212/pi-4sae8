@@ -8,7 +8,11 @@ import java.io.Serializable;
 
 @Entity
 @Data
-public class Like implements Serializable {
+public class PostLike implements Serializable {
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likeId;

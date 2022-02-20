@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.pi.dev.models.BadWordFilter;
-import com.pi.dev.models.Like;
+import com.pi.dev.models.PostLike;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.Rating;
 import com.pi.dev.repository.LikeRepository;
@@ -67,7 +67,7 @@ public class PostServiceImpl implements IPostService {
 	}
 
 	@Override
-	public boolean addLikeToPost(Like like) {
+	public boolean addLikeToPost(PostLike like) {
 		try {
 			likeRepository.save(like);
 			return true;

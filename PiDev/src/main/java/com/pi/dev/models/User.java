@@ -27,7 +27,7 @@ public class User implements Serializable {
 
 
 	@OneToMany(mappedBy="likeOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Like> listLikes;
+	private List<PostLike> listLikes;
 
 	@OneToMany(mappedBy="ratingOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Rating> listRatings;
@@ -39,4 +39,7 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy="messageOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Message> listMessages;
+	
+	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Certification> certif;
 }
