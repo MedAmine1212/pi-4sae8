@@ -28,7 +28,7 @@ public class Questions implements Serializable {
     ArrayList<String> answers = new ArrayList<String>();
     
     private String prompt;
-
+    
     
     @JsonIgnore
     @ManyToOne
