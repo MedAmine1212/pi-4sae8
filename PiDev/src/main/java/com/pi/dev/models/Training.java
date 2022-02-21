@@ -1,6 +1,7 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,8 +23,11 @@ public class Training implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long trainingId;
+    private Date startDate;
+    private Date endDate;
+    private String Subject;
+    private int maxNbrParticipants;
 
-    
     
     
     
