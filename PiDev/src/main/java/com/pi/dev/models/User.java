@@ -17,6 +17,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 	private String name;
+	
 
 	@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Post> listPosts;
@@ -42,4 +43,7 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Certification> certif;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
+	private List<Meeting> meeting;
 }
