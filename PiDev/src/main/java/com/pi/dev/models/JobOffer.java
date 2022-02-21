@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,7 +37,7 @@ public class JobOffer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int jobId;
+	private Long jobId;
 	private String jobName;
 	private String jobDescription;
 	@Temporal(TemporalType.DATE)
@@ -44,7 +49,15 @@ public class JobOffer implements Serializable {
 
     
     @ManyToOne
+	@JoinColumn(name="contributor_id")
     private Contributor contributor;
+    
+    @OneToMany(mappedBy="jobOffer", cascade=CascadeType.ALL)
+    private List<Candidacy> listCandidacyOffer;
+    
+    
+    
+    
 	
 	
 
