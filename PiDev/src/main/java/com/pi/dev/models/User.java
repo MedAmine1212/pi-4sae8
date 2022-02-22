@@ -1,67 +1,70 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
-
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-@Data
-@Table(name = "users", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"username"}),
-		@UniqueConstraint(columnNames = {"email"})
-})
-@Inheritance(strategy=InheritanceType.JOINED)
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
-	private String userName;
-	private String password;
-	private String firstName;
-	private String lastName;
-	private int phone;
-	private String email;
-	private Date birthDate;
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 1L;
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long userId;
+		private String name;
 
-	
-
-	@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Post> listPosts;
+		@JsonIgnore
+		@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+		private List<Post> listPosts;
 
 
-	@OneToMany(mappedBy="commentOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Comment> listComments;
+		@JsonIgnore
+		@OneToMany(mappedBy="commentOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+		private List<Comment> listComments;
 
 
-	@OneToMany(mappedBy="likeOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<PostLike> listLikes;
+		@JsonIgnore
+		@OneToMany(mappedBy="likeOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+		private List<PostLike> listLikes;
 
-	@OneToMany(mappedBy="ratingOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Rating> listRatings;
-
-
-	@OneToMany(mappedBy="reactOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<React> listReacts;
+		@JsonIgnore
+		@OneToMany(mappedBy="ratingOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+		private List<Rating> listRatings;
 
 
-	@OneToMany(mappedBy="messageOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Message> listMessages;
+		
 
-	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private List<Certification> certif;
+		@JsonIgnore
+		@OneToMany(mappedBy="messageOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+		private List<Message> listMessages;
 
-	
-	 @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+		@JsonIgnore
+		@OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+		private List<Certification> certif;
+
+		@ManyToOne
+		private Room actualRoom;
+
+		private boolean isRoomOwner;
+
+
+		@JsonIgnore
+		@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+		private Contributor contributorAccount;
+		
+		@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	    private List<Candidacy> listCandidacyUser;
 }
