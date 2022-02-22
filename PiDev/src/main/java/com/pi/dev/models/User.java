@@ -72,5 +72,8 @@ public class User implements Serializable {
 	private List<Certification> certif;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
-	private List<Meeting> meeting;
+	private List<Meeting> meetings;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
+	private List<Reclamation> reclamations;
 }
