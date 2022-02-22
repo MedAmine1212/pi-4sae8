@@ -32,7 +32,7 @@ public class Room implements Serializable {
 
 
 	@JsonIgnore
-	@OneToMany(mappedBy="actualRoom", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="actualRoom", fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
 	private List<User> users;
 
 }

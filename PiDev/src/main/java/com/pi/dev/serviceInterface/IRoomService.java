@@ -10,11 +10,11 @@ public interface IRoomService {
 
 	List<Room> findRoomBySubject(String subject);
 
-	Room createRoom(Room comment);
+	Room createRoom(Room room);
 
 	Room updateRoom(Room room, Long roomId);
 
-	boolean removeRoom(Long commentId);
+	boolean removeRoom(Long roomId);
 
 	boolean joinRoom(Long roomId, Long userId);
 

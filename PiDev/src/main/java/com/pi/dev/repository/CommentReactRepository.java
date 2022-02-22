@@ -2,6 +2,7 @@ package com.pi.dev.repository;
 
 import com.pi.dev.models.Comment;
 import com.pi.dev.models.CommentReact;
+import com.pi.dev.models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +14,7 @@ import java.util.List;
 @Repository
 public interface CommentReactRepository extends JpaRepository<CommentReact, Long> {
     List<CommentReact> findAllByReactComment(Comment reactComment);
+
 
 
     @Query("delete from CommentReact cr where cr.reactOwner.userId =: userId AND cr.reactComment.commentId =: commentId")

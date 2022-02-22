@@ -32,12 +32,6 @@ public class CommentServiceImpl implements ICommentService {
 	@Autowired
 	CommentRepository commentRepository;
 
-
-	@Override
-	public List<Comment> findAll() {
-		return commentRepository.findAll();
-	}
-
 	@Override
 	public List<Comment> getFilteredComments(String filterType, Long postId, int offset) {
 		List<Comment> comments =  getCommentPage(offset, 10);

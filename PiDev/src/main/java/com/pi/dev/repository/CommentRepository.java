@@ -12,8 +12,12 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
+
     List<Comment> findAllByCommentOwner(User user);
 
     @Query(value = "select * from Comment LIMIT ?1", nativeQuery = true)
     List<Comment> getFirstTenComment(int commentCount);
+
+
+    List<Comment> findAllByCommentPost(Post post);
 }

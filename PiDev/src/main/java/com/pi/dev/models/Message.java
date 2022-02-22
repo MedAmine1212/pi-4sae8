@@ -20,4 +20,6 @@ public class Message implements Serializable {
 
     @ManyToOne
     private User messageOwner;
+
+    private String messageText;
 }
