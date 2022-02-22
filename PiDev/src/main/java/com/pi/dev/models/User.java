@@ -1,11 +1,14 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.persistence.*;
 
 import lombok.*;
+
+@Inheritance(strategy=InheritanceType.JOINED)
 @Entity
 @Data
 public class User implements Serializable {
@@ -45,5 +48,8 @@ public class User implements Serializable {
 	private List<Certification> certif;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
-	private List<Meeting> meeting;
+	private List<Meeting> meetings;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
+	private List<Reclamation> reclamations;
 }
