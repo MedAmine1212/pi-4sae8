@@ -3,7 +3,6 @@ package com.pi.dev.models;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -14,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Post implements Serializable {
+public class Post implements Serializable{
 	/**
 	* 
 	*/
@@ -27,22 +26,28 @@ public class Post implements Serializable {
 	private Date postDate;
 	private String postTitle;
 	private String postContent;
+
+	@Transient
+	private int likesCount;
+
+	@JsonIgnore
 	@ElementCollection
 	private List<String> postFiles;
 
-	@JsonIgnore
 	@ManyToOne
 	private User postOwner;
 
-	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy="commentPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Comment> listComments;
 
 
-	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Like> listLikes;
+	@JsonIgnore
+	@OneToMany(mappedBy="likePost", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<PostLike> listPostLikes;
 
 
-	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy="ratingPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Rating> listRating;
-
 }

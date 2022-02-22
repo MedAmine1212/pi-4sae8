@@ -1,17 +1,15 @@
 package com.pi.dev.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
-import com.pi.dev.models.BadWordFilter;
-import com.pi.dev.models.Like;
-import com.pi.dev.models.Post;
-import com.pi.dev.models.Rating;
-import com.pi.dev.repository.LikeRepository;
-import com.pi.dev.repository.PostRepository;
-import com.pi.dev.repository.RatingRepository;
+import com.pi.dev.models.*;
+import com.pi.dev.repository.*;
 import com.pi.dev.serviceInterface.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +27,14 @@ public class PostServiceImpl implements IPostService {
 
 
 	@Autowired
+	UserRepository userRepository;
+
+
+	@Autowired
 	RatingRepository ratingRepository;
 
+	@Autowired
+	CommentRepository commentRepository;
 
 	@Override
 	public List<Post> findAll() {
@@ -38,8 +42,77 @@ public class PostServiceImpl implements IPostService {
 	}
 
 	@Override
+	public List<Post> getFilteredPosts(String filterType, Long userId, int offset) {
+
+		List<Post> posts;
+
+		if(filterType.equals("recommended")) {
+			User user = userRepository.findById(userId).get();
+			List<Comment> commentsByUser = commentRepository.findAllByCommentOwner(user);
+			List<String> wordList = new ArrayList<>();
+			for(Comment cm: commentsByUser) {
+				String[] words=cm.getCommentText().split("\\s");
+				for (String w: words) {
+					if (!wordList.contains(w.toLowerCase())) {
+						wordList.add(w.toLowerCase());
+					}
+				}
+
+			}
+			return filterPosts(wordList);
+
+		} else if(filterType.equals("popular")) {
+
+			posts = getPostsPage(offset, 10);
+			for(Post p: posts) {
+				p.setLikesCount(0);
+				List<PostLike> postLikes = (likeRepository.findAllByLikePost(p));
+				for(PostLike pl : postLikes) {
+					if (pl.getTypeLike().equals(TypeLike.UP)) {
+						p.setLikesCount(p.getLikesCount()+1);
+					} else {
+						p.setLikesCount(p.getLikesCount()-1);
+					}
+				}
+			}
+			posts.sort(Comparator.comparing(Post::getLikesCount));
+			Collections.reverse(posts);
+			return posts;
+		} else {
+
+			posts = getPostsPage(offset, 10);
+			return posts;
+		}
+	}
+	private List<Post> filterPosts(List<String> wordList) {
+		List<Post> posts = findAll();
+		List<Post> finalPosts = new ArrayList<Post>();
+		for(Post p: posts) {
+			boolean keepIt = false;
+			for(String word: wordList) {
+				if (p.getPostContent().contains(word) || p.getPostTitle().contains(word)) {
+					keepIt = true;
+					break;
+				}
+			}
+			if(keepIt) {
+				finalPosts.add(p);
+			}
+		}
+		return finalPosts;
+	}
+	private List<Post> getPostsPage(int offset, int postCount) {
+		if (offset == 0) {
+			return postRepository.getFirstTenPosts(postCount);
+		} else {
+			return postRepository.findAll(PageRequest.of(offset, postCount)).getContent();
+
+		}
+	}
+	@Override
 	public Post addPost(Post post) {
-		if (!BadWordFilter.badWordsFound(post.getPostContent()).isEmpty() || BadWordFilter.badWordsFound(post.getPostTitle()).isEmpty()){
+		BadWordFilter.loadConfigs();
+		if (BadWordFilter.badWordsFound(post.getPostContent()).size() != 0 || BadWordFilter.badWordsFound(post.getPostTitle()).size() != 0){
 			return null;
 		} else {
 			return postRepository.save(post);
@@ -48,7 +121,9 @@ public class PostServiceImpl implements IPostService {
 
 	@Override
 	public Post updatePost(Post post, Long postId) {
-		if (!BadWordFilter.badWordsFound(post.getPostContent()).isEmpty() || BadWordFilter.badWordsFound(post.getPostTitle()).isEmpty()){
+
+		BadWordFilter.loadConfigs();
+		if (BadWordFilter.badWordsFound(post.getPostContent()).size() != 0 || BadWordFilter.badWordsFound(post.getPostTitle()).size() != 0){
 			return null;
 		} else {
 			post.setPostId(postId);
@@ -67,9 +142,9 @@ public class PostServiceImpl implements IPostService {
 	}
 
 	@Override
-	public boolean addLikeToPost(Like like) {
+	public boolean addLikeToPost(PostLike postLike) {
 		try {
-			likeRepository.save(like);
+			likeRepository.save(postLike);
 			return true;
 		} catch (Exception e) {
 			return  false;
@@ -77,7 +152,7 @@ public class PostServiceImpl implements IPostService {
 	}
 
 	@Override
-	public boolean removeListFromPost(Long postId, Long userId) {
+	public boolean removeLikeFromPost(Long postId, Long userId) {
 		try {
 			likeRepository.removeLikeFromPost(postId, userId);
 			return true;

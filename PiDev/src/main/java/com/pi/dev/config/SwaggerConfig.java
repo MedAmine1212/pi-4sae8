@@ -16,7 +16,7 @@ public class SwaggerConfig {
 				.select()
 
 				//.apis(RequestHandlerSelectors.any()) //any: documenter toutes les classes dans tous les packages
-				.apis(RequestHandlerSelectors.basePackage("tn.esprit.spring")) // basePackage permet de demander à Swagger de ne rien documenter en dehors du package "com.esprit.examen".
+				.apis(RequestHandlerSelectors.basePackage("com.pi.dev")) // basePackage permet de demander à Swagger de ne rien documenter en dehors du package "com.esprit.examen".
 
 				.paths(PathSelectors.any())
 				//.paths(PathSelectors.regex("/SpringMVC/client.*")) // accepte seulement les URIs qui commençent par /client. 
@@ -28,8 +28,8 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("Examen Blanc")
-				.description("\"Examen Blanc Swagger configuration\"")
+				.title("PIDEV")
+				.description("\"PIDEV Swagger configuration\"")
 				.version("1.1.0")
 				.build();
 	}

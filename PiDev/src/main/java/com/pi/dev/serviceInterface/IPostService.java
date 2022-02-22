@@ -2,7 +2,7 @@ package com.pi.dev.serviceInterface;
 
 import java.util.List;
 
-import com.pi.dev.models.Like;
+import com.pi.dev.models.PostLike;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.Rating;
 
@@ -10,15 +10,17 @@ public interface IPostService {
 
 	List<Post> findAll();
 
+	List<Post> getFilteredPosts(String filterType, Long userId, int offset);
+
 	Post addPost(Post post);
 
 	Post updatePost(Post post, Long postId);
 
 	boolean deletePost(Long postId);
 
-	boolean addLikeToPost(Like like);
+	boolean addLikeToPost(PostLike postLike);
 
-	boolean removeListFromPost(Long postId, Long userId);
+	boolean removeLikeFromPost(Long postId, Long userId);
 
 	boolean ratePost(Rating rating);
 

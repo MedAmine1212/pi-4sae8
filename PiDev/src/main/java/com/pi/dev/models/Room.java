@@ -26,7 +26,13 @@ public class Room implements Serializable {
 	@OneToOne
 	private User roomOwner;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="room", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Message> messages;
+
+
+	@JsonIgnore
+	@OneToMany(mappedBy="actualRoom", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private List<User> users;
 
 }
