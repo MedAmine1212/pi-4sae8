@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.pi.dev.models.*;
 import com.pi.dev.repository.*;
+import com.pi.dev.serviceInterface.IKeyWordService;
 import com.pi.dev.serviceInterface.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -31,14 +32,36 @@ public class PostServiceImpl implements IPostService {
 
 
 	@Autowired
+	IKeyWordService keyWordService;
+
+
+	@Autowired
 	RatingRepository ratingRepository;
 
 	@Autowired
 	CommentRepository commentRepository;
 
+
 	@Override
 	public List<Post> findAll() {
 		return  postRepository.findAll();
+	}
+
+
+	List<String> getWordByUser(User user) {
+		List<Comment> commentsByUser = commentRepository.findAllByCommentOwner(user);
+		List<String> wordList = new ArrayList<>();
+		for(Comment cm: commentsByUser) {
+			String[] words=cm.getCommentText().split("\\s");
+			for (String w: words) {
+				if (!wordList.contains(w.toLowerCase())) {
+					if ( keyWordService.checkIfKeyWordExists(w))
+						wordList.add(w.toLowerCase());
+				}
+			}
+
+		}
+		return wordList;
 	}
 
 	@Override
@@ -48,17 +71,7 @@ public class PostServiceImpl implements IPostService {
 
 		if(filterType.equals("recommended")) {
 			User user = userRepository.findById(userId).get();
-			List<Comment> commentsByUser = commentRepository.findAllByCommentOwner(user);
-			List<String> wordList = new ArrayList<>();
-			for(Comment cm: commentsByUser) {
-				String[] words=cm.getCommentText().split("\\s");
-				for (String w: words) {
-					if (!wordList.contains(w.toLowerCase())) {
-						wordList.add(w.toLowerCase());
-					}
-				}
-
-			}
+			List<String> wordList = getWordByUser(user);
 			return filterPosts(wordList);
 
 		} else if(filterType.equals("popular")) {
@@ -75,8 +88,10 @@ public class PostServiceImpl implements IPostService {
 					}
 				}
 			}
-			posts.sort(Comparator.comparing(Post::getLikesCount));
-			Collections.reverse(posts);
+			if (!posts.isEmpty()) {
+				posts.sort(Comparator.comparing(Post::getLikesCount));
+				Collections.reverse(posts);
+			}
 			return posts;
 		} else {
 
@@ -115,9 +130,16 @@ public class PostServiceImpl implements IPostService {
 		if (BadWordFilter.badWordsFound(post.getPostContent()).size() != 0 || BadWordFilter.badWordsFound(post.getPostTitle()).size() != 0){
 			return null;
 		} else {
+			String titleAndPost = post.getPostTitle()+" "+post.getPostContent();
+			String[] words=titleAndPost.split("\\s");
+			for (String w: words) {
+				if(w.length() > 3)
+					keyWordService.addWord(w);
+			}
+
+			}
 			return postRepository.save(post);
 		}
-	}
 
 	@Override
 	public Post updatePost(Post post, Long postId) {
@@ -136,7 +158,8 @@ public class PostServiceImpl implements IPostService {
 		try {
 			postRepository.deleteById(postId);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}
 	}
@@ -146,7 +169,8 @@ public class PostServiceImpl implements IPostService {
 		try {
 			likeRepository.save(postLike);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}
 	}
@@ -156,7 +180,8 @@ public class PostServiceImpl implements IPostService {
 		try {
 			likeRepository.removeLikeFromPost(postId, userId);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}
 	}
@@ -166,8 +191,14 @@ public class PostServiceImpl implements IPostService {
 		try {
 			ratingRepository.save(rating);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}
 	}
+
+//	@Override
+//	public List<String> getPostFiles(Long postId) {
+//		return postRepository.findFilesByPost(postId);
+//	}
 }

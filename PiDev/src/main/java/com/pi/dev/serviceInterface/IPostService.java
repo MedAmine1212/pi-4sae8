@@ -24,4 +24,6 @@ public interface IPostService {
 
 	boolean ratePost(Rating rating);
 
+//	List<String> getPostFiles (Long postId);
+
 }

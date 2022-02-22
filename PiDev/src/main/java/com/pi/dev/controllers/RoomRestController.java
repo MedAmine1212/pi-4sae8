@@ -33,28 +33,28 @@ public class RoomRestController {
 	@ApiOperation(value = "Get rooms list by subject")
 	@GetMapping("/getRoomsBySubject/{subject}")
 	@ResponseBody
-	List<Room> findRoomBySubject(String subject) {
+	List<Room> findRoomBySubject(@PathVariable String subject) {
 		return roomService.findRoomBySubject(subject);
 	}
 
 	@ApiOperation(value = "Create room")
-	@GetMapping("/createRoom")
+	@PostMapping("/createRoom/{userId}")
 	@ResponseBody
-	Room createRoom(Room room){
-		return roomService.createRoom(room);
+	Room createRoom(@RequestBody Room room,  @PathVariable Long userId){
+		return roomService.createRoom(room, userId);
 	}
 
 	@ApiOperation(value = "Update room")
-	@PostMapping("/updateRoom")
+	@PostMapping("/updateRoom/{roomId}")
 	@ResponseBody
-	Room updateRoom(Room room, Long roomId){
+	Room updateRoom(@RequestBody Room room,@PathVariable Long roomId){
 		return roomService.updateRoom(room, roomId);
 	}
 
 	@ApiOperation(value = "Delete room")
-	@DeleteMapping("/deleteRoom")
+	@DeleteMapping("/deleteRoom/{roomId}")
 	@ResponseBody
-	boolean removeRoom(Long roomId){
+	boolean removeRoom(@PathVariable Long roomId){
 		return roomService.removeRoom(roomId);
 	}
 

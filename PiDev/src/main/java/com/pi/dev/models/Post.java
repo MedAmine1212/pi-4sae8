@@ -38,16 +38,16 @@ public class Post implements Serializable{
 	private User postOwner;
 
 	@JsonIgnore
-	@OneToMany(mappedBy="commentPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="commentPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Comment> listComments;
 
 
 	@JsonIgnore
-	@OneToMany(mappedBy="likePost", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="likePost", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<PostLike> listPostLikes;
 
 
 	@JsonIgnore
-	@OneToMany(mappedBy="ratingPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="ratingPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Rating> listRating;
 }

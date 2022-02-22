@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +23,10 @@ public class RoomServiceImpl implements IRoomService {
 	RoomRepository roomRepository;
 
 
+	@Autowired
+	MessageRepository messageRepository;
+
+
 	@Override
 	public List<Room> findAll() {
 		return roomRepository.findAll();
@@ -32,8 +38,16 @@ public class RoomServiceImpl implements IRoomService {
 	}
 
 	@Override
-	public Room createRoom(Room room) {
-		return roomRepository.save(room);
+	public Room createRoom(Room room, Long userId) {
+		User user = userRepository.findById(userId).get();
+		user.setRoomOwner(true);
+		List<User> users = new ArrayList<>();
+		users.add(user);
+		room.setUsers(users);
+		Room rm = roomRepository.save(room);
+		user.setActualRoom(rm);
+		userRepository.save(user);
+		return rm;
 	}
 
 	@Override
@@ -42,26 +56,38 @@ public class RoomServiceImpl implements IRoomService {
 		return roomRepository.save(room);
 	}
 
+	@Transactional
 	@Override
 	public boolean removeRoom(Long roomId) {
-		try{
+		try {
+			for (User u : userRepository.findAllByActualRoom(roomRepository.findById(roomId).get())) {
+				u.setActualRoom(null);
+				if (u.isRoomOwner()) {
+					u.setRoomOwner(false);
+				}
+
+				userRepository.save(u);
+			}
 			roomRepository.deleteById(roomId);
 			return true;
-		} catch (Exception ex) {
+		}catch (Exception ex) {
+			log.info(ex.getMessage());
 			return false;
 		}
+
 	}
 
 	@Override
 	public boolean joinRoom(Long roomId, Long userId) {
 
 		try{
-		Room room = roomRepository.getById(roomId);
-		User user = userRepository.getById(userId);
-		room.getUsers().add(user);
-		roomRepository.save(room);
+		Room room = roomRepository.findById(roomId).get();
+		User user = userRepository.findById(userId).get();
+		user.setActualRoom(room);
+		userRepository.save(user);
 		return true;
 	}  catch (Exception ex) {
+			log.info(ex.getMessage());
 			return false;
 		}
 	}
@@ -69,12 +95,13 @@ public class RoomServiceImpl implements IRoomService {
 	@Override
 	public boolean leaveRoom(Long roomId, Long userId) {
 		try{
-		Room room = roomRepository.getById(roomId);
-		User user = userRepository.getById(userId);
-		room.getUsers().remove(user);
-		roomRepository.save(room);
+		Room room = roomRepository.findById(roomId).get();
+		User user = userRepository.findById(userId).get();
+		user.setActualRoom(null);
+		userRepository.save(user);
 			return true;
 		}  catch (Exception ex) {
+			log.info(ex.getMessage());
 			return false;
 		}
 	}

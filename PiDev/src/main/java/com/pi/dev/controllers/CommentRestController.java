@@ -21,14 +21,15 @@ public class CommentRestController {
     //http://localhost:8085/swagger-ui/index.html
 
 	@ApiOperation(value = "Get filtered Comments by Post")
-	@GetMapping("/getFilteredComments/{filterType}/{userId}/{offset}")
+	@GetMapping("/getFilteredComments/{filterType}/{postId}")
 	@ResponseBody
-	List<Comment> getFilteredPosts(@PathVariable String filterType, @PathVariable Long userId, @PathVariable int offset ) {
-		return commentService.getFilteredComments(filterType, userId, offset);
+	List<Comment> getFilteredPosts(@PathVariable String filterType, @PathVariable Long postId	) {
+		return commentService.getFilteredComments(filterType, postId);
 	}
 
 	@ApiOperation(value = "Add Comment")
 	@PostMapping("/addComment")
+	@ResponseBody
 	Comment addComment(@RequestBody Comment comment){
 		return commentService.addComment(comment);
 	}

@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,9 +26,12 @@ public class Comment implements Serializable {
     private User commentOwner;
 
     @JsonIgnore
-    @OneToMany(mappedBy="reactComment", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="reactComment", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
     private List<CommentReact> listCommentReacts;
 
     @Transient
     private int reactsCount;
+
+    @Temporal(TemporalType.DATE)
+    private Date commentDate;
 }

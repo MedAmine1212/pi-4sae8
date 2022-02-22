@@ -2,6 +2,8 @@ package com.pi.dev.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,18 +23,14 @@ public class Room implements Serializable {
 	private Long roomId;
 
 	private String subject;
-	private String postContent;
-
-	@OneToOne
-	private User roomOwner;
 
 	@JsonIgnore
-	@OneToMany(mappedBy="room", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="room", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Message> messages;
 
 
 	@JsonIgnore
-	@OneToMany(mappedBy="actualRoom", fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+	@OneToMany(mappedBy="actualRoom", fetch=FetchType.LAZY, cascade=CascadeType.DETACH)
 	private List<User> users;
 
 }

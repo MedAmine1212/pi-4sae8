@@ -10,7 +10,7 @@ public interface IRoomService {
 
 	List<Room> findRoomBySubject(String subject);
 
-	Room createRoom(Room room);
+	Room createRoom(Room room, Long userId);
 
 	Room updateRoom(Room room, Long roomId);
 

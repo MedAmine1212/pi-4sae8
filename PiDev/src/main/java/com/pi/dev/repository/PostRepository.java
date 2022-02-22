@@ -16,5 +16,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> getFirstTenPosts(int postCount);
 
 
+//    @Query(value = "select pst.postFiles from Post pst where pst.postId =: postId")
+//    List<String> findFilesByPost(@Param("postId") Long postId);
+
+
 //    List<Post> geTenMostPopular();
 }

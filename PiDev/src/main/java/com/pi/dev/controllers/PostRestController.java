@@ -36,7 +36,7 @@ public class PostRestController {
 	@ApiOperation(value = "Update Post")
 	@PostMapping("/updatePost/{postId}")
 	@ResponseBody
-	Post updatePost(@RequestBody Post post,@PathVariable Long postId){
+	Post updatePost(@RequestBody Post post, @PathVariable Long postId){
 		return postService.updatePost(post, postId);
 	}
 
@@ -73,6 +73,13 @@ public class PostRestController {
 	List<Post> getFilteredPosts(@PathVariable String filterType, @PathVariable Long userId, @PathVariable int offset ) {
 		 return postService.getFilteredPosts(filterType, userId, offset);
 	}
+
+//	@ApiOperation(value = "Get post files")
+//	@GetMapping("/getPostFiles/{postId}")
+//	@ResponseBody
+//	List<String> getPostFiles(@PathVariable Long postId) {
+//		return postService.getPostFiles(postId);
+//	}
 
 
 }

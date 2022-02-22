@@ -32,7 +32,7 @@ public class MessageRestController {
 	@ApiOperation(value = "Add Message")
 	@PostMapping("/addMessage")
 	@ResponseBody
-	Message addMessage(Message message) {
+	Message addMessage(@RequestBody Message message) {
 		return messageService.addMessage(message);
 	}
 

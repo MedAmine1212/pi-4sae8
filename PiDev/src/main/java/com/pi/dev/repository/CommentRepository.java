@@ -3,10 +3,12 @@ package com.pi.dev.repository;
 import com.pi.dev.models.Comment;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.User;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 
@@ -14,9 +16,6 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findAllByCommentOwner(User user);
-
-    @Query(value = "select * from Comment LIMIT ?1", nativeQuery = true)
-    List<Comment> getFirstTenComment(int commentCount);
 
 
     List<Comment> findAllByCommentPost(Post post);

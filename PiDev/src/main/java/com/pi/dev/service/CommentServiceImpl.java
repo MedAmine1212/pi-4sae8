@@ -33,8 +33,8 @@ public class CommentServiceImpl implements ICommentService {
 	CommentRepository commentRepository;
 
 	@Override
-	public List<Comment> getFilteredComments(String filterType, Long postId, int offset) {
-		List<Comment> comments =  getCommentPage(offset, 10);
+	public List<Comment> getFilteredComments(String filterType, Long postId) {
+		List<Comment> comments =  commentRepository.findAllByCommentPost(postRepository.findById(postId).get());
 
 		if(filterType.equals("popular")) {
 			for(Comment c: comments) {
@@ -46,14 +46,6 @@ public class CommentServiceImpl implements ICommentService {
 		}
 
 		return comments;
-	}
-	private List<Comment> getCommentPage(int offset, int commentCount) {
-		if (offset == 0) {
-			return commentRepository.getFirstTenComment(commentCount);
-		} else {
-			return commentRepository.findAll(PageRequest.of(offset, commentCount)).getContent();
-
-		}
 	}
 	@Override
 	public Comment addComment(Comment comment) {
@@ -80,7 +72,8 @@ public class CommentServiceImpl implements ICommentService {
 		try {
 			postRepository.deleteById(commentId);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}
 	}
@@ -90,7 +83,8 @@ public class CommentServiceImpl implements ICommentService {
 		try {
 			commentReactRepository.save(commentReact);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}
 	}
@@ -100,7 +94,8 @@ public class CommentServiceImpl implements ICommentService {
 		try {
 			commentReactRepository.removeReactFromPost(commentId, userId);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}
 	}

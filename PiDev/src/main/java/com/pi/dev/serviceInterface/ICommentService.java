@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ICommentService {
 
-	List<Comment> getFilteredComments(String filterType, Long postId, int offset);
+	List<Comment> getFilteredComments(String filterType, Long postId);
 
 	Comment addComment(Comment comment);
 

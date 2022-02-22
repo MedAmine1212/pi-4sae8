@@ -26,7 +26,7 @@ public class MessageServiceImpl implements IMessageService {
 
 	@Override
 	public List<Message> getMessagesByRoom(Long roomId) {
-		return messageRepository.findAllByRoom(roomRepository.getById(roomId));
+		return messageRepository.findAllByRoom(roomRepository.findById(roomId).get());
 	}
 
 	@Override
@@ -43,7 +43,8 @@ public class MessageServiceImpl implements IMessageService {
 		try {
 			messageRepository.deleteById(messageId);
 			return true;
-		} catch (Exception e) {
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			return  false;
 		}	}
 }
