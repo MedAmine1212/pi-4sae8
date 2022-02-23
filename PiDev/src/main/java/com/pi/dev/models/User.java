@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -65,6 +68,8 @@ public class User implements Serializable {
 		@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 		private Contributor contributorAccount;
 		
+		
+		@NotFound(action = NotFoundAction.IGNORE)
 		@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	    private List<Candidacy> listCandidacyUser;
 }

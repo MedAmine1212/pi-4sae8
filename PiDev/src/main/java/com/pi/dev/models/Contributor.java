@@ -2,6 +2,9 @@ package com.pi.dev.models;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,11 +37,11 @@ public class Contributor implements Serializable {
     private TypeContributor TypeContributor;
 
    
-
+    @NotFound(action = NotFoundAction.IGNORE)
     @OneToOne(cascade = CascadeType.DETACH)
     private User userContributor;
 
-
+    @NotFound(action = NotFoundAction.IGNORE)
 	@OneToMany(mappedBy="contributor", cascade=CascadeType.ALL)
 	private List<JobOffer> listJobOffers;
 

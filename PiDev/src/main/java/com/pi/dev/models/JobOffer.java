@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -47,11 +50,12 @@ public class JobOffer implements Serializable {
 	private int jobAvailable;
 	
 
-    
+	@NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne
 	@JoinColumn(name="contributor_id")
     private Contributor contributor;
     
+    @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(mappedBy="jobOffer", cascade=CascadeType.ALL)
     private List<Candidacy> listCandidacyOffer;
     
