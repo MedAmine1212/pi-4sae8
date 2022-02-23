@@ -42,7 +42,7 @@ public class Candidacy implements Serializable{
 	private Long candidacyId;
 	@Temporal(TemporalType.DATE)
 	private Date candidacyDate;
-	private boolean candidacyStatus;
+	private int candidacyStatus =1;
 	
 	@NotFound(action = NotFoundAction.IGNORE)
 	@ManyToOne
@@ -57,7 +57,7 @@ public class Candidacy implements Serializable{
     private User user;
 	
 	@NotFound(action = NotFoundAction.IGNORE)
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "candidacy")
 	@MapsId("interviewId")
 	@JoinColumn(name="interview_id")
 	private Interview interview;

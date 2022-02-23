@@ -9,12 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,8 +41,10 @@ public class Interview implements Serializable{
 	private Date interviewDate;
 	private String interviewLink;
 	
+	
 	@NotFound(action = NotFoundAction.IGNORE)
-	@OneToOne(mappedBy = "interview")
+	@JoinColumn(name="candidacy_id")
+	@OneToOne(cascade = CascadeType.ALL)
     private Candidacy candidacy;
 
 }

@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.pi.dev.models.Candidacy;
 import com.pi.dev.models.Contributor;
+import com.pi.dev.models.Interview;
 import com.pi.dev.models.JobOffer;
 import com.pi.dev.models.User;
 import com.pi.dev.repository.CandidacyRepository;
+import com.pi.dev.repository.InterviewRepository;
 import com.pi.dev.repository.JobOfferRepository;
 import com.pi.dev.serviceInterface.ICandidacyService;
+import com.pi.dev.serviceInterface.IInterviewService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +27,11 @@ public class CandidacyServiceImpl implements ICandidacyService {
 	
 	@Autowired
 	CandidacyRepository candRepo;
+	@Autowired
+	InterviewRepository interviewRepo;
+	
+	@Autowired
+	IInterviewService interviewService;
 	
 	
 
@@ -60,6 +68,23 @@ public class CandidacyServiceImpl implements ICandidacyService {
 		cand.setCandidacyDate(oldcand.getCandidacyDate());
 		cand.setCandidacyId(idCandidacy);
 		return candRepo.save(cand);
+	}
+
+	@Override
+	public boolean assignInterviewToCandidacy(Long idCand, Interview i) {
+		
+		Candidacy c =candRepo.findById(idCand).orElse(null);
+		
+		if(c.getCandidacyStatus()==2) {
+			Interview inter = interviewService.addInterview(i);
+			interviewRepo.save(inter);
+			c.setInterview(inter);
+			inter.setCandidacy(c);
+			interviewRepo.save(inter);
+			candRepo.save(c);
+			return true;
+		}else
+		return false;
 	}
 
 }

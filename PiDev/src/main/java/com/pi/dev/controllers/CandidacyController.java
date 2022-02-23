@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pi.dev.models.Candidacy;
-
+import com.pi.dev.models.Interview;
 import com.pi.dev.serviceInterface.ICandidacyService;
 
 
@@ -61,9 +61,18 @@ public class CandidacyController {
 		} catch (Exception e) {
 			return  false;
 		}
-		
+		}
+	
+	@ApiOperation(value = "Assign an interview to a Candidacy")
+	@PostMapping("/assignInterviewToCandidacy")
+	@ResponseBody
+	public boolean assignInterviewToCandidacy(@RequestParam Long idCand, @RequestBody Interview interview) {
+		try {
+			candidacyService.assignInterviewToCandidacy(idCand, interview);
+			return true;
+		} catch (Exception e) {
+			return  false;
+		}
 	}
-	
-	
 
 }
