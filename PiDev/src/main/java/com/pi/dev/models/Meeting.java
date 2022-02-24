@@ -18,6 +18,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import lombok.Data;
 import lombok.ToString;
 @Entity
@@ -34,10 +37,12 @@ public class Meeting implements Serializable  {
 	private Date date;
 	@Enumerated(EnumType.STRING)
 	private State state;
+	private String domain;
 	@ManyToOne
 	private User createdBy;
 	@ManyToOne
 	private Contributor consultedBy;
+	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToMany
 	(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "meeting")
 	private List<Reclamation> reclamations;

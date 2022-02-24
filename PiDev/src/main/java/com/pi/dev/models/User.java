@@ -1,11 +1,7 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
-<<<<<<< HEAD
-
-=======
 import java.util.Date;
->>>>>>> 8245da931c4d4d11ab1236be6d4c41a2a013e94e
 import java.util.List;
 import java.util.Set;
 
@@ -15,11 +11,6 @@ import com.pi.dev.models.Role;
 
 import lombok.*;
 
-<<<<<<< HEAD
-@Inheritance(strategy=InheritanceType.JOINED)
-@Entity
-=======
->>>>>>> 8245da931c4d4d11ab1236be6d4c41a2a013e94e
 @Data
 @Table(name = "users", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {"username"}),

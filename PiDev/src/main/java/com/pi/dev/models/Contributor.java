@@ -16,6 +16,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import lombok.Data;
 
@@ -27,14 +29,13 @@ import lombok.Data;
 @Data
 public class Contributor extends User  {
 	
-	 private String adress;
-	 private String domain;
+	 private String adress;	
 	 private String legalStatus;
 	 private Date disponibiltyStart;
 	 private Date disponibiltyOver;
-	 
 	 @Enumerated(EnumType.STRING)
 	 private TypeContributor TypeContributor;
-	 @OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "consultedBy")
-		private List<Meeting> meetings;
+	 @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy = "consultedBy")
+	 @NotFound(action = NotFoundAction.IGNORE)
+	 private List<Meeting> meetings;
 }
