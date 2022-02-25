@@ -2,6 +2,7 @@ package com.pi.dev.models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,4 +39,10 @@ public class Contributor extends User  {
 	 private TypeContributor TypeContributor;
 	 @OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "consultedBy")
 		private List<Meeting> meetings;
+	 
+	 @OneToMany(cascade = CascadeType.ALL , mappedBy="contributers")
+		private Set<Events> evenements ;
+		
+		@ManyToOne
+		Jackpots cagnottes ;
 }

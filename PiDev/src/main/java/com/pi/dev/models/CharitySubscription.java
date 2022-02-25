@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -45,12 +46,22 @@ public class CharitySubscription {
 	@Temporal(TemporalType.DATE)
 	private Date Birthdate ;
 	
+	@Column(length = 8)
 	private int CIN ;
+	
+	@Enumerated(EnumType.STRING)
+	private health health ;
 	
 	@Enumerated(EnumType.STRING)
 	private CivilStatus CivilStatus ; 
 	
 	private int NbrChildren ;
+	
+	@Enumerated(EnumType.STRING)
+	private AgeChildren AgeChildren ;
+	
+	@Enumerated(EnumType.STRING)
+	private TypeChildren TypeChildren ;
 	
 	@Enumerated(EnumType.STRING)
 	private EducationLevel EducationLevel ; 

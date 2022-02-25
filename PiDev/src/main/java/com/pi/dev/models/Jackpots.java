@@ -47,9 +47,9 @@ public class Jackpots {
 	@Temporal(TemporalType.DATE)
 	private Date ClosingDate ;
 	
-	private int Rib ;
+	private int Rib;
 	
-	private float score ;
+	private float score;
 	
 	
 

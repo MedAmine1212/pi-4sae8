@@ -11,6 +11,7 @@ import com.pi.dev.models.Role;
 
 import lombok.*;
 
+
 @Data
 @Table(name = "users", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {"username"}),
@@ -79,4 +80,8 @@ public class User implements Serializable {
 	
 	@ManyToOne
 	CharitySubscription CharitySubscriptions ;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Events> Evenements ;
+	
 }

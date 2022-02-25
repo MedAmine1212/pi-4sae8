@@ -55,7 +55,7 @@ public class Events {
 	private Places Places ;
 	
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(mappedBy="events" , cascade = CascadeType.ALL, orphanRemoval=true)
 	private JackpotEvents jackpotEvents ;
 	
 	@JsonIgnore

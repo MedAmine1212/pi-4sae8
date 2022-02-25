@@ -36,7 +36,7 @@ public class JackpotEvents {
 	private String Name ;
 	private String Description ;
 	
-	@OneToOne(mappedBy="jackpotEvents" , cascade = CascadeType.ALL)
+	@OneToOne()
 	private Events events ;
 	
 

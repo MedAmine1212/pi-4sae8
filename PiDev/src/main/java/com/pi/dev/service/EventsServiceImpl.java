@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pi.dev.models.Events;
+import com.pi.dev.models.JackpotEvents;
 import com.pi.dev.repository.EventsRepository;
 import com.pi.dev.repository.JackpotEventRepository;
 import com.pi.dev.serviceInterface.IEventsService;
@@ -27,7 +28,10 @@ public class EventsServiceImpl implements IEventsService {
 	@Override
 	public void addEvent(Events e) {
 		// TODO Auto-generated method stub
-		EvRepo.save(e).getIdEvents();
+		JackpotEvents jckE = new JackpotEvents();
+		e.setJackpotEvents(jckE);
+		jckE.setEvents(e);
+		EvRepo.save(e);
 	}
 
 	@Override
