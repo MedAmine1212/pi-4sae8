@@ -1,45 +1,65 @@
 package com.pi.dev.models;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-import com.pi.dev.models.Role;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.*;
-
-@Data
-@Table(name = "users", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"username"}),
-		@UniqueConstraint(columnNames = {"email"})
-})
-@Inheritance(strategy=InheritanceType.JOINED)
 @Entity
-public class User implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
-	private String userName;
-	private String password;
-	private String firstName;
-	private String lastName;
-	private int phone;
-	private String email;
-	private Date birthDate;
+@Table(name = "users", 
+    uniqueConstraints = { 
+      @UniqueConstraint(columnNames = "username"),
+      @UniqueConstraint(columnNames = "email") 
+    })
+@Data
+@Getter
+@Setter
+public class User {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "user_roles",
-	joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
-	inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "roleId"))
-	private Set<Role> roles;
-	
+  @NotBlank
+  @Size(max = 20)
+  private String username;
+
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
+
+  @NotBlank
+  @Size(max = 120)
+  private String password;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(  name = "user_roles", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles = new HashSet<>();
+
+  public User() {
+  }
+
+  public User(String username, String email, String password) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+  }
+
+ 
+
+
+
 	@OneToOne
 	private Subscription subscription; 
 	
@@ -76,4 +96,5 @@ public class User implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
 	private List<Reclamation> reclamations;
+
 }

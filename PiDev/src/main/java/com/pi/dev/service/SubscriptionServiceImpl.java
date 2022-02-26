@@ -38,7 +38,6 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 	
 	@Override
 	public Subscription updateSubscription(Subscription subscription, Long SubscriptionID) {
-		
 			subscription.setSubscriptionId(SubscriptionID);
 			return subscriptionRepository.save(subscription);
 		
