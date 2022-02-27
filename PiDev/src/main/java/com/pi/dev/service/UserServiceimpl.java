@@ -41,7 +41,7 @@ public class UserServiceimpl implements IUserService{
 	@Override
 	public User updateUser(User user, Long postId) {
 		
-			user.setUserId(postId);
+			user.setId(postId);
 			return userRepository.save(user);
 		
 	}
