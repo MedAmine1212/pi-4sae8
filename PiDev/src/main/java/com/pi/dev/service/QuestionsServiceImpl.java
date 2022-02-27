@@ -12,7 +12,7 @@ import com.pi.dev.serviceInterface.IQuestionsService;
 
 @Service
 public class QuestionsServiceImpl implements IQuestionsService{
-	
+
 	@Autowired
 	QuestionsRepository qr;
 	@Override
@@ -26,17 +26,31 @@ public class QuestionsServiceImpl implements IQuestionsService{
 		// TODO Auto-generated method stub
 		return qr.save(questions);
 	}
+    
+	@Override
+	public Questions updateQuestion(Questions questions,Long questionId) {
+		questions.setQuestionsId(questionId);
+		return qr.save(questions);
+	}
+
+
 
 	@Override
-	public Questions updatePost(Questions questions, Long questionsId) {
+	public void deleteQuestion(Questions q) {
 		// TODO Auto-generated method stub
-		return null;
+		qr.delete(q);
 	}
 
 	@Override
-	public boolean deleteQuestions(Long questionsId) {
+	public void deleteQuestionsById(Long questionsId) {
 		// TODO Auto-generated method stub
-		return false;
+		qr.deleteById(questionsId);
+	}
+
+	@Override
+	public Questions findById(Long questionId) {
+		// TODO Auto-generated method stub
+		return qr.findById(questionId).orElse(null);
 	}
 
 }

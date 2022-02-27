@@ -1,5 +1,6 @@
 package com.pi.dev.models;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -14,35 +15,37 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+
 import lombok.Data;
 import lombok.ToString;
 
 @Entity
 @Table(name="Certification")
 @Data
-@ToString
 public class Certification implements Serializable {
 	
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
-    @EmbeddedId
-	private UserTrainingKey id;
-    
-    @ManyToOne()
-	@MapsId("userId")
-	@JoinColumn(name="user_id")
+    @ManyToOne
+    @JoinColumn( name = "user_id" )
+    @ToString.Exclude
+    @JsonProperty( access = Access.WRITE_ONLY )
 	private User user;
     
-    @ManyToOne()
-	@MapsId("trainingId")
-	@JoinColumn(name="training_id")
+    @ManyToOne
+    @JoinColumn( name = "training_id" )
+    @ToString.Exclude
+    @JsonProperty( access = Access.WRITE_ONLY )
 	private Training training;
     
 	private double score;
 
-    
-    
+	
 
 }

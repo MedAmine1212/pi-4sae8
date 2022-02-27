@@ -3,8 +3,12 @@ package com.pi.dev.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,15 +32,30 @@ public class QuestionsRestController {
 	@ApiOperation(value = "add question")
 	@PostMapping("/add-question")
 	@ResponseBody
-	public Questions addQuestion(Questions questions) {
+	public Questions addQuestion(@RequestBody Questions questions) {
 		return qs.addQuestions(questions);
 	}
+	
 	
 	@ApiOperation(value = "Get questions list")
 	@GetMapping("/getQuestions")
 	@ResponseBody
 	public List<Questions> getQuestions() {
 		return qs.findAll();
+	}
+	
+	@ApiOperation(value = "Update Question")
+	@PutMapping("/update-question/{question-id}")
+	@ResponseBody
+	public Questions updateQuestion(@RequestBody Questions questions, @PathVariable("question-id") Long questionsId) {
+		return qs.updateQuestion(questions,questionsId); 	
+	}
+	
+	@ApiOperation(value = "Delete Question")
+	@DeleteMapping("/delete-question/{question-id}")
+	@ResponseBody
+	public void deleteQuestion(@PathVariable("question-id") Long questionsId) {
+		 qs.deleteQuestionsById(questionsId);	
 	}
 
 }

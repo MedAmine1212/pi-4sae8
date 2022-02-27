@@ -2,8 +2,8 @@ package com.pi.dev.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.pi.dev.models.Quiz;
+import com.pi.dev.models.User;
 
-public interface QuizRepository extends JpaRepository<Quiz, Long> {
+public interface UserRepository extends JpaRepository<User, Long>{
 
 }
