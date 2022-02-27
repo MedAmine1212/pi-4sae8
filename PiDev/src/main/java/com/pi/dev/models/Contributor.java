@@ -36,6 +36,6 @@ public class Contributor extends User  {
 	 @Enumerated(EnumType.STRING)
 	 private TypeContributor TypeContributor;
 	 @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy = "consultedBy")
-	 @NotFound(action = NotFoundAction.IGNORE)
+	 
 	 private List<Meeting> meetings;
 }
