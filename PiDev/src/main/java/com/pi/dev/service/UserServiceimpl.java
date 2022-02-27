@@ -39,9 +39,9 @@ public class UserServiceimpl implements IUserService{
 	}
 	
 	@Override
-	public User updateUser(User user, Long postId) {
+	public User updateUser(User user, Long userID) {
 		
-			user.setId(postId);
+			user.setId(userID);
 			return userRepository.save(user);
 		
 	}
@@ -54,5 +54,5 @@ public class UserServiceimpl implements IUserService{
 	}
 	
 	
-	
+
 }

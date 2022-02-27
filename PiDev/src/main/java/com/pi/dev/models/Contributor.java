@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NotFound;
@@ -27,15 +28,31 @@ import lombok.Data;
 @Entity
 @Table(name = "contributor")
 @Data
-public class Contributor extends User  {
+public class Contributor  {
 	
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 private Long contributorId;
+	 private String name;	
+	 private String domain;	
+
 	 private String adress;	
 	 private String legalStatus;
+	 private String email;	
+	 private int phone;	
+
 	 private Date disponibiltyStart;
 	 private Date disponibiltyOver;
+	 
+	 
 	 @Enumerated(EnumType.STRING)
 	 private TypeContributor TypeContributor;
+	 
+	 
 	 @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy = "consultedBy")
 	 @NotFound(action = NotFoundAction.IGNORE)
 	 private List<Meeting> meetings;
+	 
+	 @OneToOne(cascade = CascadeType.DETACH)
+	    private User userContributor;
 }

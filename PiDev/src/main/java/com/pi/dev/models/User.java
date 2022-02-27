@@ -40,6 +40,8 @@ public class User {
   @NotBlank
   @Size(max = 120)
   private String password;
+  
+  private boolean state;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(  name = "user_roles", 
@@ -63,6 +65,9 @@ public class User {
 	@OneToOne
 	private Subscription subscription; 
 	
+	
+	@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Contributor contributorAccount;
 
 	@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Post> listPosts;

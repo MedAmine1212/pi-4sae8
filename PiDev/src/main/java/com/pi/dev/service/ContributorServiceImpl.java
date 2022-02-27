@@ -45,7 +45,7 @@ public class ContributorServiceImpl implements IContributorService {
 	@Override
 	public Contributor updateContributor(Contributor contributor, Long contributorID) {
 		
-		contributor.setId(contributorID);
+		contributor.setContributorId(contributorID);
 			return contributerRepository.save(contributor);
 		
 	}
