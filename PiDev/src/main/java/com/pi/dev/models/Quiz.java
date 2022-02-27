@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -24,6 +27,11 @@ public class Quiz implements Serializable {
     private float score;
     private boolean isActive;
     
-    @OneToMany(mappedBy="quiz", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    
+    @OneToMany(mappedBy="quiz",cascade = CascadeType.ALL)
    	private List<Questions> questions;
+    
+    @JsonIgnore
+    @OneToOne(mappedBy="quiz")
+	private Training training;
 }

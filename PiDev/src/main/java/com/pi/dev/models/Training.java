@@ -1,7 +1,7 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,14 +26,19 @@ public class Training implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long trainingId;
+	@Temporal(TemporalType.DATE)
     private Date startDate;
+	@Temporal(TemporalType.DATE)
     private Date endDate;
     private String Subject;
     private int maxNbrParticipants;
-
-    
-    
-    
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+	private Quiz quiz;
+    @JsonIgnore
     @OneToMany(mappedBy = "training",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Certification> certif;
+    
+    
+
 }

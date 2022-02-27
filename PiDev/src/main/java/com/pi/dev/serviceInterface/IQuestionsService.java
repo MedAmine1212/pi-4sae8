@@ -11,10 +11,13 @@ public interface IQuestionsService {
 
 	Questions addQuestions(Questions questions);
 
-	Questions updatePost(Questions questions, Long questionsId);
+	Questions updateQuestion(Questions questions,Long questionId);
 
-	boolean deleteQuestions(Long questionsId);
-
+	Questions findById(Long questionId);
+	
+	public void deleteQuestionsById(Long questionsId);
+	
+	public void deleteQuestion(Questions q);
 
 
 	
