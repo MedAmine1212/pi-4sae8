@@ -74,7 +74,7 @@ public class QuizServiceImpl implements IQuizService {
 		// TODO Auto-generated method stub
 
 	}
-
+    
 	@Override
 	public Quiz findByTraining(Long trainingId) {
 		// TODO Auto-generated method stub*
@@ -84,5 +84,7 @@ public class QuizServiceImpl implements IQuizService {
 		return qz;
 
 	}
+
+
 
 }
