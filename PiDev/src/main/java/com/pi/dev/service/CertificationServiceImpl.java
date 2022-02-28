@@ -3,6 +3,8 @@ package com.pi.dev.service;
 import java.util.List;
 
 import com.pi.dev.models.Certification;
+import com.pi.dev.models.Questions;
+import com.pi.dev.models.Quiz;
 import com.pi.dev.models.Training;
 import com.pi.dev.models.User;
 import com.pi.dev.repository.CertificationRepository;
@@ -38,11 +40,18 @@ public class CertificationServiceImpl implements ICertificationService{
         User user = ur.findById(idUser).orElse(null);
 		Training tr = qr.findById(idTraining).orElse(null); 
         List<Certification> crs = user.getCertif();
+        Quiz qz = tr.getQuiz();
+        List<Questions> questions = qz.getQuestions();
+        Certification certif = new Certification();
         for (Certification certification : crs) {
             if(certification.getTraining().equals(tr))
             {
-                return certification;
+                certif = certification;
             }
+        }
+        if(certif.getScore()>questions.size())
+        {
+            return certif;
         }
         return null;
   }

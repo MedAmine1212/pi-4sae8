@@ -1,11 +1,19 @@
 package com.pi.dev.controllers;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,19 +25,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.pi.dev.models.CodeGenerator;
 import com.pi.dev.models.Quiz;
 import com.pi.dev.models.Training;
+import com.pi.dev.models.User;
+import com.pi.dev.repository.UserRepository;
 import com.pi.dev.serviceInterface.ITrainingService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.var;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.util.StreamUtils;
 
 @RestController
 @Api(tags = "Manage trainings")
@@ -37,6 +53,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 public class TrainingRestController {
 	@Autowired
 	ITrainingService qs;
+	@Autowired
+	UserRepository userrepository;
     //http://localhost:8087/SpringMVC/swagger-ui/index.html
 	
 	@ApiOperation(value = "add training")
@@ -65,10 +83,10 @@ public class TrainingRestController {
 	}
 	
 	@ApiOperation(value = "Get Trainings by subject")
-	@GetMapping("/getTrainingBysubject/{subject}")
+	@GetMapping("/getTrainingBysubject/{user-id}/{subject}")
 	@ResponseBody
-	public List<Training> getTrainingsBySubject(@PathVariable("subject") String s) {
-		return qs.getTrainingBySubject(s);
+	public List<Training> getTrainingsBySubject(@PathVariable ("user-id") Long userId, @PathVariable("subject") String s) {
+		return qs.getTrainingBySubject(userId, s);
 	}
 	
 	@ApiOperation(value = "Get recommended trainings")
@@ -122,17 +140,29 @@ public class TrainingRestController {
 	}
 	//QR Code Generator Test v1
 	@ApiOperation(value = "QR Code test")
-	@PostMapping(value = "/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<BufferedImage> zxingQRCode(@RequestBody String barcode) throws Exception{
-        return successResponse(CodeGenerator.generateQRCode(barcode));
-    }
+	@PostMapping(value = "/qrcode/{user-id}",produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> zxingQRCode(@PathVariable("user-id") Long idUser) throws WriterException, IOException, NotFoundException{
+		User user=userrepository.findById(idUser).orElse(null);
 
-    private ResponseEntity<BufferedImage> successResponse(BufferedImage image) {
-        return new ResponseEntity<>(image, HttpStatus.OK);
-    }
+		//path where we want to get QR Code  
+		String path = "C:\\Users\\Mr.Khlifi\\OneDrive\\Bureau\\backup\\pi-4sae8\\PiDev\\src\\main\\resources\\images\\myQrCode.jpg";  
+       
+		//Encoding charset to be used  
+		String charset = "UTF-8";  
+		Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();  
+		//generates QR code with Low level(L) error correction capability  
+		hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);  
+		//invoking the user-defined method that creates the QR code  
+		String str= " Congratz !! This is your certification"+user.getFirstName()+" "+user.getLastName();  
+
+		CodeGenerator.generateQRcode(str, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly   
+		//prints if the QR code is generated   
+		ClassPathResource imageFile = new ClassPathResource("images/myQrCode.jpg");
+        byte[] imageBytes = StreamUtils.copyToByteArray(imageFile.getInputStream());
+		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
+		     }
+
+  
 	
-	@Bean
-    public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
-        return new BufferedImageHttpMessageConverter();
-    }
+
 }

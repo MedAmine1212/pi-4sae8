@@ -2,7 +2,11 @@ package com.pi.dev.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -26,9 +30,11 @@ public class Questions implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionsId;
     private String label;
+    
     @ElementCollection
     private List<String> answers;
     
+
     private String prompt;
     
     
