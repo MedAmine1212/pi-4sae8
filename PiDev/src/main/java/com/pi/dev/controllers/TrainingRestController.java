@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pi.dev.models.Certification;
 import com.pi.dev.models.CodeGenerator;
 import com.pi.dev.models.Quiz;
 import com.pi.dev.models.Training;

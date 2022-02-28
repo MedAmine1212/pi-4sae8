@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pi.dev.models.Role;
 
 import lombok.*;
@@ -33,6 +34,9 @@ public class User implements Serializable {
 	private int phone;
 	private String email;
 	private Date birthDate;
+
+	@ElementCollection
+    private List<String> searchHistory;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_roles",
@@ -76,4 +80,8 @@ public class User implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
 	private List<Reclamation> reclamations;
+
+	
+    @OneToOne(cascade = CascadeType.ALL)
+	private Reputation reputation;
 }

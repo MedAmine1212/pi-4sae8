@@ -18,10 +18,13 @@ public interface ITrainingService {
 	public void ParticipateToTraining(Long userId, Long trainingId);
 	public void deleteTrainingById(Long trainingId);
 	void assignQuizToTraining(Long trainingId, Quiz qz);
-	List<Training> getTrainingBySubject(String s);
+	List<Training> getTrainingBySubject(Long userId,String s);
 
 	public void deleteTraining(Training q);
 	
 	public List<Training>recommendedTraining(Long idUser);
+
+	public List<Training>recommendedTrainingBySearchs(Long idUser);
+
 
 }

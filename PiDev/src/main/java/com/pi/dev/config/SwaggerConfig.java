@@ -21,7 +21,7 @@ return new Docket(DocumentationType.SWAGGER_2)
 .build();
 }
 
-private ApiInfo apiInfo () {
+private ApiInfo apiInfo() {
 return new ApiInfoBuilder()
 .title("Swagger Configuration for tpStockProject")
 .description("\"Spring Boot Swagger configuration\"")
