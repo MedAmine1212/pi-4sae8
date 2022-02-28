@@ -13,6 +13,8 @@ public interface IQuizService {
 
 	Quiz findById(Long questionId);
 	
+	Quiz findByTraining(Long trainingId);
+
 	public void deleteQuizById(Long quizId);
 	
 	public void deleteQuiz(Quiz q);
