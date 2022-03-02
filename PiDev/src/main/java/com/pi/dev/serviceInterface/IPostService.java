@@ -30,5 +30,5 @@ public interface IPostService {
 
 	boolean ratePost(Rating rating);
 
-	void addFileToPost(String originalFilename, Long postId);
+	void removeFile(String fileName, Long postId);
 }

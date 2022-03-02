@@ -1,16 +1,15 @@
 package com.pi.dev.service;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import com.pi.dev.models.*;
 import com.pi.dev.repository.*;
 import com.pi.dev.serviceInterface.IKeyWordService;
 import com.pi.dev.serviceInterface.IPostService;
+import com.pi.dev.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +24,9 @@ public class PostServiceImpl implements IPostService {
 
 	@Autowired
 	PostRepository postRepository;
+
+	@Autowired
+	StorageService storageService;
 
 
 	@Autowired
@@ -171,6 +173,10 @@ public class PostServiceImpl implements IPostService {
 	@Override
 	public boolean deletePost(Long postId) {
 		try {
+			Post p = postRepository.findById(postId).get();
+			for (String fileName: p.getPostFiles()) {
+				storageService.deleteFile(fileName);
+			}
 			postRepository.deleteById(postId);
 			return true;
 		} catch (Exception ex) {
@@ -213,9 +219,9 @@ public class PostServiceImpl implements IPostService {
 	}
 
 	@Override
-	public void addFileToPost(String originalFilename, Long postId) {
+	public void removeFile(String fileName, Long postId) {
 		Post p = postRepository.findById(postId).get();
-		p.getPostFiles().add(originalFilename);
+		p.getPostFiles().remove(fileName);
 		postRepository.save(p);
-	}
+		}
 }

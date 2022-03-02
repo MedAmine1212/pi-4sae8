@@ -108,8 +108,14 @@ public class PostRestController {
 	@PostMapping("/uploadPostFile/{postId}")
 	public void handleFileUpload(@PathVariable Long postId, @RequestParam("file") MultipartFile file) {
 
-		storageService.store(file);
-		postService.addFileToPost(file.getOriginalFilename(), postId);
+		storageService.store(file, postId);
+	}
+
+	@ApiOperation(value = "Remove post file")
+	@GetMapping("/deletePostFile/{postId}/{fileName}")
+	public void handleFileUpload(@PathVariable String fileName, @PathVariable Long postId) {
+		storageService.deleteFile(fileName);
+		postService.removeFile(fileName, postId);
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)
