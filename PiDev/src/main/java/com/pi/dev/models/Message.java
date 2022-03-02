@@ -16,10 +16,10 @@ public class Message implements Serializable {
     private Long messageId;
 
     @ManyToOne
-    @JsonIgnore
     private Room room;
 
     @ManyToOne
-    @JsonIgnore
     private User messageOwner;
+
+    private String messageText;
 }

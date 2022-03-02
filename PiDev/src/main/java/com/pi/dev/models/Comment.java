@@ -5,25 +5,33 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 public class Comment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
-
-
-    @JsonIgnore
-    @ManyToOne
-    private Post post;
-
+    private String commentText;
 
     @ManyToOne
-    @JsonIgnore
+    private Post commentPost;
+
+
+    @ManyToOne
     private User commentOwner;
 
-    @OneToMany(mappedBy="comment", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    private List<React> listReacts;
+    @JsonIgnore
+    @OneToMany(mappedBy="reactComment", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+    private List<CommentReact> listCommentReacts;
+
+    @Transient
+    private int reactsCount;
+
+    @Temporal(TemporalType.DATE)
+    private Date commentDate;
 }

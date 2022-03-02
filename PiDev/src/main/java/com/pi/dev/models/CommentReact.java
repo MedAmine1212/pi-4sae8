@@ -8,19 +8,19 @@ import java.io.Serializable;
 
 @Entity
 @Data
-public class React implements Serializable {
+public class CommentReact implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reactId;
-
-
-    @JsonIgnore
-    @ManyToOne
-    private Comment comment;
+    private Long commentReactId;
 
 
     @ManyToOne
-    @JsonIgnore
+    private Comment reactComment;
+
+
+    @ManyToOne
     private User reactOwner;
 
 

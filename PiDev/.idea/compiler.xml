@@ -10,6 +10,9 @@
         <module name="PiDev" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PiDev" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

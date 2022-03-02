@@ -14,18 +14,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoggingAspect {
 
-	@Before("execution(public * tn.esprit.spring.service.*.* (..))")
+	@Before("execution(public * com.pi.dev.service.*.* (..))")
 	public void logMethodEntry(JoinPoint joinPoint) {
 		log.info("In method : " + joinPoint.getSignature().getName() + " : ");
 	}
 
-	@AfterReturning("execution(* tn.esprit.spring.service.*.*(..))")
+	@AfterReturning("execution(* com.pi.dev.service.*.*(..))")
 	public void logMethodExit1(JoinPoint joinPoint) {
 		String name = joinPoint.getSignature().getName();
 		log.info("Out of method without errors : " + name );
 	}
 
-	@AfterThrowing("execution(* tn.esprit.spring.service.*.*(..))")
+	@AfterThrowing("execution(* com.pi.dev.service.*.*(..))")
 	public void logMethodExit2(JoinPoint joinPoint) {
 		String name = joinPoint.getSignature().getName();
 		log.error("Out of method with erros : " + name );
