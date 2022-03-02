@@ -33,6 +33,7 @@ import com.pi.dev.models.CodeGenerator;
 import com.pi.dev.models.Quiz;
 import com.pi.dev.models.Training;
 import com.pi.dev.models.User;
+import com.pi.dev.repository.TrainingRepository;
 import com.pi.dev.repository.UserRepository;
 import com.pi.dev.serviceInterface.ITrainingService;
 
@@ -55,6 +56,8 @@ public class TrainingRestController {
 	ITrainingService qs;
 	@Autowired
 	UserRepository userrepository;
+	@Autowired
+	TrainingRepository tr;
     //http://localhost:8087/SpringMVC/swagger-ui/index.html
 	
 	@ApiOperation(value = "add training")
@@ -140,9 +143,10 @@ public class TrainingRestController {
 	}
 	//QR Code Generator Test v1
 	@ApiOperation(value = "QR Code test")
-	@PostMapping(value = "/qrcode/{user-id}",produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> zxingQRCode(@PathVariable("user-id") Long idUser) throws WriterException, IOException, NotFoundException{
+	@PostMapping(value = "/qrcode/{user-id}/{training-id}",produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> zxingQRCode(@PathVariable("user-id") Long idUser , @PathVariable("training-id") Long idTraining ) throws WriterException, IOException, NotFoundException{
 		User user=userrepository.findById(idUser).orElse(null);
+		Training train=tr.findById(idTraining).orElse(null);
 
 		//path where we want to get QR Code  
 		String path = "C:\\Users\\Mr.Khlifi\\OneDrive\\Bureau\\backup\\pi-4sae8\\PiDev\\src\\main\\resources\\images\\myQrCode.jpg";  
@@ -153,7 +157,7 @@ public class TrainingRestController {
 		//generates QR code with Low level(L) error correction capability  
 		hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);  
 		//invoking the user-defined method that creates the QR code  
-		String str= " Congratz !! This is your certification"+user.getFirstName()+" "+user.getLastName();  
+		String str= " Congratz !! This is your certification"+user.getFirstName()+" "+user.getLastName() +" On : " +train.getSubject()+ " .";  
 
 		CodeGenerator.generateQRcode(str, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly   
 		//prints if the QR code is generated   
