@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.pi.dev.models.*;
 import com.pi.dev.repository.*;
@@ -47,6 +48,11 @@ public class PostServiceImpl implements IPostService {
 		return  postRepository.findAll();
 	}
 
+	@Override
+	public List<Post> searchPosts(String text) {
+		return postRepository.findPostsByText(text.toLowerCase());
+	}
+
 
 	List<String> getWordByUser(User user) {
 		List<Comment> commentsByUser = commentRepository.findAllByCommentOwner(user);
@@ -71,6 +77,7 @@ public class PostServiceImpl implements IPostService {
 
 		if(filterType.equals("recommended")) {
 			User user = userRepository.findById(userId).get();
+			log.info(user.getName());
 			List<String> wordList = getWordByUser(user);
 			return filterPosts(wordList);
 
@@ -88,9 +95,13 @@ public class PostServiceImpl implements IPostService {
 					}
 				}
 			}
+			try{
 			if (!posts.isEmpty()) {
 				posts.sort(Comparator.comparing(Post::getLikesCount));
 				Collections.reverse(posts);
+			}
+			}catch(Exception ex) {
+				log.info(ex.getMessage());
 			}
 			return posts;
 		} else {
@@ -105,7 +116,8 @@ public class PostServiceImpl implements IPostService {
 		for(Post p: posts) {
 			boolean keepIt = false;
 			for(String word: wordList) {
-				if (p.getPostContent().contains(word) || p.getPostTitle().contains(word)) {
+				if (Pattern.compile(Pattern.quote(word), Pattern.CASE_INSENSITIVE).matcher(p.getPostContent()).find() ||
+						Pattern.compile(Pattern.quote(word), Pattern.CASE_INSENSITIVE).matcher(p.getPostTitle()).find()) {
 					keepIt = true;
 					break;
 				}

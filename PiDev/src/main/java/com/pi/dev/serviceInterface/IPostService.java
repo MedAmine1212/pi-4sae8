@@ -10,6 +10,8 @@ public interface IPostService {
 
 	List<Post> findAll();
 
+	List<Post> searchPosts(String text);
+
 	List<Post> getFilteredPosts(String filterType, Long userId, int offset);
 
 	Post addPost(Post post);

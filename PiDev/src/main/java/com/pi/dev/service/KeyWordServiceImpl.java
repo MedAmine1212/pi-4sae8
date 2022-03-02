@@ -23,7 +23,7 @@ public class KeyWordServiceImpl implements IKeyWordService {
 	KeyWordRepository keyWordRepository;
 	@Override
 	public void addWord(String word) {
-		KeyWord w = keyWordRepository.findOneByKeyWord(word);
+		KeyWord w = keyWordRepository.findOneByKeyWord(word.toLowerCase());
 		if(w != null) {
 			w.setCount(w.getCount()+1);
 			keyWordRepository.save(w);
@@ -34,7 +34,7 @@ public class KeyWordServiceImpl implements IKeyWordService {
 			ZoneId defaultZoneId = ZoneId.systemDefault();
 			Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
 			kw.setAddedDate(date);
-			kw.setKeyWord(word);
+			kw.setKeyWord(word.toLowerCase());
 			keyWordRepository.save(kw);
 		}
 	}

@@ -27,6 +27,13 @@ public class PostRestController {
 		return postService.findAll();
 	}
 
+	@ApiOperation(value = "Search post")
+	@GetMapping("/searchPosts/{text}")
+	@ResponseBody
+	public List<Post> searchPosts(@PathVariable String text) {
+		return postService.searchPosts(text);
+	}
+
 	@ApiOperation(value = "Add post")
 	@PostMapping("/addPost")
 	Post addPost(@RequestBody Post post){
@@ -57,7 +64,7 @@ public class PostRestController {
 	@ApiOperation(value = "Remove like from post")
 	@GetMapping("/removeLikeFromPost/{postId}/{userId}")
 	@ResponseBody
-	boolean removeListFromPost(@PathVariable Long postId,@PathVariable Long userId){
+	boolean removeLikeFromPost(@PathVariable Long postId,@PathVariable Long userId){
 		return postService.removeLikeFromPost(postId, userId);
 	}
 
