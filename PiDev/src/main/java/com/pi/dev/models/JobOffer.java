@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,13 +50,15 @@ public class JobOffer implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date jobExpirationDate;
 	private int jobAvailable;
-	
+	@Enumerated(EnumType.STRING)
+	private Locations location;
 
 	@NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne
 	@JoinColumn(name="contributor_id")
     private Contributor contributor;
     
+	
     @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(mappedBy="jobOffer", cascade=CascadeType.ALL)
     private List<Candidacy> listCandidacyOffer;

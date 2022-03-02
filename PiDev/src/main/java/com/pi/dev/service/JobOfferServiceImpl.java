@@ -30,8 +30,13 @@ public class JobOfferServiceImpl implements IJobOfferService {
 
 	@Override
 	public List<JobOffer> findAllJobOffers() {
-		return jobRepo.findAll();
+		return jobRepo.findAllByOrderByJobAvailableDesc();
 	}
+	@Override
+	public List<JobOffer> findAllWithCookies(String s) {
+		return jobRepo.findAllWithCookies(s);
+	}
+	
 
 	@Override
 	public JobOffer addJobOffer(JobOffer f) {
@@ -67,11 +72,17 @@ public class JobOfferServiceImpl implements IJobOfferService {
 
 		
 	}
-	
-	
-	
-	
-	
-	
 
-}
+
+
+	@Override
+	public List<JobOffer> findJobOffersByTitle(String s) {
+		return jobRepo.findByjobNameContaining(s);
+	}
+
+
+
+	@Override
+	public List<JobOffer> findJobOffersBySomething(String s) {
+		return jobRepo.findBySomething(s);
+	}}

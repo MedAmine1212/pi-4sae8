@@ -28,6 +28,8 @@ public class User implements Serializable {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long userId;
 		private String name;
+		@Enumerated(EnumType.STRING)
+		private Locations userLocation;
 
 		@JsonIgnore
 		@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
@@ -68,7 +70,7 @@ public class User implements Serializable {
 		@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 		private Contributor contributorAccount;
 		
-		
+
 		@NotFound(action = NotFoundAction.IGNORE)
 		@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	    private List<Candidacy> listCandidacyUser;

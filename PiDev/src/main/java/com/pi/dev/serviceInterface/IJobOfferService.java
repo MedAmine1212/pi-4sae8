@@ -9,6 +9,9 @@ import com.pi.dev.models.JobOffer;
 public interface IJobOfferService {
 	
 	List<JobOffer> findAllJobOffers();
+	List<JobOffer> findJobOffersByTitle(String s);
+    List<JobOffer> findJobOffersBySomething(String s);
+    List<JobOffer> findAllWithCookies(String s);
 	
 	JobOffer addJobOffer(JobOffer f);
 	

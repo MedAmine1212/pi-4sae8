@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CandidacyServiceImpl implements ICandidacyService {
 	//JobOffer offer=new JobOffer((long)1, "HARD CODED", null, null, null, 0, null, null);
-	//User user =new User((long)1, null, null, null, null, null, null, null, null, false, null, null);
+	
 	
 	@Autowired
 	CandidacyRepository candRepo;
@@ -42,7 +42,8 @@ public class CandidacyServiceImpl implements ICandidacyService {
 
 	@Override
 	public Candidacy addCandidacy(Candidacy c) {
-	//	c.setUser(u);
+		//User user =new User((long)1, null, null, null, null, null, null, null, null, false, null, null);
+	//c.setUser(user);
 	//	candRepo.save(c);
 	//	f.getListCandidacyOffer().add(c);	
 	//  c.setJobOffer(f);
