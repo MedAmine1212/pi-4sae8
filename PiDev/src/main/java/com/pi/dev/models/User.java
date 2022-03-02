@@ -17,7 +17,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Data
-@Table(name = "user", uniqueConstraints = {
+@Table(name = "User", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {"username"}),
 		@UniqueConstraint(columnNames = {"email"})
 })
@@ -31,9 +31,33 @@ public class User implements Serializable {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long userId;
-		private String name;
 
-		@JsonIgnore
+		private String userName;
+		private String password;
+		private String firstName;
+		private String lastName;
+		private int phone;
+		private String email;
+		@Temporal(TemporalType.DATE)
+		private Date birthDate;
+
+
+	@ElementCollection
+		private List<String> searchHistory;
+
+
+		@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+		@JoinTable(name = "user_roles",
+				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
+				inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "roleId"))
+		private Set<Role> roles;
+
+
+		@OneToOne
+		private Subscription subscription;
+
+
+	@JsonIgnore
 		@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 		private List<Post> listPosts;
 
@@ -74,4 +98,16 @@ public class User implements Serializable {
 		@JsonIgnore
 		@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 		private Contributor contributorAccount;
+
+
+		@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy",  orphanRemoval = true)
+		private List<Meeting> meetings;
+
+		@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy",  orphanRemoval = true)
+		private List<Reclamation> reclamations;
+
+
+	@OneToOne(cascade = CascadeType.ALL)
+		private Reputation reputation;
+
 }

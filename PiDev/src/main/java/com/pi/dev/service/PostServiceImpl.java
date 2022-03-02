@@ -82,7 +82,6 @@ public class PostServiceImpl implements IPostService {
 
 		if(filterType.equals("recommended")) {
 			User user = userRepository.findById(userId).get();
-			log.info(user.getName());
 			List<String> wordList = getWordByUser(user);
 			return filterPosts(wordList);
 
