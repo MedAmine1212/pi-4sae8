@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.pi.dev.models.Certification;
 import com.pi.dev.models.Questions;
 import com.pi.dev.models.Quiz;
+import com.pi.dev.models.ReputationLevel;
 import com.pi.dev.models.Training;
 import com.pi.dev.models.User;
 import com.pi.dev.repository.CertificationRepository;
@@ -109,14 +110,39 @@ public class TrainingServiceImpl implements ITrainingService {
 	public void ParticipateToTraining(Long userId, Long trainingId) {
 		// TODO Auto-generated method stub
 		Training tr = qr.findById(trainingId).orElse(null);
+		Training trjoined = new Training();
+
 		User user = ur.findById(userId).orElse(null);
 		Certification certif = new Certification();
+		List<Certification> certifs = user.getCertif();
+		Certification certifjoined = new Certification();
 
-		certif.setTraining(tr);
-		certif.setUser(user);
-		cr.save(certif);
-		tr.setMaxNbrParticipants(tr.getMaxNbrParticipants() + 1);
-		qr.save(tr);
+		for (Certification certification : certifs) {
+			if(certification.getTraining().equals(tr)){
+				trjoined=certification.getTraining();
+			}
+		}
+		
+
+
+		if(!user.getReputationLevel().equals(ReputationLevel.Hated) ){
+			if(tr.equals(trjoined)){
+				System.out.println("Already Joined");
+
+			}else{
+				certif.setTraining(tr);
+				certif.setUser(user);
+				cr.save(certif);
+				tr.setMaxNbrParticipants(tr.getMaxNbrParticipants() + 1);
+				qr.save(tr);
+			}
+		
+		}
+		else
+		{
+			System.out.println("you r being suspended from joining training because of bad reputation");
+		}
+		
 	}
 
 	@Override
@@ -211,9 +237,8 @@ public class TrainingServiceImpl implements ITrainingService {
 		List<String> searchs = user.getSearchHistory();
 		List<Training> alltrainings = qr.findAll();
 		List<Training> recommendedTrainings = new ArrayList<Training>();
-
 		Map<String, Integer> recmds = new LinkedHashMap<String, Integer>();
-
+		
 		for (String sear : searchs) {
 			String[] arrOfStr = sear.split(" ", 5);
 			for (String a : arrOfStr) {
@@ -241,7 +266,6 @@ public class TrainingServiceImpl implements ITrainingService {
 				}
 			}
 		}
-		// TODO Auto-generated method stub
 		return recommendedTrainings;
 	}
 

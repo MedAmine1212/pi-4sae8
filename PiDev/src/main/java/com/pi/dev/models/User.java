@@ -82,6 +82,13 @@ public class User implements Serializable {
 	private List<Reclamation> reclamations;
 
 	
-    @OneToOne(cascade = CascadeType.ALL)
-	private Reputation reputation;
+    @Enumerated(EnumType.STRING)
+	private ReputationLevel reputationLevel;
+
+	private int reputationPoints;
+	
+
+	
+
+	
 }

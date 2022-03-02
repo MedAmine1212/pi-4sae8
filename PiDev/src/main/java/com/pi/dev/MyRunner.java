@@ -17,7 +17,7 @@ public class MyRunner implements CommandLineRunner {
 	
     @Override
     public void run(String... args) throws Exception {
-    	int score=0;
+   /* 	int score=0;
 		List<Questions> quest = qs.findAll(); 
 		Scanner keyboardInput=new Scanner(System.in);
 
@@ -37,7 +37,7 @@ public class MyRunner implements CommandLineRunner {
 		System.err.println("slm"+quest);
 
 		System.err.println("urscore"+score);
-
+*/
      }
 }
 
