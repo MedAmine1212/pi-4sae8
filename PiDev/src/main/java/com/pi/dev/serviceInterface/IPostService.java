@@ -1,10 +1,14 @@
 package com.pi.dev.serviceInterface;
 
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Stream;
 
 import com.pi.dev.models.PostLike;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.Rating;
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface IPostService {
 
@@ -26,6 +30,5 @@ public interface IPostService {
 
 	boolean ratePost(Rating rating);
 
-//	List<String> getPostFiles (Long postId);
-
+	void addFileToPost(String originalFilename, Long postId);
 }

@@ -6,11 +6,19 @@ import com.pi.dev.models.PostLike;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.Rating;
 import com.pi.dev.serviceInterface.IPostService;
+import com.pi.dev.storage.StorageFileNotFoundException;
+import com.pi.dev.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 @RestController
 @Api(tags = "Manage posts")
 @RequestMapping("/post")
@@ -18,6 +26,9 @@ public class PostRestController {
 
 	@Autowired
 	IPostService postService;
+
+	@Autowired
+	StorageService storageService;
 
     //http://localhost:8085/swagger-ui/index.html
 	@ApiOperation(value = "Get posts list")
@@ -81,12 +92,30 @@ public class PostRestController {
 		 return postService.getFilteredPosts(filterType, userId, offset);
 	}
 
-//	@ApiOperation(value = "Get post files")
-//	@GetMapping("/getPostFiles/{postId}")
-//	@ResponseBody
-//	List<String> getPostFiles(@PathVariable Long postId) {
-//		return postService.getPostFiles(postId);
-//	}
+
+	@ApiOperation(value = "Get post file")
+	@GetMapping("/getPostFile/{filename:.+}")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+		Resource file = storageService.loadAsResource(filename);
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
+	}
+
+
+	@ApiOperation(value = "Upload post file")
+	@PostMapping("/uploadPostFile/{postId}")
+	public void handleFileUpload(@PathVariable Long postId, @RequestParam("file") MultipartFile file) {
+
+		storageService.store(file);
+		postService.addFileToPost(file.getOriginalFilename(), postId);
+	}
+
+	@ExceptionHandler(StorageFileNotFoundException.class)
+	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
+		return ResponseEntity.notFound().build();
+	}
 
 
 }

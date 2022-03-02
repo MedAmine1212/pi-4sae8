@@ -1,5 +1,6 @@
 package com.pi.dev.service;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,10 +12,12 @@ import com.pi.dev.repository.*;
 import com.pi.dev.serviceInterface.IKeyWordService;
 import com.pi.dev.serviceInterface.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Slf4j
@@ -209,8 +212,10 @@ public class PostServiceImpl implements IPostService {
 		}
 	}
 
-//	@Override
-//	public List<String> getPostFiles(Long postId) {
-//		return postRepository.findFilesByPost(postId);
-//	}
+	@Override
+	public void addFileToPost(String originalFilename, Long postId) {
+		Post p = postRepository.findById(postId).get();
+		p.getPostFiles().add(originalFilename);
+		postRepository.save(p);
+	}
 }
