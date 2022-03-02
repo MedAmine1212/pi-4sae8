@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Setter
@@ -28,6 +29,8 @@ public class Contributor implements Serializable {
     private String adress;
     private String domain;
     private String legalStatus;
+    private Date disponibiltyStart;
+    private Date disponibiltyOver;
 
 
     @Enumerated(EnumType.STRING)
@@ -39,6 +42,9 @@ public class Contributor implements Serializable {
 
     @OneToOne(cascade = CascadeType.DETACH)
     private User userContributor;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "consultedBy")
+    private List<Meeting> meetings;
 
 
 

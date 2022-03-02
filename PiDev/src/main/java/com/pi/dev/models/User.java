@@ -1,17 +1,27 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pi.dev.models.Role;
+
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Data
+@Table(name = "user", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"username"}),
+		@UniqueConstraint(columnNames = {"email"})
+})
+
 @Inheritance(strategy=InheritanceType.JOINED)
 public class User implements Serializable {
 		/**

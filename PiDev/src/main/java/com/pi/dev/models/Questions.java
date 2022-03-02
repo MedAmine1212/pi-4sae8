@@ -1,19 +1,22 @@
 package com.pi.dev.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,26 +24,21 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Training implements Serializable {
+public class Questions implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long trainingId;
-	@Temporal(TemporalType.DATE)
-    private Date startDate;
-	@Temporal(TemporalType.DATE)
-    private Date endDate;
-    private String Subject;
-    private int maxNbrParticipants;
+    private Long questionsId;
+    private String label;
     
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-	private Quiz quiz;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "training",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private List<Certification> certif;
-    
+    @ElementCollection
+    private List<String> answers;
     
 
+    private String prompt;
+    
+    
+    @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Quiz quiz;
 }
