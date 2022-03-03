@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
 
+import com.pi.dev.models.FieldVote;
 import com.pi.dev.models.PostLike;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.Rating;
@@ -31,4 +32,6 @@ public interface IPostService {
 	boolean ratePost(Rating rating);
 
 	void removeFile(String fileName, Long postId);
+
+	void votePoll(FieldVote fieldVote);
 }

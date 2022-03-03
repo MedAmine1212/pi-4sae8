@@ -39,5 +39,7 @@ public class Advertisement implements Serializable {
     private float coast;
 
     private String canal;
+
+    private boolean active;
    
 }

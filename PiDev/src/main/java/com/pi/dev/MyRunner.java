@@ -34,9 +34,6 @@ public class MyRunner implements CommandLineRunner {
 			
 			
 		}
-		System.err.println("slm"+quest);
-
-		System.err.println("urscore"+score);
 
      }
 }

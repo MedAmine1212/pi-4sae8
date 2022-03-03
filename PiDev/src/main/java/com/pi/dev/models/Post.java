@@ -48,6 +48,10 @@ public class Post implements Serializable{
 
 
 	@JsonIgnore
+	@OneToOne(mappedBy="postPoll", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+	private PostPoll poll;
+
+	@JsonIgnore
 	@OneToMany(mappedBy="ratingPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Rating> listRating;
 }

@@ -1,6 +1,6 @@
 package com.pi.dev.repository;
 
-import com.pi.dev.models.Advertisement;
+import com.pi.dev.models.FieldVote;
 import com.pi.dev.models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,8 +11,6 @@ import java.util.List;
 
 
 @Repository
-public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
+public interface FieldVoteRepository extends JpaRepository<FieldVote, Long> {
 
-    @Query("select ad from Advertisement ad where ad.active =true")
-    List<Advertisement> findAllActiveAds();
 }
