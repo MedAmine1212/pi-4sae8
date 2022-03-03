@@ -50,7 +50,7 @@ public class Contributor  {
 	 
 	 
 	 @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy = "consultedBy")
-	 @NotFound(action = NotFoundAction.IGNORE)
+	 
 	 private List<Meeting> meetings;
 	 
 	 @OneToOne(cascade = CascadeType.DETACH)

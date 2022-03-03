@@ -1,5 +1,6 @@
 package com.pi.dev.service;
 
+import com.pi.dev.models.Contributor;
 import com.pi.dev.models.Meeting;
 import com.pi.dev.models.State;
 import com.pi.dev.repository.ContributorRepository;
@@ -34,14 +35,15 @@ public class MeetingService implements IMeetingService {
         return mr.findAll();
     }
     @Override
-    public void setContributor(Long idMeeting, Long idContributor) {
-        Meeting m = mr.findById(idMeeting).orElse(null);
-        if(m.getConsultedBy().equals(null)){
+    public void setContributor(Long idMeeting , Long idContributor) {
+        Meeting m = mr.getById(idMeeting);
+        if(m.getConsultedBy() == null){
             m.setConsultedBy(cr.findById(idContributor).orElse(null));
             m.setState(State.Accepted);
             mr.save(m);
         }
     }
+    @Override
      public List<Meeting> listMeetingsByDisponibilty(Long idContributor){
         List<Meeting>lm = mr.findAll();
         // List<Meeting>ListMeetings = new ArrayList<>();
@@ -52,13 +54,20 @@ public class MeetingService implements IMeetingService {
         //     }
         // }
 
+        Contributor cont = cr.findById(idContributor).get();
         
-        List<Meeting> ListFiltredMeetings = new ArrayList<>();
-        System.out.println(cr.getById(idContributor));
+        List <Meeting> ListFiltredMeetings = new ArrayList<>();
+        List <Meeting> listMettings = mr.findAllByConsultedBy(cont);
+        System.out.println("this is what i need:"+listMettings);
         for (Meeting m:lm){
-            if ((m.getDate().after(cr.getById(idContributor).getDisponibiltyStart()) 
-            && (m.getDate().before(cr.getById(idContributor).getDisponibiltyOver())))){
-                ListFiltredMeetings.add(m);
+            if ((m.getDate().after(cont.getDisponibiltyStart()) 
+            && (m.getDate().before(cont.getDisponibiltyOver())))){
+                
+                for(Meeting mt: listMettings) {
+                    if(m.getDate().compareTo(mt.getDate()) != 0){
+                        ListFiltredMeetings.add(m);
+                    }
+                }
             }
         }
         return ListFiltredMeetings;
