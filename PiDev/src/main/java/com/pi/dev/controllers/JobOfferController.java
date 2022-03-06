@@ -44,7 +44,7 @@ public class JobOfferController {
 	@ResponseBody
 	public List<JobOffer> getJobOffers(HttpServletRequest req) {
 		if(WebUtils.getCookie( req , "joboffercookies")==null) {
-		return jobService.findAllJobOffers();}
+		return jobService.findAllWithLocation();}
 		else {String[] arrOfStr = WebUtils.getCookie( req , "joboffercookies").getValue().split("--");
 		String c ="";
         for (String a : arrOfStr) {

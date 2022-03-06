@@ -12,6 +12,7 @@ public interface IJobOfferService {
 	List<JobOffer> findJobOffersByTitle(String s);
     List<JobOffer> findJobOffersBySomething(String s);
     List<JobOffer> findAllWithCookies(String s);
+    List<JobOffer> findAllWithLocation();
 	
 	JobOffer addJobOffer(JobOffer f);
 	

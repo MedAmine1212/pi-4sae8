@@ -4,16 +4,21 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pi.dev.models.Contributor;
 import com.pi.dev.models.JobOffer;
+import com.pi.dev.models.User;
 import com.pi.dev.repository.JobOfferRepository;
+import com.pi.dev.repository.UserRepository;
 import com.pi.dev.serviceInterface.IJobOfferService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +32,8 @@ public class JobOfferServiceImpl implements IJobOfferService {
 	
 	@Autowired
 	JobOfferRepository jobRepo;
+	@Autowired
+	UserRepository userRepo;
 
 	@Override
 	public List<JobOffer> findAllJobOffers() {
@@ -85,4 +92,27 @@ public class JobOfferServiceImpl implements IJobOfferService {
 	@Override
 	public List<JobOffer> findJobOffersBySomething(String s) {
 		return jobRepo.findBySomething(s);
-	}}
+	}
+	
+	
+	@Override
+	public List<JobOffer> findAllWithLocation() {
+		User u =userRepo.findById((long) 1).orElse(null);
+		
+		List<JobOffer> jobOffersByLocations =new ArrayList<>();
+		List<JobOffer> allJobs= jobRepo.findAll();
+		for(JobOffer job : allJobs) {
+			if(job.getLocation().equals(u.getUserLocation())){
+				jobOffersByLocations.add(job);
+			}
+		} Set<JobOffer> filteredJobsByLocations =new LinkedHashSet<>(jobOffersByLocations);
+		filteredJobsByLocations.addAll(allJobs);
+		List<JobOffer> finalFoo = new ArrayList<>(filteredJobsByLocations);
+		
+		return finalFoo;
+	}
+	
+
+
+
+}

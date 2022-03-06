@@ -21,16 +21,16 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Candidacy implements Serializable{
 	/**
 	 * 
@@ -50,6 +50,7 @@ public class Candidacy implements Serializable{
 	@JoinColumn(name="jobOffer_id")
     private JobOffer jobOffer;
 	
+	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
 	@ManyToOne
 	@MapsId("userId")

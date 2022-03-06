@@ -8,6 +8,8 @@ import com.pi.dev.models.Interview;
 public interface ICandidacyService {
 
    List<Candidacy> findAllCandidacy();
+   List<Candidacy> findAllByUserSkills(String s);
+   
 	
 	Candidacy addCandidacy(Candidacy c);
 	

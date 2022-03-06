@@ -27,6 +27,8 @@ public interface JobOfferRepository extends JpaRepository<JobOffer, Long> {
 
 	@Query(value = "SELECT * FROM job_offer WHERE job_offer.job_name LIKE %:word% OR job_offer.job_description LIKE %:word%", nativeQuery = true)
 	List<JobOffer> findBySomething(@Param("word") String s);
+	
+	
 
 
 }

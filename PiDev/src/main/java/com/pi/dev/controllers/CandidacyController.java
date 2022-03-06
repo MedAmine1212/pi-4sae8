@@ -36,6 +36,12 @@ public class CandidacyController {
 		return candidacyService.findAllCandidacy();
 	}
 	
+	@ApiOperation(value = "Get Candidacies list by skill required")
+	@GetMapping("/getAllCandidaciesBySkill")
+	@ResponseBody
+	public List<Candidacy> findAllByUserSkills(@RequestParam String skill){
+		return candidacyService.findAllByUserSkills(skill);}
+	
 	
 	@ApiOperation(value = "Add candidacy")
 	@PostMapping("/addCandidacy")

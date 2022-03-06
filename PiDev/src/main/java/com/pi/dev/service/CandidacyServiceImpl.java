@@ -1,5 +1,7 @@
 package com.pi.dev.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +41,32 @@ public class CandidacyServiceImpl implements ICandidacyService {
 	public List<Candidacy> findAllCandidacy() {
 		return candRepo.findAll();
 	}
+	
+	
+	
+	
+	@Override
+	public List<Candidacy> findAllByUserSkills(String skill) {
+		List<Candidacy> candBySkill =  new ArrayList<>();
+		List<Candidacy> allCand =candRepo.findAll();
+		
+		for(Candidacy candidacy : allCand ) {
+			List<String> skills =candidacy.getUser().getSkills();
+			log.info(""+candidacy);
+			for(String s : skills) {
+				
+				if(s.equalsIgnoreCase(skill)) {
+					candBySkill.add(candidacy);
+					
+				}
+			}
+			
+			
+		}
+		return candBySkill;
+	}
+	
+	
 
 	@Override
 	public Candidacy addCandidacy(Candidacy c) {
@@ -87,5 +115,7 @@ public class CandidacyServiceImpl implements ICandidacyService {
 		}else
 		return false;
 	}
+
+	
 
 }
