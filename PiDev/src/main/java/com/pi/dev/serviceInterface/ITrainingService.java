@@ -20,6 +20,9 @@ public interface ITrainingService {
 	void assignQuizToTraining(Long trainingId, Quiz qz);
 	List<Training> getTrainingBySubject(Long userId,String s);
 
+	List<Training> SimilarTraining(Long userId , Long idTraining);
+    
+
 	public void deleteTraining(Training q);
 	
 	public List<Training>recommendedTraining(Long idUser);

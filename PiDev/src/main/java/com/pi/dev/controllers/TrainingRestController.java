@@ -157,7 +157,7 @@ public class TrainingRestController {
 		//generates QR code with Low level(L) error correction capability  
 		hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);  
 		//invoking the user-defined method that creates the QR code  
-		String str= " Congratz !! This is your certification"+user.getFirstName()+" "+user.getLastName() +" On : " +train.getSubject()+ " .";  
+		String str= " Congratz !! This is your certification "+user.getFirstName()+" "+user.getLastName() +" On : " +train.getSubject()+ " .";  
 
 		CodeGenerator.generateQRcode(str, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly   
 		//prints if the QR code is generated   
@@ -166,7 +166,13 @@ public class TrainingRestController {
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
 		     }
 
-  
+			 @ApiOperation(value = "Get simlar trainings")
+			 @GetMapping("/simlartraining/{user-id}/{training-id}")
+			 @ResponseBody
+			 public List<Training> similarTrainings(@PathVariable("user-id") Long userId, @PathVariable("training-id") Long trainingId) {
+				 return qs.SimilarTraining(userId, trainingId);
+			 }
+			 
 	
 
 }
