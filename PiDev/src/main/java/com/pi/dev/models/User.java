@@ -10,8 +10,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -23,6 +27,8 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
+
+@AllArgsConstructor
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +46,26 @@ public class User {
   @NotBlank
   @Size(max = 120)
   private String password;
-  
+
+  private int rate;
   private boolean state;
+  
+  	@JsonIgnore
+	@ElementCollection
+	private List<Long> likedBy;
+  
+  	@JsonIgnore
+	@ElementCollection
+	private List<Long> followedBy;
+  
+  
+  
+  public boolean getState() {
+	    return state;
+	  }
+  
+  
+  
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(  name = "user_roles", 
@@ -52,13 +76,19 @@ public class User {
   public User() {
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String email, String password, boolean state) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.state = state;
   }
 
- 
+  public User(String username, String email, String password) {
+	    this.username = username;
+	    this.email = email;
+	    this.password = password;
+	  }
+
 
 
 
