@@ -21,6 +21,8 @@ import com.pi.dev.repository.QuizRepository;
 import com.pi.dev.repository.TrainingRepository;
 import com.pi.dev.repository.UserRepository;
 import com.pi.dev.serviceInterface.ICertificationService;
+import com.pi.dev.serviceInterface.ITrainingService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -46,6 +48,8 @@ public class CertificationServiceImpl implements ICertificationService{
 	@Autowired
 	CertificationRepository cr;
 
+   
+
     @Override
     public Certification findByIdUserTraining(Long idUser, Long idTraining) {
         User user = ur.findById(idUser).orElse(null);
@@ -67,7 +71,8 @@ public class CertificationServiceImpl implements ICertificationService{
         }
         return null;
   }
-    private void changeReputation(Long idUser){
+    @Override
+    public void changeReputation(Long idUser){
         User user = ur.findById(idUser).orElse(null);
         int x =user.getReputationPoints();
         if(x<0){
@@ -85,6 +90,7 @@ public class CertificationServiceImpl implements ICertificationService{
 
         ur.save(user);
     }
+
     @Override
     public String takeQuiz(Long idUser, Long idQuiz, String s) {
         Quiz qz = quir.findById(idQuiz).orElse(null);
@@ -147,7 +153,7 @@ public class CertificationServiceImpl implements ICertificationService{
         
         
         if(res>=60){
-            user.setReputationPoints(user.getReputationPoints()+200);
+            user.setReputationPoints(user.getReputationPoints()+100);
             changeReputation(idUser);
             return "Congratz , u ve passed the test with a score of " + res +" % , you can claim your certification now By scanning the Qr Code click below !! ";
 

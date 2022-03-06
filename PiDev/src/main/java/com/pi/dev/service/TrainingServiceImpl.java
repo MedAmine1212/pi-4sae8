@@ -144,7 +144,7 @@ public class TrainingServiceImpl implements ITrainingService {
 		}
 		
 	}
-
+    
 	@Override
 	public void AnnulerParticipation(Long userId, Long trainingId) {
 		// TODO Auto-generated method stub
@@ -252,7 +252,7 @@ public class TrainingServiceImpl implements ITrainingService {
 			}
 		}
 		List<String> arrOfsubjects = new ArrayList<String>();
-
+        
 		for (Map.Entry<String, Integer> me : recmds.entrySet()) {
 			if (me.getValue() > 2) {
 				arrOfsubjects.add(me.getKey());
@@ -266,6 +266,35 @@ public class TrainingServiceImpl implements ITrainingService {
 				}
 			}
 		}
+		return recommendedTrainings;
+	}
+
+	@Override
+	public List<Training> SimilarTraining(Long userId, Long idTraining) {
+		User user = ur.findById(userId).orElse(null);
+		Training tr = qr.findById(idTraining).orElse(null);
+		List<Certification> crs = user.getCertif();
+		List<Training> alltrainings = qr.findAll();
+		List<Training> trs = new ArrayList<Training>();
+		List<Training> recommendedTrainings = new ArrayList<Training>();
+		String s = tr.getSubject();
+		for (Certification certif : crs) {
+			trs.add(certif.getTraining());
+		}
+		String[] arrOfStr = s.split(" ", 5);
+
+		alltrainings.removeAll(trs);
+		for (Training train : alltrainings) {
+			
+			for (String st : arrOfStr) {
+
+				if (train.getSubject().contains(st)) {
+					recommendedTrainings.add(train);
+				}
+			}
+			
+		}
+		
 		return recommendedTrainings;
 	}
 

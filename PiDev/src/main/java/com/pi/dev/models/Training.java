@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -37,10 +38,14 @@ public class Training implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
 	private Quiz quiz;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "training",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "training",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Certification> certif;
-    
+
+
+
+    @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Trainer trainer;
     
 
 }

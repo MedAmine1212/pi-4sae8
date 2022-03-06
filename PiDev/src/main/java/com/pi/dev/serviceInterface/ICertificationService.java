@@ -10,5 +10,5 @@ public interface ICertificationService {
 	
 	Certification findByIdUserTraining(Long idUser,Long idTraining);
 	String takeQuiz(Long idUser,Long idQuiz, String s);
-	
+	public void changeReputation(Long idUser);
 }
