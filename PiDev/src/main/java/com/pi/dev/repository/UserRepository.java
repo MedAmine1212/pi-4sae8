@@ -16,8 +16,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   Boolean existsByEmail(String email);
   
-  
   @Query("SELECT c FROM User c WHERE c.email = ?1")
+  
   public User findByEmail(String email); 
    
   public User findByResetPasswordToken(String token);
