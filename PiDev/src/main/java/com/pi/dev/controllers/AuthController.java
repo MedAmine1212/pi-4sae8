@@ -167,12 +167,9 @@ else
 		
 		
 	    userRepository.save(user);
-
 		Long uid = user.getId();
-        String suid = String.valueOf(uid);
-
-        
-		helper.setText("http://localhost:8080/api/auth/user/activate/"+suid);
+        String suid = String.valueOf(uid);   
+		helper.setText("http://localhost:8087/api/auth/user/activate/"+suid);
 		helper.setSubject("confirm your womcity account creation");
 	} catch (MessagingException e) {
 		e.printStackTrace();

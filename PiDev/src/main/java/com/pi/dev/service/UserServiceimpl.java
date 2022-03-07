@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pi.dev.models.BadWordFilter;
@@ -81,5 +82,34 @@ public class UserServiceimpl implements IUserService{
 			 userRepository.save(followed);
 		}
 	}
+	
+	
+	 public void updateResetPasswordToken(String token, String email) throws UserNotFoundException {
+	        User user = userRepository.findByEmail(email);
+	        if (user != null) {
+	        	user.setResetPasswordToken(token);
+	            userRepository.save(user);
+	        } else {
+	            throw new UserNotFoundException("Could not find any customer with the email " + email);
+	        }
+	    }
+	     
+	 
+	 
+	 
+	    public User getByResetPasswordToken(String token) {
+	        return userRepository.findByResetPasswordToken(token);
+	    }
+	     
+	    
+	    
+	    
+	    public void updatePassword(User user, String newPassword) {
+	        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	        String encodedPassword = passwordEncoder.encode(newPassword);
+	        user.setPassword(encodedPassword);
+	        user.setResetPasswordToken(null);
+	        userRepository.save(user);
+	    }
 
 }

@@ -49,6 +49,9 @@ public class User {
   private int rate;
   private boolean state;
   
+
+  private String resetPasswordToken;
+  
   	@JsonIgnore
 	@ElementCollection
 	private List<User> likedBy;
