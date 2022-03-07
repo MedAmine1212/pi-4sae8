@@ -1,4 +1,4 @@
-package com.pi.dev.service;
+/*package com.pi.dev.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -113,9 +113,11 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 		c.setScore(s);
 		CSubRepo.save(c);
 	}
-
-	@Override
-	public List<CharitySubscription> TopScore() {
+*/
+	/*
+	 * @Override
+	 */
+	/*public List<CharitySubscription> TopScore() {
 		// TODO Auto-generated method stub
 		List<CharitySubscription> compareScore = CSubRepo.CompreScore() ;
 		for (CharitySubscription charitySubscription : compareScore) {
@@ -129,7 +131,7 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 		
 		
 	}
-	
+	*/
 	
 	
 	
@@ -187,7 +189,7 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 		//bech t9aren elli aand'hom akwa score w tchouf kol wahed kifeh jeeeb core mteeou 
 		// w baaed taaml bel tartiib ken aand'hom nafes score f haja tetaada leeli baadou yaani hnee bech todkhel feha hkeyt priorité 
 		// w haja okhraa mouhema .. lazmek tbadel score fel lekher 
-	}
+	//}
 
 	
 
