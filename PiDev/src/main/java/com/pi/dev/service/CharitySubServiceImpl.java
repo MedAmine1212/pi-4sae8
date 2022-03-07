@@ -166,6 +166,11 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
 		
 		
 		
+		
+		
+		
+		
+		
 	}
 	
 	//haja mouhema aal lekher .. fel lekher haka tnajem tel9a liste fergha donc lazem if esle bech ken l9aa wahda fergha yetaada leli baadou
