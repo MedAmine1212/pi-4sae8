@@ -68,6 +68,21 @@ public class CharitySubscriptionRestController {
 		
 	}
 
+	@ApiOperation(value = "calculScore")
+	@PostMapping("/calculScore")
+	@ResponseBody
+	public void calculScore(Long idCharity) {
+		csService.calculScore(idCharity);
+	}
+
+	@ApiOperation(value = "compareScore")
+	@GetMapping("/CompareS/")
+	@ResponseBody
+	public void CompareScore() {
+
+		csService.CompareScore();
+	}
+
 
 
 	

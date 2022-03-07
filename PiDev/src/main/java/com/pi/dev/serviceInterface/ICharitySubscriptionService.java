@@ -18,5 +18,9 @@ public interface ICharitySubscriptionService {
 	
 	Optional <CharitySubscription> findCSbyid (Long idCharity);
 	
+	public void calculScore ( Long idCharity);
+	
+	public void CompareScore();
+	
 
 }

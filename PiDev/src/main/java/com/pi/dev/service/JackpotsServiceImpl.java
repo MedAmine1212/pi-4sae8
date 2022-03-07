@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pi.dev.models.CharitySubscription;
 import com.pi.dev.models.Jackpots;
+import com.pi.dev.repository.CharitySubscriptionRepository;
 import com.pi.dev.repository.JackpotsRepository;
 import com.pi.dev.serviceInterface.IJackpotsService;
 
@@ -21,6 +23,9 @@ public class JackpotsServiceImpl implements IJackpotsService {
 	
 	@Autowired
 	JackpotsRepository JRepo ;
+	
+	@Autowired
+	CharitySubscriptionRepository csRepo ;
 	
 	@Override
 	public void addJackpot(Jackpots j) {
@@ -64,6 +69,12 @@ public class JackpotsServiceImpl implements IJackpotsService {
 	public Optional<Jackpots> findbyid(Long id) {
 		// TODO Auto-generated method stub
 		return JRepo.findById(id);
+	}
+
+	@Override
+	public void calculScore(Long idJackpot) {
+		
+		
 	}
 
 }

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -57,11 +58,9 @@ public class CharitySubscription {
 	
 	private int NbrChildren ;
 	
-	@Enumerated(EnumType.STRING)
-	private AgeChildren AgeChildren ;
+	private int NbrChildrenMinor ;
 	
-	@Enumerated(EnumType.STRING)
-	private TypeChildren TypeChildren ;
+	private int NbrChildrenHandicap ;
 	
 	@Enumerated(EnumType.STRING)
 	private EducationLevel EducationLevel ; 
@@ -69,9 +68,11 @@ public class CharitySubscription {
 	@Enumerated(EnumType.STRING)
 	private ScientificCertificate ScientificCertificate ;
 	
+	private int score; 
+	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL , mappedBy="CharitySubscriptions")
-	private Set<User> users ;
+	@OneToOne
+	private User user ;
 	
 	@JsonIgnore
 	@ManyToOne

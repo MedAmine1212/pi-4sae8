@@ -78,8 +78,8 @@ public class User implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy")
 	private List<Reclamation> reclamations;
 	
-	@ManyToOne
-	CharitySubscription CharitySubscriptions ;
+	@OneToOne
+	CharitySubscription CharitySubscription ;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Events> Evenements ;

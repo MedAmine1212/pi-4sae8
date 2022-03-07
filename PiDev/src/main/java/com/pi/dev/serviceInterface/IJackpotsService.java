@@ -18,5 +18,7 @@ public interface IJackpotsService {
 	Optional <Jackpots> findbyid(Long id);
 	 
 	boolean deleteJackpots (Long idJackpot) ;
+	
+	public void calculScore (Long idJackpot );
 
 }
