@@ -80,7 +80,7 @@ public class CharitySubscriptionRestController {
 	@ResponseBody
 	public void CompareScore() {
 
-		csService.CompareScore();
+		 csService.CompareScore();
 	}
 
 

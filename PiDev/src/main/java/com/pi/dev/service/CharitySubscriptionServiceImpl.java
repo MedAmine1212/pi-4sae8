@@ -1,5 +1,6 @@
 package com.pi.dev.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,13 +84,19 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 		}
 		
 		if(c.getCivilStatus().equals(CivilStatus.Widow)){
-			s = s + 2;
+			s = s + 4;
 		}else if (c.getCivilStatus().equals(CivilStatus.Divorced)){
-			s = s + 1 ; 
-		} 
+			s = s + 3 ; 
+		} else if (c.getCivilStatus().equals(CivilStatus.Single)){
+			s = s + 2 ;
+		}else if (c.getCivilStatus().equals(CivilStatus.Married)){
+			s = s + 1 ;
+		}
 		
 		if (c.getEducationLevel().equals(EducationLevel.Educated)){
 			s= s + 2 ;
+		}else if (c.getEducationLevel().equals(EducationLevel.Uneducated)){
+			s = s + 1 ;
 		}
 		
 		if (c.getScientificCertificate().equals(ScientificCertificate.HighEducation)){
@@ -98,7 +105,9 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 			s = s + 2;
 		}else if (c.getScientificCertificate().equals(ScientificCertificate.Preparatory)){
 			s = s + 1;
-		}
+		}else if (c.getScientificCertificate().equals(ScientificCertificate.Primary))
+			s = s + 1 ;
+		
 		c.setScore(s);
 		CSubRepo.save(c);
 	}
@@ -110,9 +119,54 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 		for (CharitySubscription charitySubscription : compareScore) {
 			System.out.println(charitySubscription);
 		}
+		int nbChildrenMinMax=compareScore.get(0).getNbrChildrenMinor();
+		int pos=0;
+		for(int i=1;i<compareScore.size();i++){
+			   if(compareScore.get(i).getNbrChildrenMinor()>nbChildrenMinMax){
+			   	pos=i;
+			    }
+			   CharitySubscription cs = compareScore.get(pos);
+			   System.out.println("elli aando akther sghar MINOR houwa :  " + cs);
+		}
+			   
+		int nbrChildrenHandicapMax = compareScore.get(0).getNbrChildrenHandicap();
+		int p = 0 ;
+		for(int i=1;i<compareScore.size();i++){
+			if (compareScore.get(i).getNbrChildrenHandicap()>nbrChildrenHandicapMax){
+				p = i ;
+			}
+			   CharitySubscription cS = compareScore.get(p);
+			   System.out.println("elli aando akther sghar HANDICAP houwa :  " + cS);
+		}
+		
+		
+
+		
+		/*List<CharitySubscription> compareScore = CSubRepo.CompreScore() ;
+		int nbChildrenMinMax=compareScore.get(0).getNbrChildrenMinor();
+		int pos=0;
+		for(int i=1;i<compareScore.size();i++){
+		   if(compareScore.get(i).getNbrChildrenMinor()>nbChildrenMinMax){
+		   	pos=i;
+		    }
+		}
+		CharitySubscription cs = compareScore.get(pos);
+		//System.out.println("bibhbbibi^bîbîbîbîbi^bi^b"+cs.getName());
+		return cs;*/
+		
+		//List<CharitySubscription> compareAtt = new ArrayList() ;
+		//List<CharitySubscription> allCS = CSubRepo.findAll();
+		//Long idCharity;
+		//int chS = CSubRepo.getById(idCharity).getNbrChildrenMinor();
+		//for (CharitySubscription cs : allCS) {
+			//if (cs.getNbrChildrenMinor() ){
+				
+			//}
+		//}
 		
 		//bech t9aren elli aand'hom akwa score w tchouf kol wahed kifeh jeeeb core mteeou 
 		// w baaed taaml bel tartiib ken aand'hom nafes score f haja tetaada leeli baadou yaani hnee bech todkhel feha hkeyt priorité 
+		// w haja okhraa mouhema .. lazmek tbadel score fel lekher 
 	}
 
 	
