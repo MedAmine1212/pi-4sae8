@@ -12,5 +12,5 @@ public interface IRoleService {
 
 	Role updateRole(Role role, Integer roleID);
 
-	void deleteRoleById(Long roleID);
+	void deleteRoleById(Integer roleID);
 }

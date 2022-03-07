@@ -23,20 +23,20 @@ public class RoleServiceImpl implements IRoleService {
 	
 	
 	
-	//afficher la liste des users
 	@Override
 	public List<Role> findAll() {
 		return  roleRepository.findAll();
 	}
 	
 	
-	//ajouter un user
 	@Override
 	public Role addRole(Role role) {
 		
 	return roleRepository.save(role);
 	}
 	
+		
+		
 	@Override
 	public Role updateRole(Role role, Integer roleId) {
 		
@@ -45,9 +45,9 @@ public class RoleServiceImpl implements IRoleService {
 		
 	}
 	
-	//effacer un user
+	
 	@Override
-	public void deleteRoleById(Long roleID) {
+	public void deleteRoleById(Integer roleID) {
 		roleRepository.deleteById(roleID);
 		
 	}

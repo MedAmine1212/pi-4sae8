@@ -18,7 +18,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Table(name = "users", 
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "username"),
@@ -27,7 +26,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-
+@Entity
 @AllArgsConstructor
 public class User {
   @Id
@@ -52,7 +51,7 @@ public class User {
   
   	@JsonIgnore
 	@ElementCollection
-	private List<Long> likedBy;
+	private List<User> likedBy;
   
   	@JsonIgnore
 	@ElementCollection

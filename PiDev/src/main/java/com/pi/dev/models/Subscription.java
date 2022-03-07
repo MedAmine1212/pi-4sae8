@@ -1,5 +1,6 @@
 package com.pi.dev.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -39,10 +40,8 @@ public class Subscription {
 	@Column(name="idSubscription")
 
     private long subscriptionId;
-	@Temporal(TemporalType.DATE)
-	private Date startDate;
-	@Temporal(TemporalType.DATE)
-	private Date endDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private float price;
 	
 	@Enumerated(EnumType.STRING)

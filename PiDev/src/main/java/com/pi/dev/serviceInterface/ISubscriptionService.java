@@ -14,4 +14,10 @@ public interface ISubscriptionService {
 	Subscription updateSubscription(Subscription subscription, Long SubscriptionID);
 
 	void deleteSubscriptionById(Long SubscriptionID);
+	
+	void endSubscription(Long SubscriptionID);
+	
+	void upgradeToGold(Long SubscriptionID);
+	
+	void upgradeToPremium(Long SubscriptionID);
 }

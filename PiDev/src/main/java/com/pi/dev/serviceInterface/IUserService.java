@@ -14,4 +14,7 @@ public interface IUserService {
 
 	void deleteUserById(Long userID);
 	
+	void addFollow(Long followedId, Long followerId);
+	
+	void removeFollow(Long followedId, Long followerId);
 }

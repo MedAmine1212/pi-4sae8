@@ -1,5 +1,7 @@
 package com.pi.dev.service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -68,56 +70,44 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 		User user = subscription.getUser();
 
 
-		if (subscription.getTypeSubscription().equals("Silver")&&user.getRate()==100){
+		if (subscription.getTypeSubscription().equals(TypeSubscription.Silver)&&user.getRate()>=100){
 			
 			subscription.setTypeSubscription(TypeSubscription.Gold);
-			Date date = subscription.getEndDate();
-			int month =date.getMonth();
-			month++;
-			date.setMonth(month);
-			subscription.setEndDate(date);			
+			LocalDate date = subscription.getEndDate();
+			LocalDate nd= date.plusMonths(1);
+			subscription.setEndDate(nd);		
 			user.setRate(0);
 			subscriptionRepository.save(subscription);
-			userRepository.save(user);
-
-			
+			userRepository.save(user);	
 		}
 		else
-			if (subscription.getTypeSubscription().equals("Gold")&&user.getRate()==500){
-				
+			if (subscription.getTypeSubscription().equals(TypeSubscription.Gold)&&user.getRate()>=500){	
 				subscription.setTypeSubscription(TypeSubscription.Premium);
-				Date date = subscription.getEndDate();
-				int month =date.getMonth();
-				month++;
-				date.setMonth(month);
-				subscription.setEndDate(date);
+				LocalDate date = subscription.getEndDate();
+				LocalDate nd= date.plusMonths(1);
+				subscription.setEndDate(nd);
 				user.setRate(0);
 				subscriptionRepository.save(subscription);
 				userRepository.save(user);
-
-				
 			}
 			else
-				if (subscription.getTypeSubscription().equals("Premium")&&user.getRate()==1000){
-					Date date = subscription.getEndDate();
-					int month =date.getMonth();
-					month++;
-					date.setMonth(month);
-					subscription.setEndDate(date);
+				if (subscription.getTypeSubscription().equals(TypeSubscription.Premium)&&user.getRate()>=1000){
+					LocalDate date = subscription.getEndDate();
+					LocalDate nd= date.plusMonths(1);
+					subscription.setEndDate(nd);
 					user.setRate(0);
 					subscriptionRepository.save(subscription);
 					userRepository.save(user);
-
 				}
 	}
 	
 	
 	
 	
-	public void EndSubscription(Long SubscriptionID){
+	public void endSubscription(Long SubscriptionID){
 		Subscription subscription = new Subscription();
 		subscription= subscriptionRepository.findById(SubscriptionID).get();
-		if (java.time.LocalDate.now().equals(subscription.getEndDate())&& subscription.getTypeSubscription().equals("Silver") ){
+		if (java.time.LocalDate.now().equals(subscription.getEndDate())&& (subscription.getTypeSubscription().equals(TypeSubscription.Gold)|| subscription.getTypeSubscription().equals(TypeSubscription.Premium))){
 			subscription.setTypeSubscription(TypeSubscription.Silver);	
 			subscriptionRepository.save(subscription);
 		}
@@ -126,42 +116,46 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 	
 	
 	
-	public void UpgradeToGold(Long SubscriptionID){
+	public void upgradeToGold(Long SubscriptionID){
 		Subscription subscription = new Subscription();
 		subscription= subscriptionRepository.findById(SubscriptionID).get();
 		
-		if(subscription.getTypeSubscription().equals("Silver")||subscription.getTypeSubscription().equals("Premium")){
+		if(subscription.getTypeSubscription().equals(TypeSubscription.Silver)||subscription.getTypeSubscription().equals(TypeSubscription.Premium)){
 			subscription.setTypeSubscription(TypeSubscription.Gold);	
+			LocalDate date = LocalDate.now();
+			LocalDate nd= date.plusMonths(1);
+			subscription.setEndDate(nd);
+			subscription.setEndDate(date);
 			subscriptionRepository.save(subscription);			
+
 		}
-		else{
-			Date date = subscription.getEndDate();
-			int month =date.getMonth();
-			month++;
-			date.setMonth(month);
+		else
+			if(subscription.getTypeSubscription().equals(TypeSubscription.Gold)){
+			LocalDate date = subscription.getEndDate();
+			LocalDate nd= date.plusMonths(1);
 			subscription.setEndDate(date);
 			subscriptionRepository.save(subscription);
 		}
 	}
 	
 	
-	
-	
-	
-	
-	public void UpgradeToPremium(Long SubscriptionID){
+
+	public void upgradeToPremium(Long SubscriptionID){
 		Subscription subscription = new Subscription();
 		subscription= subscriptionRepository.findById(SubscriptionID).get();
 		
-		if(subscription.getTypeSubscription().equals("Silver")||subscription.getTypeSubscription().equals("Gold")){
+		if(subscription.getTypeSubscription().equals(TypeSubscription.Silver)||subscription.getTypeSubscription().equals(TypeSubscription.Gold)){
 			subscription.setTypeSubscription(TypeSubscription.Premium);	
-			subscriptionRepository.save(subscription);			
+			LocalDate date = subscription.getEndDate();
+			LocalDate nd= date.plusMonths(1);
+			subscription.setEndDate(date);
+			subscriptionRepository.save(subscription);
 		}
-		else{
-			Date date = subscription.getEndDate();
-			int month =date.getMonth();
-			month++;
-			date.setMonth(month);
+		else
+			if(subscription.getTypeSubscription().equals(TypeSubscription.Premium))
+	       {
+			LocalDate date = subscription.getEndDate();
+			LocalDate nd= date.plusMonths(1);
 			subscription.setEndDate(date);
 			subscriptionRepository.save(subscription);
 		}
