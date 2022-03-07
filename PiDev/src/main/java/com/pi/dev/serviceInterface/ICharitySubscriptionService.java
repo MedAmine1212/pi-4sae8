@@ -20,7 +20,7 @@ public interface ICharitySubscriptionService {
 	
 	public void calculScore ( Long idCharity);
 	
-	public void CompareScore();
+	public List<CharitySubscription> TopScore();
 	
 
 }

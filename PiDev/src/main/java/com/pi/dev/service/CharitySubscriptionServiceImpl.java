@@ -1,12 +1,14 @@
 package com.pi.dev.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 import com.pi.dev.models.CharitySubscription;
 import com.pi.dev.models.CivilStatus;
 import com.pi.dev.models.EducationLevel;
@@ -113,13 +115,27 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 	}
 
 	@Override
-	public void CompareScore() {
+	public List<CharitySubscription> TopScore() {
 		// TODO Auto-generated method stub
 		List<CharitySubscription> compareScore = CSubRepo.CompreScore() ;
 		for (CharitySubscription charitySubscription : compareScore) {
 			System.out.println(charitySubscription);
 		}
-		int nbChildrenMinMax=compareScore.get(0).getNbrChildrenMinor();
+		System.out.println("***********************************************");
+		compareScore.sort(Comparator.comparing(CharitySubscription::getNbrChildrenHandicap).reversed()) ;
+		return compareScore ;
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+		/*int nbChildrenMinMax=compareScore.get(0).getNbrChildrenMinor();
 		int pos=0;
 		for(int i=1;i<compareScore.size();i++){
 			   if(compareScore.get(i).getNbrChildrenMinor()>nbChildrenMinMax){
@@ -127,8 +143,8 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 			    }
 			   CharitySubscription cs = compareScore.get(pos);
 			   System.out.println("elli aando akther sghar MINOR houwa :  " + cs);
-		}
-			   
+		}*/
+	/*		   
 		int nbrChildrenHandicapMax = compareScore.get(0).getNbrChildrenHandicap();
 		int p = 0 ;
 		for(int i=1;i<compareScore.size();i++){
@@ -137,7 +153,11 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 			}
 			   CharitySubscription cS = compareScore.get(p);
 			   System.out.println("elli aando akther sghar HANDICAP houwa :  " + cS);
-		}
+		}*/
+		
+		
+		
+		
 		
 		
 
@@ -171,4 +191,5 @@ public class CharitySubscriptionServiceImpl implements ICharitySubscriptionServi
 
 	
 
-}
+
+

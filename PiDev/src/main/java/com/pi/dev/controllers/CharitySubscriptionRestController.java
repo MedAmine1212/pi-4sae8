@@ -76,11 +76,10 @@ public class CharitySubscriptionRestController {
 	}
 
 	@ApiOperation(value = "compareScore")
-	@GetMapping("/CompareS/")
+	@GetMapping("/TopScore/")
 	@ResponseBody
-	public void CompareScore() {
-
-		 csService.CompareScore();
+	public List<CharitySubscription> TopScore() {
+		 return csService.TopScore();
 	}
 
 
