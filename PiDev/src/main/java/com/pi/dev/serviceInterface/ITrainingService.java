@@ -20,11 +20,15 @@ public interface ITrainingService {
 	void assignQuizToTraining(Long trainingId, Quiz qz);
 	List<Training> getTrainingBySubject(Long userId,String s);
 
+	List<Training> SimilarTraining(Long userId , Long idTraining);
+    
+	public void userSatisfaction(Long idUser, Long idTraining,int value);
+
 	public void deleteTraining(Training q);
 	
 	public List<Training>recommendedTraining(Long idUser);
 
 	public List<Training>recommendedTrainingBySearchs(Long idUser);
 
-
+	public String trainingOverallSatisfaction(Long idTraining);
 }

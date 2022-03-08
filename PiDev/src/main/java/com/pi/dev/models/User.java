@@ -42,9 +42,14 @@ public class User implements Serializable {
 		private Date birthDate;
 
 
-	@ElementCollection
+	    @ElementCollection
 		private List<String> searchHistory;
 
+		@ElementCollection
+		private List<String> skills;
+
+		/* @ElementCollection
+		private List<String> skills; */
 
 		@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 		@JoinTable(name = "user_roles",
@@ -57,7 +62,7 @@ public class User implements Serializable {
 		private Subscription subscription;
 
 
-	@JsonIgnore
+	    @JsonIgnore
 		@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 		private List<Post> listPosts;
 
@@ -99,6 +104,9 @@ public class User implements Serializable {
 		@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 		private Contributor contributorAccount;
 
+		@JsonIgnore
+		@OneToOne(mappedBy = "userTrainer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+		private Trainer trainerAccount;
 
 		@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy",  orphanRemoval = true)
 		private List<Meeting> meetings;
@@ -111,7 +119,16 @@ public class User implements Serializable {
 	private List<FieldVote> listVotes;
 
 
-	@OneToOne(cascade = CascadeType.ALL)
-		private Reputation reputation;
+	
 
+	
+    @Enumerated(EnumType.STRING)
+	private ReputationLevel reputationLevel;
+
+	private int reputationPoints;
+	
+
+	
+
+	
 }
