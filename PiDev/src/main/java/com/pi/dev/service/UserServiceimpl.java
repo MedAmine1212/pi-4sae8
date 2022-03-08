@@ -148,11 +148,16 @@ public class UserServiceimpl implements IUserService{
 	    	if (rate ==1){
 	    		likedUser.getRatedBy().put(likeUser, 1);
 		        userRepository.save(likedUser);
+		        int r=likedUser.getRate();
+		        r++;
+		        likedUser.setRate(r);
 	    	}
 	    	else if(rate == -1){
 	    		likedUser.getRatedBy().put(likeUser, -1);
 		        userRepository.save(likedUser);
-
+		        int r=likedUser.getRate();
+		        r++;
+		        likedUser.setRate(r);
 	    	}
 	    	else{
 	    		likedUser.getRatedBy().put(likeUser, 0);

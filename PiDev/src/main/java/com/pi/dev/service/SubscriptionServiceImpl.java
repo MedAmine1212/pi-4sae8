@@ -61,12 +61,12 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 	
 	
 	
-	
-	@Scheduled(cron = "0 0 * * * *")
-	public void upgradeSupscription(Long SubscriptionID){
-	
-		Subscription subscription = new Subscription();
-		subscription= subscriptionRepository.findById(SubscriptionID).get();
+	@Override
+	public void upgradeSupscription(){
+		log.info("upgradeSupscription succesful ");
+		
+		List<Subscription> subscriptions = subscriptionRepository.findAll();
+		for(Subscription subscription : subscriptions){
 		User user = subscription.getUser();
 
 
@@ -99,11 +99,13 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 					userRepository.save(user);
 				}
 	}
+	}
 	
 	
 	
-	
+	//@Scheduled(fixedRate = 10000)
 	public void endSubscription(Long SubscriptionID){
+		log.info("endSubscription succesful ");
 		Subscription subscription = new Subscription();
 		subscription= subscriptionRepository.findById(SubscriptionID).get();
 		if (java.time.LocalDate.now().equals(subscription.getEndDate())&& (subscription.getTypeSubscription().equals(TypeSubscription.Gold)|| subscription.getTypeSubscription().equals(TypeSubscription.Premium))){

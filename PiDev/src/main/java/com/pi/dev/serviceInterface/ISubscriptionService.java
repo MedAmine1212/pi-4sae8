@@ -20,4 +20,6 @@ public interface ISubscriptionService {
 	void upgradeToGold(Long SubscriptionID);
 	
 	void upgradeToPremium(Long SubscriptionID);
+	
+	 void upgradeSupscription();
 }

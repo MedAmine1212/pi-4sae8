@@ -3,6 +3,7 @@ package com.pi.dev.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -90,4 +91,10 @@ public class SubscriptionController {
   	public void upgradeToGold(@PathVariable Long SubscriptionID){
 		 subscriptionService.upgradeToGold(SubscriptionID);
   	}
+
+	// @Scheduled(cron = "@weekly")
+	@Scheduled(fixedRate = 100000)
+    public void upgr(){
+    	subscriptionService.upgradeSupscription();
+    }
 }
