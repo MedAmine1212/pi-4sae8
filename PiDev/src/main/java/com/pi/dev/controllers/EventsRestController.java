@@ -2,8 +2,10 @@ package com.pi.dev.controllers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,8 +57,13 @@ public class EventsRestController {
 	@ApiOperation(value = "EventsList")
 	@GetMapping("/getEvents")
 	@ResponseBody
-	public List<Events> AllEvents() {
-		return EvService.AllEvents();
+	public String AllEvents(Model model) {
+		List<String> Name = EvService.AllEvents().stream().map(x->x.getName()).collect(Collectors.toList());
+		List<Integer> NbrParticipant = EvService.AllEvents().stream().map(x->x.getNbrParticipant()).collect(Collectors.toList());
+		model.addAttribute("name", Name);
+		model.addAttribute("NbrParticipant", NbrParticipant);
+		return "barChart";
+		//return EvService.AllEvents();
 		
 	}
 	@ApiOperation(value = "GetEventsByid")
