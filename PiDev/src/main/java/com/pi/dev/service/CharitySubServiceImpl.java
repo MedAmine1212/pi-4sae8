@@ -77,7 +77,7 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
 			 s = s + c.getNbrChildrenMinor() ;
 		 }
 		if (c.getNbrChildrenHandicap() > 0 ){
-			s = 2*s + c.getNbrChildrenHandicap() ;
+			s = s + c.getNbrChildrenHandicap() ;
 		}
 		
 		if (c.getHealth().equals(health.chronic_disease)){
@@ -176,7 +176,8 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
 		System.out.println("*******************health****************************");
 		healthScore.forEach(System.out::println);
 
-		return compareScore;		
+		return compareScore;
+		
 	}
 	
 	//haja mouhema aal lekher .. fel lekher haka tnajem tel9a liste fergha donc lazem if esle bech ken l9aa wahda fergha yetaada leli baadou
