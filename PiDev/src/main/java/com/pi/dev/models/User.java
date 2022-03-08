@@ -120,6 +120,12 @@ public class User implements Serializable {
 
 
 
+	@OneToOne
+	CharitySubscription CharitySubscription ;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Events> Evenements ;
+
 
 
     @Enumerated(EnumType.STRING)

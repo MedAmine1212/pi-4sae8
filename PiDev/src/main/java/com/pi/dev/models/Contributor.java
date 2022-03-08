@@ -38,13 +38,17 @@ public class Contributor implements Serializable {
     private TypeContributor TypeContributor;
 
     @JsonIgnore
-    @OneToMany(mappedBy="advertisementOwner", fetch=FetchType.LAZY, cascade=CascadeType.DETACH)
+    @OneToMany(mappedBy = "advertisementOwner", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private List<Advertisement> advertisements;
 
     @OneToOne(cascade = CascadeType.DETACH)
     private User userContributor;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "consultedBy")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "consultedBy")
     private List<Meeting> meetings;
 
+    @ManyToOne
+    Jackpots cagnottes ;
 
+
+}
