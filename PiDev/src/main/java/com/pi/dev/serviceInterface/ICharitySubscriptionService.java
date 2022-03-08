@@ -22,5 +22,10 @@ public interface ICharitySubscriptionService {
 	
 	public List<CharitySubscription> TopScore();
 	
+	public List<CharitySubscription> allFilter();
+	
+	//public List<CharitySubscription> FilterParCivilStatus();
+
+	
 
 }
