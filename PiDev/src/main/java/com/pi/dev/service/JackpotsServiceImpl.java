@@ -90,7 +90,7 @@ public class JackpotsServiceImpl implements IJackpotsService {
 		float result = flous/resFilter ;
 		
 		for (CharitySubscription charitySubscription : chss) {
-			System.out.println(charitySubscription.getName()+ "mabrouk" +result);
+			System.out.println("MABROUK AALIK YA " + charitySubscription.getName() + " RBEHT MAANA  : " + result + " TND ") ; 
 		}
 		jr.setAmount(0);
 		JRepo.save(jr);
