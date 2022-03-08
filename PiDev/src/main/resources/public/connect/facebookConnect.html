@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect to facebook</title>
+</head>
+<body>
+    <form action="connect/facebook" method="POST">
+        <input type="hidden" name="scope" value="user_posts"/>
+        <div class="formInfo">
+            <p>You aren't connected to facebook yet. Click the button to connect this application with your facebook account</p>
+        </div>
+        <button type="submit">Connect to facebook</button>
+    </form>
+
+</body>
+</html>

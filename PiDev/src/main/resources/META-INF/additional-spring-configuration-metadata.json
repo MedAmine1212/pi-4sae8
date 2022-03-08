@@ -1,5 +1,4 @@
 {
-  "groups": [],
   "properties": [
     {
       "name": "spring.social.facebook.app-id",
@@ -11,6 +10,4 @@
       "type": "java.lang.String",
       "description": "Description for spring.social.facebook.app-secret."
     }
-  ],
-  "hints": []
-}
+  ] }

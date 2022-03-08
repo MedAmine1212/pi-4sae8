@@ -93,9 +93,8 @@ public class RoomServiceImpl implements IRoomService {
 	}
 
 	@Override
-	public boolean leaveRoom(Long roomId, Long userId) {
+	public boolean leaveRoom(Long userId) {
 		try{
-		Room room = roomRepository.findById(roomId).get();
 		User user = userRepository.findById(userId).get();
 		user.setActualRoom(null);
 		userRepository.save(user);
@@ -104,5 +103,10 @@ public class RoomServiceImpl implements IRoomService {
 			log.info(ex.getMessage());
 			return false;
 		}
+	}
+
+	@Override
+	public Room findById(Long roomId) {
+		return roomRepository.findById(roomId).get();
 	}
 }
