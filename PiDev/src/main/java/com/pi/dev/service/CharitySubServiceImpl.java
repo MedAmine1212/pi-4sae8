@@ -119,7 +119,7 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
 		// TODO Auto-generated method stub
 		List<CharitySubscription> compareScore = CSubRepo.CompreScore() ;
 		for (CharitySubscription charitySubscription : compareScore) {
-			System.out.println(charitySubscription);
+			System.out.println("les femmes qui ont le plus grande score : " + charitySubscription);
 		}
 	
 //critere		 
@@ -132,35 +132,50 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
                          .filter(women -> women.getNbrChildrenHandicap() == maxObject.getNbrChildrenHandicap())
                          .collect(Collectors.toList());
 		
-		System.out.println("***********************************************");
+		System.out.println("*******************FILTER BY HANDICAP****************************");
 		filterByHandicap.forEach(System.out::println);
 		
 		//civilstatus
 		
 		List<CharitySubscription> CivilStatusScore = new ArrayList<CharitySubscription>();  
 		
-		for (CharitySubscription f : filterByHandicap) 
-		    if (f.getCivilStatus() == CivilStatus.Widow) 
-		    {
-		    	CivilStatusScore.add(f) ;
-		    }
-		System.out.println("*******************CivilStatus****************************");
+		if (filterByHandicap.isEmpty()){
+			for (CharitySubscription f : compareScore) 
+			    if (f.getCivilStatus() == CivilStatus.Widow) 
+			    {
+			    	CivilStatusScore.add(f) ;
+			    }
+		}else{
+			for (CharitySubscription f : filterByHandicap) 
+			    if (f.getCivilStatus() == CivilStatus.Widow) 
+			    {
+			    	CivilStatusScore.add(f) ;
+			    }
+		}
+		
+		System.out.println("*******************FILTER BY CIVIL STATUS****************************");
 		CivilStatusScore.forEach(System.out::println);
 		
 		List<CharitySubscription> healthScore = new ArrayList<CharitySubscription>();  ;
 
 		
-		for (CharitySubscription f : CivilStatusScore) 
-			    if (f.getHealth() == health.good_health) 
+		if (filterByHandicap.isEmpty() && CivilStatusScore.isEmpty() ){
+			for (CharitySubscription f : compareScore) 
+			    if (f.getHealth() == health.chronic_disease) 
 			    {
 			    	healthScore.add(f) ;
 			    }
+		} else {
+			for (CharitySubscription f : CivilStatusScore) 
+			    if (f.getHealth() == health.chronic_disease) 
+			    {
+			    	healthScore.add(f) ;
+			    }
+		}
 		
 		System.out.println("*******************health****************************");
 		healthScore.forEach(System.out::println);
 
-		
-		
 		return compareScore;		
 	}
 	
