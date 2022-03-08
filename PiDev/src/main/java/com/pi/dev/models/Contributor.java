@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -47,5 +48,3 @@ public class Contributor implements Serializable {
     private List<Meeting> meetings;
 
 
-
-}

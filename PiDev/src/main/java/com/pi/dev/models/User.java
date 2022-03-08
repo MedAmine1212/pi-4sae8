@@ -119,16 +119,16 @@ public class User implements Serializable {
 	private List<FieldVote> listVotes;
 
 
-	
 
-	
+
+
     @Enumerated(EnumType.STRING)
 	private ReputationLevel reputationLevel;
 
 	private int reputationPoints;
-	
 
-	
 
-	
+
+
+
 }
