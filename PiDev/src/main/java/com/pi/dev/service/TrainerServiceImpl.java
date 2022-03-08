@@ -1,8 +1,18 @@
 package com.pi.dev.service;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TemporalType;
 
 import com.pi.dev.models.ReputationLevel;
 import com.pi.dev.models.Trainer;
@@ -32,6 +42,9 @@ public class TrainerServiceImpl implements ITrainerService {
     TrainingRepository qr;
     @Autowired
 	UserRepository ur;
+    
+    @PersistenceContext
+	private EntityManager entityManager;
     
     @Autowired
 	ICertificationService certifservice;
@@ -63,6 +76,7 @@ public class TrainerServiceImpl implements ITrainerService {
     }
 
     @Override
+    @Transactional
     public void assignTrainerToTraining(Long trainerId, Long trainingId) {
         // TODO Auto-generated method stub
         Training tr = qr.findById(trainingId).orElse(null);
@@ -70,7 +84,20 @@ public class TrainerServiceImpl implements ITrainerService {
         List<Training> trainings = trainer.getTrainings();
         Date d1 = tr.getStartDate();
         Date d2 = tr.getEndDate();
+        LocalDate dd=LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(d2));
+        System.out.println("the date is :"+ dd);
+        LocalDate dk = dd.plusMonths(-1);
+        ZoneId defaultZoneId = ZoneId.systemDefault();
 
+        System.out.println("the date is after update :"+ dk);
+        LocalDate threeDaysAgoDate = LocalDate.now().minusDays(7);
+        Date date = Date.from(threeDaysAgoDate.atStartOfDay(defaultZoneId).toInstant());
+
+        List<Training> trs = qr.findAllWithDateAfter(date);
+       for (Training training : trs) {
+        System.out.println("the training is:"+ training.getSubject());
+
+       }
         int x = 0;
         for (Training training : trainings) {
             if (d1.after(training.getStartDate()) && d1.before(training.getEndDate())) {
@@ -96,9 +123,7 @@ public class TrainerServiceImpl implements ITrainerService {
         user.setReputationPoints(user.getReputationPoints() - 200);
         certifservice.changeReputation(userId);
         ur.save(user);
-        
-
-        
+           
     }
 
     @Override
