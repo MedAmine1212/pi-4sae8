@@ -3,8 +3,10 @@ package com.pi.dev.models;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,8 +34,12 @@ public class Training implements Serializable {
 	@Temporal(TemporalType.DATE)
     private Date endDate;
     private String Subject;
+    private String domain;
     private int maxNbrParticipants;
     
+    @ElementCollection
+    private Map<User,Boolean> satisfaction;
+
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
 	private Quiz quiz;

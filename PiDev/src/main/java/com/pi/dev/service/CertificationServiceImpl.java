@@ -154,7 +154,9 @@ public class CertificationServiceImpl implements ICertificationService{
         
         if(res>=60){
             user.setReputationPoints(user.getReputationPoints()+100);
+            user.getSkills().add(tr.getSubject());
             changeReputation(idUser);
+            
             return "Congratz , u ve passed the test with a score of " + res +" % , you can claim your certification now By scanning the Qr Code click below !! ";
 
         }

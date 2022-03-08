@@ -45,6 +45,9 @@ public class User implements Serializable {
 	    @ElementCollection
 		private List<String> searchHistory;
 
+		@ElementCollection
+		private List<String> skills;
+
 		/* @ElementCollection
 		private List<String> skills; */
 
@@ -59,7 +62,7 @@ public class User implements Serializable {
 		private Subscription subscription;
 
 
-	@JsonIgnore
+	    @JsonIgnore
 		@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
 		private List<Post> listPosts;
 

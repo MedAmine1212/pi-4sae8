@@ -22,6 +22,7 @@ public interface ITrainingService {
 
 	List<Training> SimilarTraining(Long userId , Long idTraining);
     
+	public void userSatisfaction(Long idUser, Long idTraining,int value);
 
 	public void deleteTraining(Training q);
 	
@@ -29,5 +30,5 @@ public interface ITrainingService {
 
 	public List<Training>recommendedTrainingBySearchs(Long idUser);
 
-
+	public String trainingOverallSatisfaction(Long idTraining);
 }

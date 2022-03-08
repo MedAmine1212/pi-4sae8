@@ -22,8 +22,7 @@ public class UserServiceimpl implements IUserService{
 	@Autowired
 	UserRepository userRepository;
 	
-	@Autowired
-	UserRepository ur;
+	
 	
 	//afficher la liste des users
 	@Override

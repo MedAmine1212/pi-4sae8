@@ -285,7 +285,7 @@ public class TrainingServiceImpl implements ITrainingService {
 
 		alltrainings.removeAll(trs);
 		for (Training train : alltrainings) {
-			
+			 	
 			for (String st : arrOfStr) {
 
 				if (train.getSubject().contains(st)) {
@@ -296,6 +296,43 @@ public class TrainingServiceImpl implements ITrainingService {
 		}
 		
 		return recommendedTrainings;
+	}
+
+	@Override
+	public void userSatisfaction(Long idUser, Long idTraining , int value) {
+		// TODO Auto-generated method stub
+		User user = ur.findById(idUser).orElse(null);
+		Training tr = qr.findById(idTraining).orElse(null);
+		if(value == 1){
+			tr.getSatisfaction().put(user, true);
+			qr.save(tr);
+		}else{
+			tr.getSatisfaction().put(user, false);
+			qr.save(tr);
+		}
+	}
+
+	@Override
+	public String trainingOverallSatisfaction(Long idTraining) {
+		// TODO Auto-generated method stub
+		Training tr = qr.findById(idTraining).orElse(null);
+		Map<User,Boolean> satsList=tr.getSatisfaction();
+
+		float alluser=0;
+		float satisfied=0;
+		for (Map.Entry<User, Boolean> me : satsList.entrySet()) {
+			if(me.getValue().equals(true)){
+				satisfied+=1;
+			}
+			alluser+=1;
+		}
+
+		log.info("satisfied:"+satisfied);
+		log.info("alluser:"+alluser);
+
+		float result = (satisfied/alluser)*100;
+
+		return Math.round(result)+"% of the users liked this training !!";
 	}
 
 }
