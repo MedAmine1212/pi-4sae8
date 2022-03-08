@@ -1,13 +1,18 @@
 package com.pi.dev.service;
 
 import com.pi.dev.serviceInterface.IFacebookService;
-import org.springframework.social.facebook.api.Facebook;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.social.facebook.api.*;
 import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Service
+@Slf4j
 public class FacebookServiceImpl implements IFacebookService {
 
     private String accessToken;
@@ -31,9 +36,9 @@ public class FacebookServiceImpl implements IFacebookService {
     }
 
     @Override
-    public String getUserData() {
+    public Model getUserData(Model model) {
         Facebook facebook = new FacebookTemplate(accessToken);
-        String[] fields = {"id", "first_name", "name", "email", "birthday", "gender", "age_range"};
-        return facebook.fetchObject("me", String.class, fields);
+        facebook.feedOperations().updateStatus("hello world");
+        return model;
     }
 }

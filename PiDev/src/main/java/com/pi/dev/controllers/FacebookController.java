@@ -2,6 +2,9 @@ package com.pi.dev.controllers;
 
 import com.pi.dev.serviceInterface.IFacebookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.facebook.api.PagedList;
+import org.springframework.social.facebook.api.Post;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +40,8 @@ public class FacebookController {
 	}
 
 	@GetMapping("/getUserData")
-	public String getUserData() {
-		return facebookService.getUserData();
+	public String getUserData(Model model) {
+		model = facebookService.getUserData(model);
+		return "/profile.html";
 	}
 }
