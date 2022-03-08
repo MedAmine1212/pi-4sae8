@@ -9,9 +9,10 @@ public interface ICandidacyService {
 
    List<Candidacy> findAllCandidacy();
    List<Candidacy> findAllByUserSkills(String s);
+   List<Candidacy> findAllByUser();
    
 	
-	Candidacy addCandidacy(Candidacy c);
+	Candidacy addCandidacy(Candidacy c,Long idJobOffer);
 	
 	boolean deleteCandidacy(Long idCandidacy);
 

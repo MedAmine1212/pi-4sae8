@@ -16,6 +16,7 @@ import com.pi.dev.models.User;
 import com.pi.dev.repository.CandidacyRepository;
 import com.pi.dev.repository.InterviewRepository;
 import com.pi.dev.repository.JobOfferRepository;
+import com.pi.dev.repository.UserRepository;
 import com.pi.dev.serviceInterface.ICandidacyService;
 import com.pi.dev.serviceInterface.IInterviewService;
 
@@ -29,6 +30,13 @@ public class CandidacyServiceImpl implements ICandidacyService {
 	
 	@Autowired
 	CandidacyRepository candRepo;
+	
+	@Autowired
+	JobOfferRepository jobRepo;
+	@Autowired
+	
+	UserRepository userRepo;
+	
 	@Autowired
 	InterviewRepository interviewRepo;
 	
@@ -69,14 +77,18 @@ public class CandidacyServiceImpl implements ICandidacyService {
 	
 
 	@Override
-	public Candidacy addCandidacy(Candidacy c) {
-		//User user =new User((long)1, null, null, null, null, null, null, null, null, false, null, null);
-	//c.setUser(user);
-	//	candRepo.save(c);
-	//	f.getListCandidacyOffer().add(c);	
-	//  c.setJobOffer(f);
+	public Candidacy addCandidacy(Candidacy c, Long idJob) {
+		User u =userRepo.findById((long) 1).orElse(null);
+		JobOffer job=jobRepo.findById(idJob).orElse(null);
+	
+		candRepo.save(c);
 		Date date = new Date();
 		   c.setCandidacyDate(date);
+		   c.setUser(u);
+		   c.setJobOffer(job);
+		   u.getListCandidacyUser().add(c);
+		   userRepo.save(u);
+		   candRepo.save(c);
 		return candRepo.save(c);
 	}
 
@@ -114,6 +126,16 @@ public class CandidacyServiceImpl implements ICandidacyService {
 			return true;
 		}else
 		return false;
+	}
+
+
+
+
+	@Override
+	public List<Candidacy> findAllByUser() {
+		User u =userRepo.findById((long) 1).orElse(null);
+		
+		return u.getListCandidacyUser();
 	}
 
 	

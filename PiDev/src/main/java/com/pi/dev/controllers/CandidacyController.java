@@ -36,6 +36,13 @@ public class CandidacyController {
 		return candidacyService.findAllCandidacy();
 	}
 	
+	@ApiOperation(value = "Get Candidacies list by user")
+	@GetMapping("/getAllCandidaciesByUser")
+	@ResponseBody
+	public List<Candidacy> findAllByUser(){
+		return candidacyService.findAllByUser();
+	}
+	
 	@ApiOperation(value = "Get Candidacies list by skill required")
 	@GetMapping("/getAllCandidaciesBySkill")
 	@ResponseBody
@@ -46,8 +53,8 @@ public class CandidacyController {
 	@ApiOperation(value = "Add candidacy")
 	@PostMapping("/addCandidacy")
 	@ResponseBody
-	public Candidacy addCandidacy(@RequestBody Candidacy f) {
-		return candidacyService.addCandidacy(f);
+	public Candidacy addCandidacy(@RequestBody Candidacy f,@RequestParam Long idJobOffer) {
+		return candidacyService.addCandidacy(f,idJobOffer);
 	}
 	
 	@ApiOperation(value = "Update a Candidacy")

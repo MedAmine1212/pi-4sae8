@@ -41,7 +41,7 @@ public class Interview implements Serializable{
 	private Date interviewDate;
 	private String interviewLink;
 	
-	
+	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
 	@JoinColumn(name="candidacy_id")
 	@OneToOne(cascade = CascadeType.ALL)

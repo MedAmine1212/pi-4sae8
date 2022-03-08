@@ -36,7 +36,6 @@ public class Candidacy implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@NotFound(action = NotFoundAction.IGNORE)
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long candidacyId;
@@ -44,22 +43,21 @@ public class Candidacy implements Serializable{
 	private Date candidacyDate;
 	private int candidacyStatus =1;
 	
+	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
 	@ManyToOne
-	@MapsId("jobOfferId")
 	@JoinColumn(name="jobOffer_id")
     private JobOffer jobOffer;
 	
 	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
 	@ManyToOne
-	@MapsId("userId")
 	@JoinColumn(name="user_id")
     private User user;
 	
+	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToOne(mappedBy = "candidacy")
-	@MapsId("interviewId")
 	@JoinColumn(name="interview_id")
 	private Interview interview;
 	
