@@ -22,7 +22,7 @@ public interface JobOfferRepository extends JpaRepository<JobOffer, Long> {
 
 	List<JobOffer> findByjobNameContaining(String s);
 
-	@Query(value = "(SELECT * FROM job_offer) UNION (SELECT * FROM job_offer WHERE job_offer.job_name LIKE %:word% OR job_offer.job_description LIKE %:word%) ORDER BY job_name desc ,job_description desc", nativeQuery = true)
+	@Query(value = "(SELECT * FROM job_offer) UNION (SELECT * FROM job_offer WHERE job_offer.job_name LIKE %:word% OR job_offer.job_description LIKE %:word%) ORDER BY job_name asc ,job_description asc", nativeQuery = true)
 	List<JobOffer> findAllWithCookies(@Param("word") String word);
 
 	@Query(value = "SELECT * FROM job_offer WHERE job_offer.job_name LIKE %:word% OR job_offer.job_description LIKE %:word%", nativeQuery = true)
