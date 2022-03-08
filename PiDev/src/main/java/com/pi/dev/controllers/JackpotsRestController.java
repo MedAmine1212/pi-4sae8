@@ -81,5 +81,13 @@ public class JackpotsRestController {
 		return JService.deleteJackpots(idJackpot);
 		
 	}
+	
+	@ApiOperation(value = "devide money")
+	@PutMapping("/devideMoney/{idJackpot}")
+	@ResponseBody
+	public void devideMoney(@PathVariable Long idJackpot){
+		 JService.divideAmount(idJackpot);;
+		
+	}
 
 }

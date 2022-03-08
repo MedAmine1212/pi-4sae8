@@ -21,6 +21,8 @@ public interface IJackpotsService {
 	
 	public void calculScore (Long idJackpot );
 	
+	public void divideAmount (Long idJackpot);
+	
 	
 
 }

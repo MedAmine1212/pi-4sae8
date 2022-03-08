@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 import com.pi.dev.models.CharitySubscription;
 import com.pi.dev.models.CivilStatus;
 import com.pi.dev.models.EducationLevel;
+import com.pi.dev.models.Jackpots;
 import com.pi.dev.models.ScientificCertificate;
 import com.pi.dev.models.health;
 import com.pi.dev.repository.CharitySubscriptionRepository;
+import com.pi.dev.repository.JackpotsRepository;
 import com.pi.dev.serviceInterface.ICharitySubscriptionService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +28,13 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
 
 	@Autowired
 	CharitySubscriptionRepository CSubRepo ;
-	
+	@Autowired
+	JackpotsRepository jpr ;
 	
 	@Override
 	public void addCS(CharitySubscription Cs) {
+		
+		
 		// TODO Auto-generated method stub
 		CSubRepo.save(Cs);
 		
