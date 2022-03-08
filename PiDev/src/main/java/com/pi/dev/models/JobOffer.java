@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
@@ -62,6 +63,10 @@ public class JobOffer implements Serializable {
     @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(mappedBy="jobOffer", cascade=CascadeType.ALL)
     private List<Candidacy> listCandidacyOffer;
+    
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToMany(mappedBy = "favJobs")
+    List<User> userFavJobs;
     
     
     

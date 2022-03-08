@@ -111,6 +111,38 @@ public class JobOfferServiceImpl implements IJobOfferService {
 		
 		return finalFoo;
 	}
+	@Override
+	public User addJobOfferToFav(Long idJobOffer) {
+		User u =userRepo.findById((long) 1).orElse(null);
+		
+		u.getFavJobs().add(jobRepo.findById(idJobOffer).orElse(null));
+		
+		return userRepo.save(u) ;
+	}
+	@Override
+	public boolean deleteJobOfferFromFavorites(Long idJobOffer) {
+		User u =userRepo.findById((long) 1).orElse(null);
+		try {
+			u.getFavJobs().remove(jobRepo.findById(idJobOffer).orElse(null));
+			userRepo.save(u);
+			
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} return false;
+	}
+	@Override
+	public Set<JobOffer> findAllFavoriteJobs() {
+		User u =userRepo.findById((long) 1).orElse(null);
+		
+		return u.getFavJobs();
+	}
+	
+	
+	
+	
+	
 	
 
 

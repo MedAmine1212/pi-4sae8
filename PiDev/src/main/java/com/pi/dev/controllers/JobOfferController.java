@@ -1,6 +1,7 @@
 package com.pi.dev.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.pi.dev.models.Contributor;
 import com.pi.dev.models.JobOffer;
-
+import com.pi.dev.models.User;
 import com.pi.dev.serviceInterface.IJobOfferService;
 
 
@@ -55,12 +56,28 @@ public class JobOfferController {
 			return jobService.findAllWithCookies(c);}
 	}
 	
+	@ApiOperation(value = "Get Favorite JobOffers")
+	@GetMapping("/getAllFavoriteJobOffers")
+	@ResponseBody
+	public Set<JobOffer> findAllFavoriteJobs() {
+		return jobService.findAllFavoriteJobs();
+	}
+	
 	@ApiOperation(value = "Add new Job Offer")
 	@PostMapping("/addJobOffer")
 	@ResponseBody
 	public JobOffer addJobOffer(@RequestBody JobOffer f) {
 		return jobService.addJobOffer(f);
 	}
+	
+	@ApiOperation(value = "Add Job Offer to favorites")
+	@PostMapping("/addJobOfferToFavorites")
+	@ResponseBody
+	public User addJobOfferToFav(@RequestParam Long idJobOffer) {
+		return jobService.addJobOfferToFav(idJobOffer);
+	}
+	
+	
 	
 	@ApiOperation(value = "Update a Job Offer")
 	@PostMapping("/updateJobOffer")
@@ -81,6 +98,23 @@ public class JobOfferController {
 		}
 		
 	}
+	
+	@ApiOperation(value = "Delete a Job Offer From Favorites")
+	@DeleteMapping("/deleteJobOfferFromFavorites")
+	@ResponseBody
+	public boolean deleteJobOfferFromFavorites(@RequestParam Long idJobOffer) {
+		try {
+			jobService.deleteJobOfferFromFavorites(idJobOffer);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return  false;
+		}
+		
+	}
+	
+	
 	
 	@ApiOperation(value = "Get Job Offers list by name")
 	@GetMapping("/getJobOfferByName")

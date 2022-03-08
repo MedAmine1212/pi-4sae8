@@ -2,6 +2,7 @@ package com.pi.dev.models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -81,4 +82,15 @@ public class User implements Serializable {
 		@JsonIgnore
 		@ElementCollection(fetch = FetchType.LAZY)
 		private List<String> skills;
+		
+		@NotFound(action = NotFoundAction.IGNORE)
+		@JsonIgnore
+		@ManyToMany
+		@JoinTable(
+		  name = "fav_job", 
+		  joinColumns = @JoinColumn(name = "user_id"), 
+		  inverseJoinColumns = @JoinColumn(name = "joboffer_id"))
+		Set<JobOffer> favJobs;
+		
+		
 }
