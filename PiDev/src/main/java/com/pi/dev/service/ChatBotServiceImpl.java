@@ -26,7 +26,13 @@ public class ChatBotServiceImpl implements IChatBotService {
             }
 
         if (responses.size() == 0) {
-            return "Sorry i couldn't understand that.";
+            if(text.toLowerCase().contains("Hello".toLowerCase() ) || text.toLowerCase().contains("Morning".toLowerCase())|| text.toLowerCase().contains("Help".toLowerCase())) {
+                return "Good Day to you, how can I be of service ?";
+            } else if(text.toLowerCase().contains("Thank".toLowerCase())|| text.toLowerCase().contains("okay".toLowerCase())|| text.toLowerCase().contains("done".toLowerCase())|| text.toLowerCase().contains("bye".toLowerCase())){
+                return "Am glad I can be of service, have a nice day !";
+            } else {
+                return "Sorry i couldn't understand that.";
+            }
         } else {
             if(responses.size() > 1) {
                 for (ChatBot ch : responses) {

@@ -17,9 +17,10 @@ public class ChatBotController {
 
     @Autowired
     IChatBotService chatBotService;
-    @PostMapping("/search")
+
+    @GetMapping("/search/{text}")
     @ResponseBody
-    String getResponse(@RequestBody String text) {
+    String getResponse(@PathVariable String text) {
         text = text.substring(text.lastIndexOf("=")+1);
         text = text.replaceAll("\\+", " ");
         log.info(text);
