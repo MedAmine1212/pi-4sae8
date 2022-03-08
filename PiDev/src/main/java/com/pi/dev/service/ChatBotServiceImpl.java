@@ -22,7 +22,9 @@ public class ChatBotServiceImpl implements IChatBotService {
         List<ChatBot> responses = new ArrayList<>();
             String[] words = text.toLowerCase().split("\\s");
             for (String word : words) {
-                responses.addAll(chatBotRepository.findAllContainingWord("%"+word+"%"));
+                if(word.length() >3) {
+                    responses.addAll(chatBotRepository.findAllContainingWord("%" + word + "%"));
+                }
             }
 
         if (responses.size() == 0) {
