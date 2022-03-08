@@ -73,9 +73,8 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 		if (subscription.getTypeSubscription().equals(TypeSubscription.Silver)&&user.getRate()>=100){
 			
 			subscription.setTypeSubscription(TypeSubscription.Gold);
-			LocalDate date = subscription.getEndDate();
-			LocalDate nd= date.plusMonths(1);
-			subscription.setEndDate(nd);		
+			LocalDate date = subscription.getEndDate().plusMonths(1);
+			subscription.setEndDate(date);		
 			user.setRate(0);
 			subscriptionRepository.save(subscription);
 			userRepository.save(user);	
@@ -116,24 +115,24 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 	
 	
 	
+	
 	public void upgradeToGold(Long SubscriptionID){
 		Subscription subscription = new Subscription();
 		subscription= subscriptionRepository.findById(SubscriptionID).get();
 		
 		if(subscription.getTypeSubscription().equals(TypeSubscription.Silver)||subscription.getTypeSubscription().equals(TypeSubscription.Premium)){
 			subscription.setTypeSubscription(TypeSubscription.Gold);	
-			LocalDate date = LocalDate.now();
+			LocalDate date = subscription.getEndDate();
 			LocalDate nd= date.plusMonths(1);
 			subscription.setEndDate(nd);
-			subscription.setEndDate(date);
 			subscriptionRepository.save(subscription);			
 
 		}
 		else
 			if(subscription.getTypeSubscription().equals(TypeSubscription.Gold)){
-			LocalDate date = subscription.getEndDate();
-			LocalDate nd= date.plusMonths(1);
-			subscription.setEndDate(date);
+				LocalDate date = subscription.getEndDate();
+				LocalDate nd= date.plusMonths(1);
+				subscription.setEndDate(nd);
 			subscriptionRepository.save(subscription);
 		}
 	}
@@ -148,7 +147,7 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 			subscription.setTypeSubscription(TypeSubscription.Premium);	
 			LocalDate date = subscription.getEndDate();
 			LocalDate nd= date.plusMonths(1);
-			subscription.setEndDate(date);
+			subscription.setEndDate(nd);
 			subscriptionRepository.save(subscription);
 		}
 		else
@@ -156,7 +155,7 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 	       {
 			LocalDate date = subscription.getEndDate();
 			LocalDate nd= date.plusMonths(1);
-			subscription.setEndDate(date);
+			subscription.setEndDate(nd);
 			subscriptionRepository.save(subscription);
 		}
 	}

@@ -24,7 +24,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-@Data
 @Getter
 @Setter
 @NoArgsConstructor

@@ -2,7 +2,9 @@ package com.pi.dev.controllers;
 
 import java.util.List;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,4 +79,24 @@ public class UserController {
   	public void  removeFollow(@PathVariable Long followedId,@PathVariable Long followerId){
   		 userService.removeFollow(followedId, followerId);
   	}
+    
+    
+    
+    
+    
+    @ApiOperation(value = "upgrade to contributer")
+    @PostMapping("/upgradeToContributer{id}")
+	@ResponseBody
+	public void upgradeToContributer(@PathVariable Long id) {
+	         userService.upgradeToContributer(id);
+	    }
+    
+    
+    @ApiOperation(value = "add rate to user")
+    @PostMapping("/addRateToUser")
+	@ResponseBody
+    public void addRateToUser(Long idLikedUser,  Long idlikeUser , Integer rate){
+    	userService.addRateToUser(idLikedUser,idlikeUser, rate);
+    	
+    }
 }

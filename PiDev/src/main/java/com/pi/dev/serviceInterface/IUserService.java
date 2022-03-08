@@ -24,4 +24,8 @@ public interface IUserService {
 	User getByResetPasswordToken(String token);
 	
 	void updateResetPasswordToken(String token, String email)throws UserNotFoundException;
+	
+	void upgradeToContributer(Long id);
+	
+	void addRateToUser(Long idLikedUser, Long idLikeUser , Integer rate);
 }

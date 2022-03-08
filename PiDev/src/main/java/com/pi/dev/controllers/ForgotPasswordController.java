@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,7 @@ public class ForgotPasswordController {
 	    UserRepository userRepository;
 	    
 	    @PostMapping("/forgot_password")
-	    public String processForgotPassword(Long userId) throws UserNotFoundException {
+	    public String processForgotPassword( Long userId ,  String password) throws UserNotFoundException {
 	    		User user = new User();
 	    		user = userRepository.getById(userId);
 	    		String email = user.getEmail();
@@ -52,7 +53,7 @@ public class ForgotPasswordController {
 
 	    		try {
 	    			helper.setTo(email);
-	    			helper.setText("http://localhost:8087/password/forgot_password/reset_password?token=" + token);
+	    			helper.setText( "http://localhost:8087/password/reset_password/"+token+"/"+password);
 	    			helper.setSubject("Reset Password");
 	    		} catch (MessagingException e) {
 	    			e.printStackTrace();
@@ -63,8 +64,8 @@ public class ForgotPasswordController {
 	    }
 	    
 	    
-	    @PostMapping("/reset_password")
-	    public String processResetPassword(@PathVariable String token, @PathVariable String password) {
+	     @GetMapping("/reset_password/{token}/{password}")
+	    public String processResetPassword( @PathVariable("token") String token, @PathVariable("password") String password) {
 //	        String token = request.getParameter("token");
 //	        String password = request.getParameter("password");
 	         
