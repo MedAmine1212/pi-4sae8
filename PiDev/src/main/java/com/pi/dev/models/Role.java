@@ -1,21 +1,24 @@
 package com.pi.dev.models;
 
-
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
-@Setter
-@Getter
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-@Table(name = "Role")
+@Table(name = "roles")
+@Data
 public class Role {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roleId;
+  @Enumerated(EnumType.STRING)
+  @Column(length = 20)
+  private ERole name;
 
-    @Column(length = 60)
-    private String name;
-}
+

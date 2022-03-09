@@ -2,16 +2,25 @@ package com.pi.dev.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pi.dev.models.Role;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -20,67 +29,99 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Data
-@Table(name = "User", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"username"}),
-		@UniqueConstraint(columnNames = {"email"})
-})
+@Getter
+@Setter
+@Entity
+@AllArgsConstructor
+public class User {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-@Inheritance(strategy=InheritanceType.JOINED)
-public class User implements Serializable {
-		/**
-		 *
-		 */
-		private static final long serialVersionUID = 1L;
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long userId;
+  @NotBlank
+  @Size(max = 20)
+  private String username;
 
-		private String userName;
-		private String password;
-		private String firstName;
-		private String lastName;
-		private int phone;
-		private String email;
-		@Temporal(TemporalType.DATE)
-		private Date birthDate;
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
 
-
-	    @ElementCollection
-		private List<String> searchHistory;
-
+  @NotBlank
+  @Size(max = 120)
+  private String password;
+  private String firstName;
+  private String lastName;
+  private int phone;
+  private int rate;
+  private boolean state;
 
 
-		/* @ElementCollection
-		private List<String> skills; */
+  private String resetPasswordToken;
 
-		@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-		@JoinTable(name = "user_roles",
-				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
-				inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "roleId"))
-		private Set<Role> roles;
+	@JsonIgnore
+  @ElementCollection
+  private Map<User,Integer> ratedBy;
 
-
-		@OneToOne
-		private Subscription subscription;
+  	@JsonIgnore
+	@ElementCollection
+	private List<Long> followedBy;
 
 
-	    @JsonIgnore
-		@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-		private List<Post> listPosts;
+
+  public boolean getState() {
+	    return state;
+	  }
 
 
-		@JsonIgnore
-		@OneToMany(mappedBy="commentOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-		private List<Comment> listComments;
 
 
-		@JsonIgnore
-		@OneToMany(mappedBy="likeOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-		private List<PostLike> listLikes;
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(  name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles = new HashSet<>();
 
-		@JsonIgnore
-		@OneToMany(mappedBy="ratingOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-		private List<Rating> listRatings;
+  public User() {
+  }
+
+  public User(String username, String email, String password, boolean state) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+    this.state = state;
+  }
+
+  public User(String username, String email, String password) {
+	    this.username = username;
+	    this.email = email;
+	    this.password = password;
+	  }
+
+
+
+
+	@OneToOne
+	private Subscription subscription;
+  	@JsonIgnore
+	@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Contributor contributorAccount;
+  	@JsonIgnore
+	@OneToMany(mappedBy="postOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Post> listPosts;
+
+  	@JsonIgnore
+	@OneToMany(mappedBy="commentOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Comment> listComments;
+
+  	@JsonIgnore
+	@OneToMany(mappedBy="likeOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<PostLike> listLikes;
+
+
+  	@JsonIgnore
+	@OneToMany(mappedBy="ratingOwner", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Rating> listRatings;
 
 
 		@JsonIgnore
