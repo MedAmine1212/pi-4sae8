@@ -1,6 +1,8 @@
 package com.pi.dev.config;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -19,12 +21,8 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.basePackage("com.pi.dev")) // basePackage permet de demander à Swagger de ne rien documenter en dehors du package "com.esprit.examen".
 
 				.paths(PathSelectors.any())
-				//.paths(PathSelectors.regex("/SpringMVC/client.*")) // accepte seulement les URIs qui commençent par /client. 
-
-				.build().apiInfo(apiInfo());//Informations personnalisées
-				//.build();
+				.build();
 	}
-
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
@@ -33,6 +31,4 @@ public class SwaggerConfig {
 				.version("1.1.0")
 				.build();
 	}
-
-
 }

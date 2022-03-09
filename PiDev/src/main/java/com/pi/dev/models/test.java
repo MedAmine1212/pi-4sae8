@@ -19,8 +19,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class test implements Serializable {
 	/**
-	* 
-	*/
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,9 @@ public class test implements Serializable {
 	private  int purple;
 	private int mido;
 	private int akram;
+	private int ouss;
+	private int ffffffff;
+
 	private int skander;
 
 	
