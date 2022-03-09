@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 import com.pi.dev.models.CharitySubscription;
 import com.pi.dev.models.CivilStatus;
 import com.pi.dev.models.EducationLevel;
+import com.pi.dev.models.Jackpots;
 import com.pi.dev.models.ScientificCertificate;
 import com.pi.dev.models.health;
 import com.pi.dev.repository.CharitySubscriptionRepository;
+import com.pi.dev.repository.JackpotsRepository;
 import com.pi.dev.serviceInterface.ICharitySubscriptionService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +28,13 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
 
 	@Autowired
 	CharitySubscriptionRepository CSubRepo ;
-	
+	@Autowired
+	JackpotsRepository jpr ;
 	
 	@Override
 	public void addCS(CharitySubscription Cs) {
+		
+		
 		// TODO Auto-generated method stub
 		CSubRepo.save(Cs);
 		
@@ -121,63 +126,67 @@ public class CharitySubServiceImpl implements ICharitySubscriptionService  {
 		for (CharitySubscription charitySubscription : compareScore) {
 			System.out.println("les femmes qui ont le plus grande score : " + charitySubscription);
 		}
-	
-//critere		 
-		Comparator<CharitySubscription> comparator = Comparator.comparing( CharitySubscription::getNbrChildrenHandicap );
-//exec de critere
-		CharitySubscription maxObject = compareScore.stream().max(comparator).get();
-		
-//nvlle liste
-		List<CharitySubscription> filterByHandicap = compareScore.stream()
-                         .filter(women -> women.getNbrChildrenHandicap() == maxObject.getNbrChildrenHandicap())
-                         .collect(Collectors.toList());
-		
-		System.out.println("*******************FILTER BY HANDICAP****************************");
-		filterByHandicap.forEach(System.out::println);
-		
-		//civilstatus
-		
-		List<CharitySubscription> CivilStatusScore = new ArrayList<CharitySubscription>();  
-		
-		if (filterByHandicap.isEmpty()){
-			for (CharitySubscription f : compareScore) 
-			    if (f.getCivilStatus() == CivilStatus.Widow) 
-			    {
-			    	CivilStatusScore.add(f) ;
-			    }
-		}else{
-			for (CharitySubscription f : filterByHandicap) 
-			    if (f.getCivilStatus() == CivilStatus.Widow) 
-			    {
-			    	CivilStatusScore.add(f) ;
-			    }
-		}
-		
-		System.out.println("*******************FILTER BY CIVIL STATUS****************************");
-		CivilStatusScore.forEach(System.out::println);
-		
-		List<CharitySubscription> healthScore = new ArrayList<CharitySubscription>();  ;
-
-		
-		if (filterByHandicap.isEmpty() && CivilStatusScore.isEmpty() ){
-			for (CharitySubscription f : compareScore) 
-			    if (f.getHealth() == health.chronic_disease) 
-			    {
-			    	healthScore.add(f) ;
-			    }
-		} else {
-			for (CharitySubscription f : CivilStatusScore) 
-			    if (f.getHealth() == health.chronic_disease) 
-			    {
-			    	healthScore.add(f) ;
-			    }
-		}
-		
-		System.out.println("*******************health****************************");
-		healthScore.forEach(System.out::println);
-
 		return compareScore;
 		
+	}
+
+	@Override
+	public List<CharitySubscription> allFilter() {
+		// TODO Auto-generated method stub
+		List<CharitySubscription> csh = TopScore() ;
+		//critere		 
+				Comparator<CharitySubscription> comparator = Comparator.comparing( CharitySubscription::getNbrChildrenHandicap );
+		//exec de critere
+				CharitySubscription maxObject = csh.stream().max(comparator).get();
+				
+		//nvlle liste
+				List<CharitySubscription> filterByHandicap = csh.stream()
+		                         .filter(women -> women.getNbrChildrenHandicap() == maxObject.getNbrChildrenHandicap())
+		                         .collect(Collectors.toList());
+				
+				System.out.println("*******************FILTER BY HANDICAP****************************");
+				filterByHandicap.forEach(System.out::println);
+				
+				//civilstatus
+				
+				List<CharitySubscription> CivilStatusScore = new ArrayList<CharitySubscription>();  
+				
+				if (filterByHandicap.isEmpty()){
+					for (CharitySubscription f : csh) 
+					    if (f.getCivilStatus() == CivilStatus.Widow) 
+					    {
+					    	CivilStatusScore.add(f) ;
+					    }
+				}else{
+					for (CharitySubscription f : filterByHandicap) 
+					    if (f.getCivilStatus() == CivilStatus.Widow) 
+					    {
+					    	CivilStatusScore.add(f) ;
+					    }
+				}
+				
+				System.out.println("*******************FILTER BY CIVIL STATUS****************************");
+				CivilStatusScore.forEach(System.out::println);
+				
+				List<CharitySubscription> healthScore = new ArrayList<CharitySubscription>();  ;
+
+				
+				if (filterByHandicap.isEmpty() && CivilStatusScore.isEmpty() ){
+					for (CharitySubscription f : csh) 
+					    if (f.getHealth() == health.chronic_disease) 
+					    {
+					    	healthScore.add(f) ;
+					    }
+				} else {
+					for (CharitySubscription f : CivilStatusScore) 
+					    if (f.getHealth() == health.chronic_disease) 
+					    {
+					    	healthScore.add(f) ;
+					    }
+				}
+				System.out.println("*******************health****************************");
+				healthScore.forEach(System.out::println);
+		return  healthScore ; 	
 	}
 	
 	//haja mouhema aal lekher .. fel lekher haka tnajem tel9a liste fergha donc lazem if esle bech ken l9aa wahda fergha yetaada leli baadou

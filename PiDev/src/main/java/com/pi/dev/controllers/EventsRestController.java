@@ -16,16 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pi.dev.models.EventResponse;
 import com.pi.dev.models.Events;
 import com.pi.dev.serviceInterface.IEventsService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Api(tags = "Gestion des evenements")
 @RequestMapping("/evenement")
-
+@Slf4j
 public class EventsRestController {
 
 	@Autowired
@@ -57,13 +59,13 @@ public class EventsRestController {
 	@ApiOperation(value = "EventsList")
 	@GetMapping("/getEvents")
 	@ResponseBody
-	public String AllEvents(Model model) {
+	public EventResponse AllEvents() {
+		EventResponse evRes = new EventResponse();
 		List<String> Name = EvService.AllEvents().stream().map(x->x.getName()).collect(Collectors.toList());
 		List<Integer> NbrParticipant = EvService.AllEvents().stream().map(x->x.getNbrParticipant()).collect(Collectors.toList());
-		model.addAttribute("name", Name);
-		model.addAttribute("NbrParticipant", NbrParticipant);
-		return "barChart";
-		//return EvService.AllEvents();
+		evRes.setName(Name);
+		evRes.setNbr(NbrParticipant);
+		return evRes;
 		
 	}
 	@ApiOperation(value = "GetEventsByid")
@@ -74,6 +76,13 @@ public class EventsRestController {
 	}
 
 
+	@ApiOperation(value = "Rate Events")
+	@PostMapping("/rateEvent")
+	@ResponseBody
+	public String testPlacesEvent(Long idEvents) {
+		return EvService.testPlacesEvent(idEvents);
+		
+	}
 
 		
 }

@@ -81,6 +81,22 @@ public class CharitySubscriptionRestController {
 	public List<CharitySubscription> TopScore() {
 		 return csService.TopScore();
 	}
+	
+	@ApiOperation(value = "filter")
+	@GetMapping("/filterage/")
+	@ResponseBody
+	public List<CharitySubscription> allFilter(){
+		return csService.allFilter();	
+	}
+	
+	/*@ApiOperation(value = "filter by Civil Status")
+	@GetMapping("/filterparCivilStatus/")
+	@ResponseBody
+	public List<CharitySubscription> FilterParCivilStatus(){
+		return csService.FilterParCivilStatus();	
+	}*/
+	
+
 
 
 

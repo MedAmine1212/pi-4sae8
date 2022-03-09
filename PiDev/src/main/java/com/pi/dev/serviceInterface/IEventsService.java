@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.pi.dev.models.Events;
 
-
 public interface IEventsService {
 
 	public void addEvent (Events e); 
@@ -17,6 +16,9 @@ public interface IEventsService {
 	List <Events> AllEvents() ;
 	
 	Optional <Events> findEventByid(Long id);
+	
+	public String testPlacesEvent(Long idEvents); 
+	
 	
 	
 

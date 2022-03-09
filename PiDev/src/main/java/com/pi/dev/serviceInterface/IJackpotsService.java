@@ -20,5 +20,9 @@ public interface IJackpotsService {
 	boolean deleteJackpots (Long idJackpot) ;
 	
 	public void calculScore (Long idJackpot );
+	
+	public void divideAmount (Long idJackpot);
+	
+	
 
 }

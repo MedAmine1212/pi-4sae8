@@ -27,6 +27,9 @@ public class JackpotsServiceImpl implements IJackpotsService {
 	@Autowired
 	CharitySubscriptionRepository csRepo ;
 	
+	@Autowired
+	CharitySubServiceImpl CharityService ;
+	
 	@Override
 	public void addJackpot(Jackpots j) {
 		// TODO Auto-generated method stub
@@ -73,6 +76,24 @@ public class JackpotsServiceImpl implements IJackpotsService {
 
 	@Override
 	public void calculScore(Long idJackpot) {
+		
+		
+	}
+
+	@Override
+	public void divideAmount(Long idJackpot) {
+		// TODO Auto-generated method stub
+		List<CharitySubscription> chss = CharityService.allFilter() ;
+		int resFilter = CharityService.allFilter().size();
+		float flous = JRepo.getById(idJackpot).getAmount();
+		Jackpots jr=JRepo.findById(idJackpot).orElse(null);
+		float result = flous/resFilter ;
+		
+		for (CharitySubscription charitySubscription : chss) {
+			System.out.println("MABROUK AALIK YA " + charitySubscription.getName() + " RBEHT MAANA  : " + result + " TND ") ; 
+		}
+		jr.setAmount(0);
+		JRepo.save(jr);
 		
 		
 	}

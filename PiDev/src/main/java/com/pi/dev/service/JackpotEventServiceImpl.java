@@ -68,5 +68,7 @@ public class JackpotEventServiceImpl implements IJackpotEventService {
 		// TODO Auto-generated method stub
 		return jeRepo.findById(id);
 	}
+	
+	
 
 }
