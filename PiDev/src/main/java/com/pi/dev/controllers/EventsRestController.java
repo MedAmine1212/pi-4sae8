@@ -76,6 +76,13 @@ public class EventsRestController {
 	}
 
 
+	@ApiOperation(value = "Rate Events")
+	@PostMapping("/rateEvent")
+	@ResponseBody
+	public String testPlacesEvent(Long idEvents) {
+		return EvService.testPlacesEvent(idEvents);
+		
+	}
 
 		
 }

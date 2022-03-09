@@ -42,6 +42,8 @@ public class Events {
 	private int NbrParticipant ;
 	private int MaxNbrParticipant ;
 	
+	private float Ratiing ;
+	
 	@Temporal(TemporalType.DATE)
 	private Date StartDate ;
 	
@@ -53,6 +55,8 @@ public class Events {
 	private String location;
 	private String Image ;
 	private Places Places ;
+	
+	
 	
 	@JsonIgnore
 	@OneToOne(mappedBy="events" , cascade = CascadeType.ALL, orphanRemoval=true)
