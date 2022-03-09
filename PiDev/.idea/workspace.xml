@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="179ff48e-72f5-48f0-bed1-bfae4d55d8d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/postsGraph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/postsGraph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +128,7 @@
       <workItem from="1646675316346" duration="27085000" />
       <workItem from="1646716194728" duration="172000" />
       <workItem from="1646754895163" duration="13561000" />
-      <workItem from="1646854295754" duration="1075000" />
+      <workItem from="1646854295754" duration="1319000" />
     </task>
     <task id="LOCAL-00001" summary="Classes">
       <created>1645129335126</created>
@@ -271,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646802932782</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="statistics">
+      <created>1646855463702</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1646855463702</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,10 +337,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="499" y="156" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.816@0.0.1536.816" timestamp="1646715982960" />
-    <state x="393" y="4" key="CommitChangelistDialog2" timestamp="1646802931808">
+    <state x="393" y="4" key="CommitChangelistDialog2" timestamp="1646855462248">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="393" y="4" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1646802931808" />
+    <state x="393" y="4" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1646855462248" />
     <state x="165" y="167" key="FileChooserDialogImpl" timestamp="1645127042619">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -387,10 +393,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="277" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1645132174382" />
-    <state x="361" y="142" key="Vcs.Push.Dialog.v2" timestamp="1646855414396">
+    <state x="361" y="142" key="Vcs.Push.Dialog.v2" timestamp="1646855613164">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1646855414396" />
+    <state x="361" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1646855613164" />
     <state x="584" y="187" key="chooseDestDirectoryDialog" timestamp="1645126286172">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -403,10 +409,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="463" y="6" width="609" height="804" key="find.popup/0.0.1536.816@0.0.1536.816" timestamp="1645547836756" />
-    <state x="504" y="201" key="git4idea.merge.GitPullDialog" timestamp="1646855442459">
+    <state x="504" y="201" key="git4idea.merge.GitPullDialog" timestamp="1646855628517">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="504" y="201" key="git4idea.merge.GitPullDialog/0.0.1536.816@0.0.1536.816" timestamp="1646855442459" />
+    <state x="504" y="201" key="git4idea.merge.GitPullDialog/0.0.1536.816@0.0.1536.816" timestamp="1646855628517" />
     <state x="425" y="185" key="run.anything.popup" timestamp="1646761485176">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
