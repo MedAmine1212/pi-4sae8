@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pi.dev.models.Events;
 import com.pi.dev.models.JackpotEvents;
+import com.pi.dev.models.Places;
 import com.pi.dev.repository.EventsRepository;
 import com.pi.dev.repository.JackpotEventRepository;
 import com.pi.dev.serviceInterface.IEventsService;
@@ -74,33 +75,20 @@ public class EventsServiceImpl implements IEventsService {
 		int NPMax = e.getMaxNbrParticipant() ;
 		float rate = 0 ;
 		
-		//hawel badelha b case 
 		if (e.getMaxNbrParticipant() - e.getNbrParticipant() == 0){
 			rate = 100 ;
-		}else 
-		
+			e.setPlaces(Places.full);
+			
+		}else{ 
 			rate = NP * 100 / NPMax ;
-		
-		/*if ( e.getMaxNbrParticipant() - e.getNbrParticipant() > 75 ){
-			rate = rate 			
-		}*/
-		/*
-		if (NPMax - NP > 50 && NPMax - NP <= 75 ){
-			rate = rate + 75 ;
-			return ("Rate is successful");
+			e.setPlaces(Places.available);
 		}
-		
-		if (NPMax - NP > 75 && NPMax - NP <= 100 ){
-			rate = rate + 100 ;
-			return ("Rate is Very successful");
-		}
-		*/
 		
 		e.setRatiing(rate);
 		
 		EvRepo.save(e);
 		
-		return ("Rating for this event is " + rate );
+		return ("Rating for this event is " + rate + " % ");
 	
 	}
 	
