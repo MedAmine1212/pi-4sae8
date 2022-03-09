@@ -25,6 +25,10 @@ public class PostServiceImpl implements IPostService {
 	@Autowired
 	PostRepository postRepository;
 
+
+	@Autowired
+	FieldVoteRepository fieldVoteRepository;
+
 	@Autowired
 	StorageService storageService;
 
@@ -223,4 +227,9 @@ public class PostServiceImpl implements IPostService {
 		p.getPostFiles().remove(fileName);
 		postRepository.save(p);
 		}
+
+	@Override
+	public void votePoll(FieldVote fieldVote) {
+		fieldVoteRepository.save(fieldVote);
+	}
 }

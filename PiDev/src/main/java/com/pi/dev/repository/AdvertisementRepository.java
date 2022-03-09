@@ -12,4 +12,7 @@ import java.util.List;
 
 @Repository
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
+
+    @Query("select ad from Advertisement ad where ad.active =true")
+    List<Advertisement> findAllActiveAds();
 }

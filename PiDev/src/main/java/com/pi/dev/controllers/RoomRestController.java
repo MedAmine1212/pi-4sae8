@@ -68,10 +68,10 @@ public class RoomRestController {
 
 
 	@ApiOperation(value = "Leave room")
-	@GetMapping("/leaveRoom/{roomId}/{userId}")
+	@GetMapping("/leaveRoom/{userId}")
 	@ResponseBody
-	boolean leaveRoom(@PathVariable Long roomId,@PathVariable Long userId){
-		return roomService.leaveRoom(roomId, userId);
+	boolean leaveRoom(@PathVariable Long userId){
+		return roomService.leaveRoom(userId);
 	}
 
 

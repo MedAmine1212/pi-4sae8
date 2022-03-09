@@ -18,6 +18,7 @@ public interface IRoomService {
 
 	boolean joinRoom(Long roomId, Long userId);
 
-	boolean leaveRoom(Long roomId, Long userId);
+	boolean leaveRoom(Long userId);
 
+	Room findById(Long roomId);
 }

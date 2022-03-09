@@ -114,6 +114,10 @@ public class User implements Serializable {
 		@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL,mappedBy = "createdBy",  orphanRemoval = true)
 		private List<Reclamation> reclamations;
 
+	@JsonIgnore
+	@OneToMany(mappedBy="userVote", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+	private List<FieldVote> listVotes;
+
 
 	
 

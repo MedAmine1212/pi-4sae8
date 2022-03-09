@@ -7,8 +7,11 @@ import com.pi.dev.serviceInterface.IPostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -45,7 +48,7 @@ public class AdvertisementServiceImpl implements IAdvertisementService {
 	public List<Advertisement> findAdsForUser(Long userId) {
 		User user = userRepository.findById(userId).get();
 		List<String> words = postService.getWordByUser(user);
-		List<Advertisement> ads = advertisementRepository.findAll();
+		List<Advertisement> ads = advertisementRepository.findAllActiveAds();
 		List<Advertisement> finalAds = new ArrayList<Advertisement>();
 		for(Advertisement ad: ads) {
 			boolean keepIt = false;
@@ -67,5 +70,20 @@ public class AdvertisementServiceImpl implements IAdvertisementService {
 		Collections.reverse(finalAds);
 
 		return finalAds;
+	}
+
+	@Scheduled(cron = "@daily")
+//	@Scheduled(fixedRate = 30000)
+	@Override
+	public void deleteAds() {
+		List<Advertisement> ads = advertisementRepository.findAll();
+		LocalDate date = LocalDate.now();
+		for (Advertisement ad: ads) {
+			LocalDate dt = ad.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if(date.compareTo(dt) > 0 || ad.getWantedViewsNbr() == ad.getWantedViewsNbr()) {
+				ad.setActive(false);
+				advertisementRepository.save(ad);
+			}
+		}
 	}
 }

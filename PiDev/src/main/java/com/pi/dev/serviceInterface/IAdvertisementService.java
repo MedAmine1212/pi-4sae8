@@ -12,4 +12,5 @@ public interface IAdvertisementService {
 	Advertisement addAdvertisement(Advertisement ad);
 	Boolean deleteAd(Long adId);
 	List<Advertisement> findAdsForUser(Long userId);
+	void  deleteAds();
 }

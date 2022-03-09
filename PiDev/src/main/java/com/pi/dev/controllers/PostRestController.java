@@ -2,6 +2,7 @@ package com.pi.dev.controllers;
 
 import java.util.List;
 
+import com.pi.dev.models.FieldVote;
 import com.pi.dev.models.PostLike;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.Rating;
@@ -49,6 +50,13 @@ public class PostRestController {
 	@PostMapping("/addPost")
 	Post addPost(@RequestBody Post post){
 		return postService.addPost(post);
+	}
+
+
+	@ApiOperation(value = "Vote poll")
+	@PostMapping("/votePoll")
+	void pollVote(@RequestBody FieldVote fieldVote){
+		postService.votePoll(fieldVote);
 	}
 
 	@ApiOperation(value = "Update Post")

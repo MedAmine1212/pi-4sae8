@@ -1,18 +1,15 @@
 {
-  "groups": [
-    {
-      "name": "storage",
-      "type": "com.pi.dev.storage.StorageProperties",
-      "sourceType": "com.pi.dev.storage.StorageProperties"
-    }
-  ],
+  "groups": [],
   "properties": [
     {
-      "name": "storage.location",
+      "name": "spring.social.facebook.app-id",
       "type": "java.lang.String",
-      "description": "Folder location for storing files",
-      "sourceType": "com.pi.dev.storage.StorageProperties",
-      "defaultValue": "upload-dir"
+      "description": "Description for spring.social.facebook.app-id."
+    },
+    {
+      "name": "spring.social.facebook.app-secret",
+      "type": "java.lang.String",
+      "description": "Description for spring.social.facebook.app-secret."
     }
   ],
   "hints": []
