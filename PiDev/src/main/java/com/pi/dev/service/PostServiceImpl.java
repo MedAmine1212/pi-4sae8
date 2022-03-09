@@ -5,11 +5,13 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import com.pi.dev.controllers.PostsStat;
 import com.pi.dev.models.*;
 import com.pi.dev.repository.*;
 import com.pi.dev.serviceInterface.IKeyWordService;
 import com.pi.dev.serviceInterface.IPostService;
 import com.pi.dev.storage.StorageService;
+import javassist.compiler.ast.Keyword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
@@ -231,5 +233,25 @@ public class PostServiceImpl implements IPostService {
 	@Override
 	public void votePoll(FieldVote fieldVote) {
 		fieldVoteRepository.save(fieldVote);
+	}
+
+	@Override
+	public PostsStat getChart() {
+		PostsStat pss= new PostsStat();
+		List<KeyWord> keyWords = keyWordService.findAll();
+		for(KeyWord word: keyWords) {
+			List<Post> posts = postRepository.findPostsByTextInTitle(word.getKeyWord());
+			if(posts.size() > 0) {
+				pss.getPostsNumber().add(posts.size());
+				pss.getSubjects().add(word.getKeyWord());
+				int nbrReactions = 0;
+				for(Post p: posts) {
+					nbrReactions+= likeRepository.findAllByLikePost(p).size();
+					nbrReactions+= commentRepository.findAllByCommentPost(p).size();
+				}
+				pss.getReactions().add(nbrReactions);
+			}
+		}
+		return pss;
 	}
 }

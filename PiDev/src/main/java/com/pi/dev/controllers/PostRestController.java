@@ -1,6 +1,8 @@
 package com.pi.dev.controllers;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.pi.dev.models.FieldVote;
 import com.pi.dev.models.PostLike;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
@@ -131,5 +134,9 @@ public class PostRestController {
 		return ResponseEntity.notFound().build();
 	}
 
+	@GetMapping("/displayPieChart")
+	public PostsStat pieChart() {
+		return postService.getChart();
+	}
 
 }

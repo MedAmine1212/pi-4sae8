@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1" />
+    <title>PIE</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+</head>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<div id="container" style="height: 400px"></div>
+<script th:inline="javascript">
+    window.addEventListener('load', function (e) {
+        $.ajax({
+            url: '/post/displayPieChart',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                Highcharts.chart('container', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Posts by subject chart'
+                    },
+                    xAxis: {
+                        categories: response.subjects,
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        max:20,
+                        title: {
+                            text: 'Posts number & User interaction'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Subjects',
+                        data: response.postsNumber
+                    }, {
+                        type: 'spline',
+                        name: 'User interaction',
+                        data: response.reactions
+                    }]
+                });
+
+            },
+        error: function () {
+            alert("error");
+        }
+    });
+    });
+
+</script>
+</body>
+</html>

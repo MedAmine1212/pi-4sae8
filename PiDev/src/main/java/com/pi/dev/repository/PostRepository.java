@@ -18,6 +18,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(value = "select * from Post p where LOWER(p.post_title) LIKE %:text% OR LOWER(p.post_content) LIKE %:text%", nativeQuery = true)
     List<Post> findPostsByText(@Param("text") String text);
 
+    @Query(value = "select * from Post p where LOWER(p.post_title) LIKE %:text%", nativeQuery = true)
+    List<Post> findPostsByTextInTitle(@Param("text") String keyWord);
+
 
 //    @Query(value = "select pst.postFiles from Post pst where pst.postId =: postId")
 //    List<String> findFilesByPost(@Param("postId") Long postId);

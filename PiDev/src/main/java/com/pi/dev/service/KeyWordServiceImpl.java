@@ -40,6 +40,11 @@ public class KeyWordServiceImpl implements IKeyWordService {
 	}
 
 	@Override
+	public List<KeyWord> findAll() {
+		return keyWordRepository.findAll();
+	}
+
+	@Override
 	public boolean checkIfKeyWordExists(String word) {
 		return keyWordRepository.findOneByKeyWord(word) != null;
 	}
