@@ -36,7 +36,9 @@ public class Training implements Serializable {
     private String Subject;
     private String domain;
     private int maxNbrParticipants;
+    private float overAllSatisfaction;
     
+    @JsonIgnore
     @ElementCollection
     private Map<User,Boolean> satisfaction;
 
@@ -47,11 +49,17 @@ public class Training implements Serializable {
     @OneToMany(mappedBy = "training",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Certification> certif;
 
-
+    
 
     @JsonIgnore
     @ManyToOne(cascade = {CascadeType.ALL})
     private Trainer trainer;
+
+
+
+    public Number get(String string) {
+        return null;
+    }
     
 
 }

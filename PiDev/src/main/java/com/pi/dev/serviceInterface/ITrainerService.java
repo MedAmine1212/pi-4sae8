@@ -15,6 +15,8 @@ public interface ITrainerService {
 
     public void assignTrainerToTraining(Long trainerId,Long trainingId);
     public void StayHated(Long userId);
+    public void changeTrainerReputaiton(Long idTrainer);
+    
     void removeHated();
 
 }
