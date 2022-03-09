@@ -45,6 +45,7 @@ public class Certification implements Serializable {
 	private Training training;
     
 	private double score;
+	private Boolean Succeeded;
 
 	
 

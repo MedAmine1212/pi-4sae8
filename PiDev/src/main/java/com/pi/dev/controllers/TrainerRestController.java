@@ -51,4 +51,11 @@ public class TrainerRestController {
 	public void removepoints(@PathVariable("user-id") Long idUser ) {
 		qs.StayHated(idUser);
 	}
+	
+	@ApiOperation(value = "changeTrainerReputation")
+	@PostMapping("/changeTrainerReputation/{Trainer-id}")
+	@ResponseBody
+	public void changeTrainerReputation(@PathVariable("Trainer-id") Long idTrainer ) {
+		qs.changeTrainerReputaiton(idTrainer);
+	}
 }

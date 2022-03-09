@@ -98,6 +98,7 @@ public class TrainerServiceImpl implements ITrainerService {
         System.out.println("the training is:"+ training.getSubject());
 
        }
+
         int x = 0;
         for (Training training : trainings) {
             if (d1.after(training.getStartDate()) && d1.before(training.getEndDate())) {
@@ -125,6 +126,24 @@ public class TrainerServiceImpl implements ITrainerService {
         ur.save(user);
            
     }
+    public void changeReputation(Long idTrainer){
+        Trainer trainer = trainerRepository.findById(idTrainer).orElse(null);
+        int x =trainer.getReputationPoints();
+        if(x<0){
+            trainer.setReputationLevel(ReputationLevel.Hated);
+        }else if(x>=0 && x<200){
+            trainer.setReputationLevel(ReputationLevel.Neutral);
+
+        }
+        else if(x>=200 && x<800){
+            trainer.setReputationLevel(ReputationLevel.Honorod);
+
+        }else if(x>=800 && x<2000){
+            trainer.setReputationLevel(ReputationLevel.Exalted);
+        }
+
+        trainerRepository.save(trainer);
+    }
 
     @Override
     @Transactional
@@ -138,6 +157,38 @@ public class TrainerServiceImpl implements ITrainerService {
                 ur.save(user);
             }
         }
+    }
+
+    @Override
+    public void changeTrainerReputaiton(Long idTrainer) {
+        // TODO Auto-generated method stub
+        Trainer trainer = trainerRepository.findById(idTrainer).orElse(null);
+        List<Training> trs = trainer.getTrainings();
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        LocalDate datnow = LocalDate.now();
+        Date d1 = Date.from(datnow.atStartOfDay(defaultZoneId).toInstant());
+        float res=0;
+        float alltrainingSatisfaction=0;
+        for (Training training : trs) {
+            if(training.getEndDate().before(d1)){
+                alltrainingSatisfaction+= training.getOverAllSatisfaction();
+            }
+        }
+      
+        res= alltrainingSatisfaction/trs.size();
+        log.info("this is the res:"+res);
+        if(res>=50 && res<=75){
+            trainer.setReputationPoints(trainer.getReputationPoints()+100);
+            changeReputation(trainer.getTrainerId());
+        }else if (res>75){
+            trainer.setReputationPoints(trainer.getReputationPoints()+200);
+            changeReputation(trainer.getTrainerId());
+        }
+        else{
+            trainer.setReputationPoints(trainer.getReputationPoints()-100);
+            changeReputation(trainer.getTrainerId());
+        }
+
     }
 
 }
