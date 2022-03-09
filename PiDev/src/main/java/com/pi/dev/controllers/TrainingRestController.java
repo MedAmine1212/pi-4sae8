@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +57,7 @@ import org.springframework.util.StreamUtils;
 public class TrainingRestController {
 	@Autowired
 	ITrainingService qs;
+	
 	@Autowired
 	UserRepository userrepository;
 	@Autowired
@@ -178,20 +181,46 @@ public class TrainingRestController {
 			@PathVariable("training-id") Long trainingId) {
 		return qs.SimilarTraining(userId, trainingId);
 	}
-
-		
-	@PutMapping("/setSatisfaction/{User-id}/{Training-id}")
-	@ApiOperation(value = "userSatisfaction" )
+	@ApiOperation(value = "Get recommendedBySearch")
+	@GetMapping("/recommendedBySearch/{user-id}")
 	@ResponseBody
-	public void userSatisfaction(@PathVariable("User-id") Long userId ,@PathVariable("Training-id") Long trainingId,@RequestParam int value){
-		qs.userSatisfaction(userId, trainingId,value);
+	public List<Training> recommendedBySearch(@PathVariable("user-id") Long userId) {
+		return qs.recommendedTrainingBySearchs(userId);
 	}
-
+	
+	@PutMapping("/setSatisfaction/{User-id}/{Training-id}")
+	@ApiOperation(value = "userSatisfaction")
+	@ResponseBody
+	public void userSatisfaction(@PathVariable("User-id") Long userId, @PathVariable("Training-id") Long trainingId,
+			@RequestParam int value) {
+		qs.userSatisfaction(userId, trainingId, value);
+	}
 
 	@ApiOperation(value = "Get users Satisfaction of a training")
 	@GetMapping("/overallSatisfaction/{training-id}")
 	@ResponseBody
 	public String trainingSatisfaction(@PathVariable("training-id") Long trainingId) {
 		return qs.trainingOverallSatisfaction(trainingId);
+	}
+
+	@ApiOperation(value = "This Week's trainings")
+	@GetMapping("/thisWekk")
+	@ResponseBody
+	public List<Training> thisWeekTrainings() {
+		return qs.ThisWeeksTrainings();
+	}
+
+	@ApiOperation(value = "This Month's trainings")
+	@GetMapping("/thisMonth")
+	@ResponseBody
+	public List<Training> thisMonthTrainings() {
+		return qs.ThisMonthTrainings();
+	}
+
+	@ApiOperation(value = "MostCertifiedTrainings")
+	@GetMapping("/most")
+	@ResponseBody
+	public List<Object[]> certifeTrainings() {
+		return qs.MostCertified();
 	}
 }

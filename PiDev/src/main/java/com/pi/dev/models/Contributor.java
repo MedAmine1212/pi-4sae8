@@ -3,20 +3,22 @@ package com.pi.dev.models;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Entity
 public class Contributor implements Serializable {
 
@@ -41,6 +43,7 @@ public class Contributor implements Serializable {
     @OneToMany(mappedBy = "advertisementOwner", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private List<Advertisement> advertisements;
 
+    @NotFound(action = NotFoundAction.IGNORE)
     @OneToOne(cascade = CascadeType.DETACH)
     private User userContributor;
 
@@ -50,5 +53,8 @@ public class Contributor implements Serializable {
     @ManyToOne
     Jackpots cagnottes ;
 
+    @NotFound(action = NotFoundAction.IGNORE)
+	@OneToMany(mappedBy="contributor", cascade=CascadeType.ALL)
+	private List<JobOffer> listJobOffers;
 
 }

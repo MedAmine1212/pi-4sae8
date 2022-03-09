@@ -145,6 +145,12 @@ public class CertificationServiceImpl implements ICertificationService{
         }
         int res = (sc*100)/qts.size();
         certif.setScore(res);
+        if(res>=60){
+            certif.setSucceeded(true);
+
+        }else{
+            certif.setSucceeded(false);
+        }
         cr.save(certif);
        
         System.out.println("the results: "+ results);

@@ -12,6 +12,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pi.dev.models.Role;
 
 import lombok.*;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -45,8 +48,7 @@ public class User implements Serializable {
 	    @ElementCollection
 		private List<String> searchHistory;
 
-		@ElementCollection
-		private List<String> skills;
+
 
 		/* @ElementCollection
 		private List<String> skills; */
@@ -135,6 +137,28 @@ public class User implements Serializable {
 
 
 
+
+
+
+		@NotFound(action = NotFoundAction.IGNORE)
+		@OneToMany(mappedBy="user", cascade=CascadeType.ALL ,fetch = FetchType.LAZY)
+	    private List<Candidacy> listCandidacyUser;
+
+		@NotFound(action = NotFoundAction.IGNORE)
+		@JsonIgnore
+		@ElementCollection(fetch = FetchType.LAZY)
+		private List<String> skills;
+
+		@NotFound(action = NotFoundAction.IGNORE)
+		@JsonIgnore
+		@ManyToMany
+		@JoinTable(
+		  name = "fav_job",
+		  joinColumns = @JoinColumn(name = "user_id"),
+		  inverseJoinColumns = @JoinColumn(name = "joboffer_id"))
+		Set<JobOffer> favJobs;
+		@Enumerated(EnumType.STRING)
+		private Locations userLocation;
 
 
 }

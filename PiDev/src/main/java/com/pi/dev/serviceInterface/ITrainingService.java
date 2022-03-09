@@ -2,6 +2,7 @@ package com.pi.dev.serviceInterface;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.pi.dev.models.Quiz;
 import com.pi.dev.models.Training;
@@ -31,4 +32,10 @@ public interface ITrainingService {
 	public List<Training>recommendedTrainingBySearchs(Long idUser);
 
 	public String trainingOverallSatisfaction(Long idTraining);
+
+	public List<Training> ThisWeeksTrainings();
+
+	public List<Training> ThisMonthTrainings();
+
+	public List<Object[]> MostCertified();
 }

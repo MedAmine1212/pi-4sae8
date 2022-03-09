@@ -1,6 +1,8 @@
 package com.pi.dev.service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +11,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +23,7 @@ import com.pi.dev.models.Certification;
 import com.pi.dev.models.Questions;
 import com.pi.dev.models.Quiz;
 import com.pi.dev.models.ReputationLevel;
+import com.pi.dev.models.Trainer;
 import com.pi.dev.models.Training;
 import com.pi.dev.models.User;
 import com.pi.dev.repository.CertificationRepository;
@@ -35,6 +42,9 @@ public class TrainingServiceImpl implements ITrainingService {
 	@Autowired
 	TrainingRepository qr;
 
+	@PersistenceContext
+	EntityManager entityManager;
+	
 	@Autowired
 	QuizRepository quir;
 
@@ -132,6 +142,7 @@ public class TrainingServiceImpl implements ITrainingService {
 			}else{
 				certif.setTraining(tr);
 				certif.setUser(user);
+				certif.setSucceeded(false);
 				cr.save(certif);
 				tr.setMaxNbrParticipants(tr.getMaxNbrParticipants() + 1);
 				qr.save(tr);
@@ -185,6 +196,7 @@ public class TrainingServiceImpl implements ITrainingService {
 		}
 		List<String> searchs = user.getSearchHistory();
 		searchs.add(s);
+		ur.save(user);
 		return subjcts;
 	}
 	@Override
@@ -229,8 +241,17 @@ public class TrainingServiceImpl implements ITrainingService {
 				}
 			}
 		}
+		
 		return recommendedTrainings;
 	}
+	public static Map<String, Integer> sortByValue(final Map<String, Integer> wordCounts) {
+
+        return wordCounts.entrySet()
+                .stream()
+                .sorted((Map.Entry.<String, Integer>comparingByValue().reversed())).limit(1)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    }
+
 	@Override
 	public List<Training> recommendedTrainingBySearchs(Long idUser) {
 		User user = ur.findById(idUser).orElse(null);
@@ -251,12 +272,14 @@ public class TrainingServiceImpl implements ITrainingService {
 				}
 			}
 		}
+		
 		List<String> arrOfsubjects = new ArrayList<String>();
-        
-		for (Map.Entry<String, Integer> me : recmds.entrySet()) {
-			if (me.getValue() > 2) {
+		Map<String, Integer> sortedByCount =sortByValue(recmds);
+		
+		for (Map.Entry<String, Integer> me : sortedByCount.entrySet()) {
 				arrOfsubjects.add(me.getKey());
-			}
+				System.out.println("==="+me.getKey()+"==="+me.getValue());
+
 		}
 		for (Training train : alltrainings) {
 
@@ -303,6 +326,7 @@ public class TrainingServiceImpl implements ITrainingService {
 		// TODO Auto-generated method stub
 		User user = ur.findById(idUser).orElse(null);
 		Training tr = qr.findById(idTraining).orElse(null);
+		
 		if(value == 1){
 			tr.getSatisfaction().put(user, true);
 			qr.save(tr);
@@ -311,7 +335,7 @@ public class TrainingServiceImpl implements ITrainingService {
 			qr.save(tr);
 		}
 	}
-
+	
 	@Override
 	public String trainingOverallSatisfaction(Long idTraining) {
 		// TODO Auto-generated method stub
@@ -329,10 +353,45 @@ public class TrainingServiceImpl implements ITrainingService {
 
 		log.info("satisfied:"+satisfied);
 		log.info("alluser:"+alluser);
-
+ 
 		float result = (satisfied/alluser)*100;
-
-		return Math.round(result)+"% of the users liked this training !!";
+		tr.setOverAllSatisfaction(Math.round(result));
+		qr.save(tr);
+		return Math.round(tr.getOverAllSatisfaction())+"% of the users liked this training !!";
 	}
+
+	@Override
+	public List<Training> ThisWeeksTrainings() {
+		// TODO Auto-generated method stub
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		LocalDate threeDaysAgoDate = LocalDate.now().plusDays(7);
+        Date date = Date.from(threeDaysAgoDate.atStartOfDay(defaultZoneId).toInstant());
+		List<Training> trs = qr.findAllWithDateAfter(date);
+
+		return trs;
+	}
+
+	@Override
+	public List<Training> ThisMonthTrainings() {
+		// TODO Auto-generated method stub
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		LocalDate threeDaysAgoDate = LocalDate.now().plusDays(30);
+        Date date = Date.from(threeDaysAgoDate.atStartOfDay(defaultZoneId).toInstant());
+		List<Training> trs = qr.findAllWithDateAfter(date);
+
+		return trs;
+		}
+
+	@Override
+	public List<Object[]> MostCertified() {
+		List<Object[]> trs=qr.MostCertifiedTrainings();
+		for (Object[] objects : trs) {
+			System.out.println("****"+objects[0]+"******"+objects[1]);
+		}
+		 
+		return qr.MostCertifiedTrainings();
+	}
+
+
 
 }
