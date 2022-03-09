@@ -28,6 +28,7 @@ public class EventsServiceImpl implements IEventsService {
 	@Override
 	public void addEvent(Events e) {
 		// TODO Auto-generated method stub
+		
 		JackpotEvents jckE = new JackpotEvents();
 		e.setJackpotEvents(jckE);
 		jckE.setEvents(e);
@@ -64,4 +65,21 @@ public class EventsServiceImpl implements IEventsService {
 		return EvRepo.findById(id);
 	}
 
+	@Override
+	public String testPlacesEvent(Long idEvents) {
+		// TODO Auto-generated method stub
+		Events ev = EvRepo.getById(idEvents) ;
+		int NP  = EvRepo.getById(idEvents).getNbrParticipant();
+		int NPMax = EvRepo.getById(idEvents).getMaxNbrParticipant();
+		
+		return null;
+	
+	}
+	
+	
+	
+	
 }
+
+	
+	
