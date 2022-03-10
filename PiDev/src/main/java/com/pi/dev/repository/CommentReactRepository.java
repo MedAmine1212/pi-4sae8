@@ -17,6 +17,6 @@ public interface CommentReactRepository extends JpaRepository<CommentReact, Long
 
 
 
-    @Query("delete from CommentReact cr where cr.reactOwner.userId =: userId AND cr.reactComment.commentId =: commentId")
+    @Query("delete from CommentReact cr where cr.reactOwner.id =: userId AND cr.reactComment.commentId =: commentId")
     void removeReactFromPost(@Param("commentId") Long commentId,@Param("userId") Long userId);
 }

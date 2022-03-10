@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ public class SimpleMailController {
 	@Autowired
 	private JavaMailSender sender;
 
-	@RequestMapping("/sendMail")
+	@GetMapping("/sendMail")
 	public String sendMail() {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -32,7 +33,7 @@ public class SimpleMailController {
 		return "Mail Sent Success!";
 	}
 
-	@RequestMapping("/sendMailAtt")
+	@GetMapping("/sendMailAtt")
 	public String sendMailAttachment() throws MessagingException {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message,true);

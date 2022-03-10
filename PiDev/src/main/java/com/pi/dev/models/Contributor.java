@@ -16,26 +16,6 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
-import lombok.Data;
-
 import java.util.Set;
 
 @Data
@@ -49,11 +29,17 @@ public class Contributor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contributorId;
 
-    private String adress;
+    private String name;
     private String domain;
+
+    private String adress;
     private String legalStatus;
+    private String email;
+    private int phone;
+
     private Date disponibiltyStart;
     private Date disponibiltyOver;
+
 
 
     @Enumerated(EnumType.STRING)
@@ -74,7 +60,7 @@ public class Contributor implements Serializable {
     Jackpots cagnottes ;
 
     @NotFound(action = NotFoundAction.IGNORE)
-	@OneToMany(mappedBy="contributor", cascade=CascadeType.ALL)
-	private List<JobOffer> listJobOffers;
+    @OneToMany(mappedBy="contributor", cascade=CascadeType.ALL)
+    private List<JobOffer> listJobOffers;
 
 }

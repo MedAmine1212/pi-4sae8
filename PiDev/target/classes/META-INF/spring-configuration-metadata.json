@@ -2,6 +2,16 @@
   "groups": [],
   "properties": [
     {
+      "name": "bezkoder.app.jwtExpirationMs",
+      "type": "java.lang.String",
+      "description": "Description for bezkoder.app.jwtExpirationMs."
+    },
+    {
+      "name": "bezkoder.app.jwtSecret",
+      "type": "java.lang.String",
+      "description": "Description for bezkoder.app.jwtSecret."
+    },
+    {
       "name": "spring.social.facebook.app-id",
       "type": "java.lang.String",
       "description": "Description for spring.social.facebook.app-id."

@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="179ff48e-72f5-48f0-bed1-bfae4d55d8d7" name="Default Changelist" comment="merge with omar">
+    <list default="true" id="179ff48e-72f5-48f0-bed1-bfae4d55d8d7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatBotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatBotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ClientRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/FacebookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/FacebookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/PostRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/PostRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/PostsStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/PostsStat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/SimpleMailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/SimpleMailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/SimpleMailController.java.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Contributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Contributor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/CommentReactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/CommentReactRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/LikeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/LikeRepository.java.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/services/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/services/UserDetailsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/service/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/service/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/serviceInterface/IPostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/serviceInterface/IPostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/config/SwaggerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/config/SwaggerConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/PostRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/PostRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/RoomRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/RoomRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Advertisement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Advertisement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Certification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Certification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Contributor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Contributor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Post.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Training.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Training.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/AdvertisementRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/AdvertisementRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/CommentReactRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/CommentReactRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/LikeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/service/AdvertisementServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/service/AdvertisementServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/service/PostServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/service/PostServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/service/RoomServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/service/RoomServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IAdvertisementService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IAdvertisementService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IPostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IPostService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IRoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IRoomService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/pi/dev/PiDevApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/pi/dev/PiDevApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,8 +66,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -128,6 +180,7 @@
       <workItem from="1646716194728" duration="172000" />
       <workItem from="1646754895163" duration="13561000" />
       <workItem from="1646854295754" duration="1956000" />
+      <workItem from="1646871979614" duration="2064000" />
     </task>
     <task id="LOCAL-00001" summary="Classes">
       <created>1645129335126</created>
@@ -290,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646856021351</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="merge with omar">
+      <created>1646858056830</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1646858056830</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +361,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -361,58 +423,74 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="499" y="156" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.816@0.0.1536.816" timestamp="1646715982960" />
-    <state x="393" y="4" key="CommitChangelistDialog2" timestamp="1646856020100">
+    <state x="393" y="4" key="CommitChangelistDialog2" timestamp="1646858055674">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="393" y="4" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1646856020100" />
+    <state x="393" y="4" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1646858055674" />
     <state x="165" y="167" key="FileChooserDialogImpl" timestamp="1645127042619">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="165" y="167" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1645127042619" />
-    <state width="1493" height="238" key="GridCell.Tab.0.bottom" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.0.bottom" timestamp="1646873958045">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state width="1493" height="238" key="GridCell.Tab.0.center" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
+    <state width="1493" height="242" key="GridCell.Tab.0.center" timestamp="1646873958044">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state width="1493" height="238" key="GridCell.Tab.0.left" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1646873958044" />
+    <state width="1493" height="242" key="GridCell.Tab.0.left" timestamp="1646873958044">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state width="1493" height="238" key="GridCell.Tab.0.right" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1646873958044" />
+    <state width="1493" height="242" key="GridCell.Tab.0.right" timestamp="1646873958044">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state width="1493" height="238" key="GridCell.Tab.1.bottom" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1646873958044" />
+    <state width="1493" height="242" key="GridCell.Tab.1.bottom" timestamp="1646873958045">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state width="1493" height="238" key="GridCell.Tab.1.center" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
+    <state width="1493" height="242" key="GridCell.Tab.1.center" timestamp="1646873958045">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state width="1493" height="238" key="GridCell.Tab.1.left" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
+    <state width="1493" height="242" key="GridCell.Tab.1.left" timestamp="1646873958045">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state width="1493" height="238" key="GridCell.Tab.1.right" timestamp="1646856299600">
+    <state width="1493" height="242" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
+    <state width="1493" height="242" key="GridCell.Tab.1.right" timestamp="1646873958045">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="238" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1646856299600" />
-    <state x="299" y="64" key="Maven.ArtifactSearchDialog" timestamp="1646758144506">
+    <state width="1493" height="242" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
+    <state width="1493" height="258" key="GridCell.Tab.2.bottom" timestamp="1646871961589">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="299" y="64" key="Maven.ArtifactSearchDialog/0.0.1536.816@0.0.1536.816" timestamp="1646758144506" />
-    <state x="147" y="70" key="MergeDialog" timestamp="1646856278016">
+    <state width="1493" height="258" key="GridCell.Tab.2.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646871961589" />
+    <state width="1493" height="258" key="GridCell.Tab.2.center" timestamp="1646871961589">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="147" y="70" key="MergeDialog/0.0.1536.816@0.0.1536.816" timestamp="1646856278016" />
-    <state x="474" y="125" key="MultipleFileMergeDialog" timestamp="1646856278021">
+    <state width="1493" height="258" key="GridCell.Tab.2.center/0.0.1536.816@0.0.1536.816" timestamp="1646871961589" />
+    <state width="1493" height="258" key="GridCell.Tab.2.left" timestamp="1646871961589">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="474" y="125" key="MultipleFileMergeDialog/0.0.1536.816@0.0.1536.816" timestamp="1646856278021" />
+    <state width="1493" height="258" key="GridCell.Tab.2.left/0.0.1536.816@0.0.1536.816" timestamp="1646871961589" />
+    <state width="1493" height="258" key="GridCell.Tab.2.right" timestamp="1646871961589">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1493" height="258" key="GridCell.Tab.2.right/0.0.1536.816@0.0.1536.816" timestamp="1646871961589" />
+    <state x="299" y="64" key="Maven.ArtifactSearchDialog" timestamp="1646871254330">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="299" y="64" key="Maven.ArtifactSearchDialog/0.0.1536.816@0.0.1536.816" timestamp="1646871254330" />
+    <state x="147" y="70" key="MergeDialog" timestamp="1646858555108">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="147" y="70" key="MergeDialog/0.0.1536.816@0.0.1536.816" timestamp="1646858555108" />
+    <state x="474" y="125" key="MultipleFileMergeDialog" timestamp="1646858555114">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="474" y="125" key="MultipleFileMergeDialog/0.0.1536.816@0.0.1536.816" timestamp="1646858555114" />
     <state x="277" y="52" key="SettingsEditor" timestamp="1645132174382">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -433,17 +511,21 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="463" y="6" width="609" height="804" key="find.popup/0.0.1536.816@0.0.1536.816" timestamp="1645547836756" />
-    <state x="504" y="201" key="git4idea.merge.GitPullDialog" timestamp="1646856049089">
+    <state x="504" y="201" key="git4idea.merge.GitPullDialog" timestamp="1646858065961">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="504" y="201" key="git4idea.merge.GitPullDialog/0.0.1536.816@0.0.1536.816" timestamp="1646856049089" />
+    <state x="504" y="201" key="git4idea.merge.GitPullDialog/0.0.1536.816@0.0.1536.816" timestamp="1646858065961" />
     <state x="425" y="185" key="run.anything.popup" timestamp="1646761485176">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="425" y="185" key="run.anything.popup/0.0.1536.816@0.0.1536.816" timestamp="1646761485176" />
-    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1646798600964">
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1646859313750">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1646798600964" />
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1646859313750" />
+    <state x="421" y="92" key="spring file set editor" timestamp="1646861877391">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="421" y="92" key="spring file set editor/0.0.1536.816@0.0.1536.816" timestamp="1646861877391" />
   </component>
 </project>

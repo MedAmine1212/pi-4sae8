@@ -1,13 +1,8 @@
 package com.pi.dev.controllers;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.pi.dev.models.FieldVote;
-import com.pi.dev.models.PostLike;
-import com.pi.dev.models.Post;
-import com.pi.dev.models.Rating;
+import com.pi.dev.models.*;
 import com.pi.dev.serviceInterface.IPostService;
 import com.pi.dev.storage.StorageFileNotFoundException;
 import com.pi.dev.storage.StorageService;
@@ -15,13 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
 @Api(tags = "Manage posts")

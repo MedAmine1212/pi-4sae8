@@ -1,16 +1,12 @@
 package com.pi.dev.serviceInterface;
 
-import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Stream;
 
-import com.pi.dev.controllers.PostsStat;
+import com.pi.dev.models.PostsStat;
 import com.pi.dev.models.FieldVote;
 import com.pi.dev.models.PostLike;
 import com.pi.dev.models.Post;
 import com.pi.dev.models.Rating;
-import org.springframework.core.io.Resource;
-import org.springframework.web.multipart.MultipartFile;
 
 public interface IPostService {
 

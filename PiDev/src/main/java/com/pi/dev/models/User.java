@@ -27,12 +27,8 @@ import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-@Entity
 @Data
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,6 +62,9 @@ public class User {
   	@JsonIgnore
 	@ElementCollection
 	private List<Long> followedBy;
+
+	@ElementCollection
+	private List<String> searchHistory;
 
 
 
@@ -143,9 +142,6 @@ public class User {
 		private boolean isRoomOwner;
 
 
-		@JsonIgnore
-		@OneToOne(mappedBy = "userContributor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-		private Contributor contributorAccount;
 
 		@JsonIgnore
 		@OneToOne(mappedBy = "userTrainer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

@@ -2,6 +2,7 @@ package com.pi.dev.controllers;
 
 import com.pi.dev.models.Comment;
 import com.pi.dev.serviceInterface.IChatBotService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@Api(tags = "Chatbot")
 @RequestMapping("/chatbot")
 public class ChatBotController {
 

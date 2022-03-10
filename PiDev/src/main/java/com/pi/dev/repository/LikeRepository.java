@@ -14,7 +14,7 @@ import java.util.List;
 public interface LikeRepository extends JpaRepository<PostLike, Long> {
 
 
-    @Query("delete from PostLike l where l.likeOwner.userId =: postId AND l.likePost.postId =: postId")
+    @Query("delete from PostLike l where l.likeOwner.id =: userId AND l.likePost.postId =: postId")
 
     void removeLikeFromPost(@Param("postId") Long postId,@Param("userId")  Long userId);
 

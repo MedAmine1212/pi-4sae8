@@ -9,5 +9,15 @@
       "name": "spring.social.facebook.app-secret",
       "type": "java.lang.String",
       "description": "Description for spring.social.facebook.app-secret."
+    },
+    {
+      "name": "bezkoder.app.jwtSecret",
+      "type": "java.lang.String",
+      "description": "Description for bezkoder.app.jwtSecret."
+    },
+    {
+      "name": "bezkoder.app.jwtExpirationMs",
+      "type": "java.lang.String",
+      "description": "Description for bezkoder.app.jwtExpirationMs."
     }
   ] }

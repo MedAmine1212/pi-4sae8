@@ -1,6 +1,7 @@
 package com.pi.dev.controllers;
 
 import com.pi.dev.serviceInterface.IFacebookService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.facebook.api.PagedList;
 import org.springframework.social.facebook.api.Post;
@@ -15,6 +16,7 @@ import java.util.List;
 
 
 @RestController
+@Api(tags = "Gestion des facebook")
 @RequestMapping("/facebook")
 public class FacebookController {
 

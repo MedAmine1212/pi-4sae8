@@ -1,4 +1,4 @@
-package com.pi.dev.controllers;
+package com.pi.dev.models;
 
 import java.util.ArrayList;
 import java.util.List;

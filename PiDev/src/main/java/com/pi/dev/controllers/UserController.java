@@ -29,74 +29,74 @@ public class UserController {
 
 	@Autowired
 	IUserService userService;
-	
-	
+
+
     @PostMapping("/post")
     @ApiOperation(value = "ajouter user")
 	@ResponseBody
 	public User add(@RequestBody User user) {
 	        return userService.addUser(user);
 	    }
-    
-   
-    
-   
-    
+
+
+
+
+
     @ApiOperation(value = "Update user")
 	@PostMapping("updateUser/{userID}")
 	@ResponseBody
 	User updateUser(@RequestBody User user,@PathVariable Long userID){
 		return userService.updateUser(user, userID);
 	}
-    
+
     @GetMapping("/getRole")
     @ResponseBody
     public List<User> findAll() {
         return userService.findAll();
     }
-    
+
 
     @DeleteMapping("/delete/{userID}")
     public void deleteUserById(@PathVariable Long userID) {
     	userService.deleteUserById(userID);
-    
+
     }
-    
-    
-    
+
+
+
     @ApiOperation(value = "add follow")
 	@PostMapping("addfollow/{followedId}/{followerId}")
 	@ResponseBody
 	public void  addFollow(@PathVariable Long followedId,@PathVariable Long followerId){
 		 userService.addFollow(followedId, followerId);
 	}
-    
-    
-    
+
+
+
     @ApiOperation(value = "remove follow")
   	@PostMapping("removefollow/{followedId}/{followerId}")
   	@ResponseBody
   	public void  removeFollow(@PathVariable Long followedId,@PathVariable Long followerId){
   		 userService.removeFollow(followedId, followerId);
   	}
-    
-    
-    
-    
-    
+
+
+
+
+
     @ApiOperation(value = "upgrade to contributer")
     @PostMapping("/upgradeToContributer{id}")
 	@ResponseBody
 	public void upgradeToContributer(@PathVariable Long id) {
 	         userService.upgradeToContributer(id);
 	    }
-    
-    
+
+
     @ApiOperation(value = "add rate to user")
     @PostMapping("/addRateToUser")
 	@ResponseBody
     public void addRateToUser(Long idLikedUser,  Long idlikeUser , Integer rate){
     	userService.addRateToUser(idLikedUser,idlikeUser, rate);
-    	
+
     }
 }

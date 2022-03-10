@@ -29,7 +29,7 @@ window.addEventListener('load', function (e) {
     }
 });
 function getRooms() {
-    $.post( "/getChatRooms", function( data ) {
+    $.post( "/chatRoom/getChatRooms", function( data ) {
         if(jQuery.isEmptyObject(data)) {
             chatRoomPage.classList.remove('hidden');
         } else {
@@ -74,7 +74,7 @@ function connect(roomid) {
 
 function createChatRoom(event) {
     $.ajax({
-        url: '/createChatRoom/'+document.getElementById("chatRoomTopic").value+'/'+userid,
+        url: '/chatRoom/createChatRoom/'+document.getElementById("chatRoomTopic").value+'/'+userid,
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
@@ -219,7 +219,7 @@ function setUser(event) {
     subject = null;
     userid = document.getElementById("userId").value;
     $.ajax({
-        url: '/getUserName/'+userid,
+        url: '/chatRoom/getUserName/'+userid,
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {

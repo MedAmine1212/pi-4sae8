@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pi.dev.models.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;
 
@@ -27,7 +29,7 @@ public class UserDetailsImpl implements UserDetails {
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
-
+  public UserDetailsImpl() {}
   public UserDetailsImpl(Long id, String username, String email, String password,boolean state,
       Collection<? extends GrantedAuthority> authorities) {
     this.id = id;

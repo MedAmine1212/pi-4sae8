@@ -7,6 +7,7 @@ import com.pi.dev.models.User;
 import com.pi.dev.repository.UserRepository;
 import com.pi.dev.serviceInterface.IMessageService;
 import com.pi.dev.serviceInterface.IRoomService;
+import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,14 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @Controller
+@Api(tags = "Chatroom")
+@RequestMapping("/chatRoom")
 @Slf4j
 public class ChatController {
 
@@ -50,8 +50,8 @@ public class ChatController {
         userRepository.save(user);
         for(Message m: messageService.getMessagesByRoom(room.getRoomId())) {
             ChatMessage ch = new ChatMessage();
-            ch.setSender(m.getMessageOwner().getUserName());
-            ch.setSenderId(m.getMessageOwner().getUserId());
+            ch.setSender(m.getMessageOwner().getUsername());
+            ch.setSenderId(m.getMessageOwner().getId());
             ch.setRoomId(room.getRoomId());
             ch.setRequestedBy(chatMessage.getSenderId());
             ch.setContent(m.getMessageText());
@@ -113,8 +113,8 @@ public class ChatController {
     public ChatMessage getUserName(@PathVariable Long userId) {
         ChatMessage chatMessage = new ChatMessage();
         User user =  userRepository.findById(userId).get();
-        chatMessage.setSenderId(user.getUserId());
-        chatMessage.setSender(user.getUserName());
+        chatMessage.setSenderId(user.getId());
+        chatMessage.setSender(user.getUsername());
         if(user.getActualRoom() != null) {
             chatMessage.setRoomId(user.getActualRoom().getRoomId());
         }
