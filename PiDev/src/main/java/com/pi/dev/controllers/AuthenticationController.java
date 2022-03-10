@@ -39,23 +39,23 @@ import java.util.stream.Collectors;
 @RequestMapping("/authentication")
 @Slf4j
 public class AuthenticationController {
-//    @Autowired
-//    private JavaMailSender sender;
-//
-//    @Autowired
-//    AuthenticationManager authenticationManager;
-//
-//    @Autowired
-//    UserRepository userRepository;
-//
-//    @Autowired
-//    RoleRepository roleRepository;
-//
-//    @Autowired
-//    PasswordEncoder encoder;
-//
-//    @Autowired
-//    JwtUtils jwtUtils;
+    @Autowired
+    private JavaMailSender sender;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    JwtUtils jwtUtils;
 //
 //    @PostMapping("/userSignIn")
 //    @ApiOperation(value = "Sign in auth")

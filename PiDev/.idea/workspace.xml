@@ -2,59 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="179ff48e-72f5-48f0-bed1-bfae4d55d8d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/AuthController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatBotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatBotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/ClientRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/FacebookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/FacebookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/PostRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/PostRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/PostsStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/PostsStat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/TestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/SimpleMailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/SimpleMailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/mail/SimpleMailController.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Contributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Contributor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/CommentReactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/CommentReactRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/LikeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/LikeRepository.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/controllers/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/services/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/security/services/UserDetailsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/service/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/service/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pi/dev/serviceInterface/IPostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pi/dev/serviceInterface/IPostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/config/SwaggerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/config/SwaggerConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/PostRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/PostRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/RoomRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/controllers/RoomRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Advertisement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Advertisement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Certification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Certification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Contributor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Contributor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Post.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Training.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/Training.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/models/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/models/test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/AdvertisementRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/AdvertisementRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/CommentReactRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/CommentReactRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/LikeRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/service/AdvertisementServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/service/AdvertisementServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/service/PostServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/service/PostServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/service/RoomServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/service/RoomServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IAdvertisementService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IAdvertisementService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IPostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IPostService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IRoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pi/dev/serviceInterface/IRoomService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/pi/dev/PiDevApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/pi/dev/PiDevApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/js/chatBot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/js/chatBot.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +131,7 @@
       <workItem from="1646716194728" duration="172000" />
       <workItem from="1646754895163" duration="13561000" />
       <workItem from="1646854295754" duration="1956000" />
-      <workItem from="1646871979614" duration="2064000" />
+      <workItem from="1646871979614" duration="6448000" />
     </task>
     <task id="LOCAL-00001" summary="Classes">
       <created>1645129335126</created>
@@ -350,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646858056830</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="merge with akrem">
+      <created>1646874090327</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1646874090327</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +346,8 @@
     <MESSAGE value="facebook auth" />
     <MESSAGE value="statistics" />
     <MESSAGE value="merge with omar" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge with omar" />
+    <MESSAGE value="merge with akrem" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge with akrem" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="68" key="#Assign_Data_Sources" timestamp="1646243561003">
@@ -423,46 +382,46 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="499" y="156" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.816@0.0.1536.816" timestamp="1646715982960" />
-    <state x="393" y="4" key="CommitChangelistDialog2" timestamp="1646858055674">
+    <state x="393" y="4" key="CommitChangelistDialog2" timestamp="1646874088074">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="393" y="4" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1646858055674" />
+    <state x="393" y="4" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1646874088074" />
     <state x="165" y="167" key="FileChooserDialogImpl" timestamp="1645127042619">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="165" y="167" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1645127042619" />
-    <state width="1493" height="242" key="GridCell.Tab.0.bottom" timestamp="1646873958045">
+    <state width="1493" height="242" key="GridCell.Tab.0.bottom" timestamp="1646915973798">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
-    <state width="1493" height="242" key="GridCell.Tab.0.center" timestamp="1646873958044">
+    <state width="1493" height="242" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646915973798" />
+    <state width="1493" height="242" key="GridCell.Tab.0.center" timestamp="1646915973798">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1646873958044" />
-    <state width="1493" height="242" key="GridCell.Tab.0.left" timestamp="1646873958044">
+    <state width="1493" height="242" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1646915973798" />
+    <state width="1493" height="242" key="GridCell.Tab.0.left" timestamp="1646915973798">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1646873958044" />
-    <state width="1493" height="242" key="GridCell.Tab.0.right" timestamp="1646873958044">
+    <state width="1493" height="242" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1646915973798" />
+    <state width="1493" height="242" key="GridCell.Tab.0.right" timestamp="1646915973798">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1646873958044" />
-    <state width="1493" height="242" key="GridCell.Tab.1.bottom" timestamp="1646873958045">
+    <state width="1493" height="242" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1646915973798" />
+    <state width="1493" height="242" key="GridCell.Tab.1.bottom" timestamp="1646915973799">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
-    <state width="1493" height="242" key="GridCell.Tab.1.center" timestamp="1646873958045">
+    <state width="1493" height="242" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1646915973799" />
+    <state width="1493" height="242" key="GridCell.Tab.1.center" timestamp="1646915973798">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
-    <state width="1493" height="242" key="GridCell.Tab.1.left" timestamp="1646873958045">
+    <state width="1493" height="242" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1646915973798" />
+    <state width="1493" height="242" key="GridCell.Tab.1.left" timestamp="1646915973798">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
-    <state width="1493" height="242" key="GridCell.Tab.1.right" timestamp="1646873958045">
+    <state width="1493" height="242" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1646915973798" />
+    <state width="1493" height="242" key="GridCell.Tab.1.right" timestamp="1646915973798">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1646873958045" />
+    <state width="1493" height="242" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1646915973798" />
     <state width="1493" height="258" key="GridCell.Tab.2.bottom" timestamp="1646871961589">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -495,10 +454,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="277" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1645132174382" />
-    <state x="361" y="142" key="Vcs.Push.Dialog.v2" timestamp="1646856034038">
+    <state x="361" y="142" key="Vcs.Push.Dialog.v2" timestamp="1646874103981">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1646856034038" />
+    <state x="361" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1646874103981" />
     <state x="584" y="187" key="chooseDestDirectoryDialog" timestamp="1645126286172">
       <screen x="0" y="0" width="1536" height="816" />
     </state>

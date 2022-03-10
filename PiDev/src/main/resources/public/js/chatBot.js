@@ -92,7 +92,7 @@ function getAvatarColor(messageSender) {
 function setUser(event) {
     userid = document.getElementById("userId").value;
     $.ajax({
-        url: '/getUserName/'+userid,
+        url: '/chatRoom/getUserName/'+userid,
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
