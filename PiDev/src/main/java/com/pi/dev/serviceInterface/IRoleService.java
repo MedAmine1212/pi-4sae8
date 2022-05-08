@@ -6,11 +6,12 @@ import com.pi.dev.models.Role;
 
 public interface IRoleService {
 
+	
 	List<Role> findAll();
 
 	Role addRole(Role role);
 
-	Role updateRole(Role role, Integer roleID);
+	Role updateRole(Role role, Long roleID);
 
-	void deleteRoleById(Integer roleID);
+	void deleteRoleById(Long roleID);
 }

@@ -5,25 +5,25 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Data
-public class Comment implements Serializable {
+public class React implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentId;
+    private Long reactId;
 
 
     @JsonIgnore
     @ManyToOne
-    private Post post;
+    private Comment comment;
 
 
     @ManyToOne
     @JsonIgnore
-    private User commentOwner;
+    private User reactOwner;
 
-    @OneToMany(mappedBy="comment", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    private List<React> listReacts;
+
+    @Enumerated(EnumType.STRING)
+    private TypeReact typeReact;
 }

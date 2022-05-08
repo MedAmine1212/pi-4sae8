@@ -3,7 +3,6 @@ package com.pi.dev.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,43 +57,5 @@ public class SubscriptionController {
     public void deleteSubscriptionById(@PathVariable Long SubscriptionID) {
     	subscriptionService.deleteSubscriptionById(SubscriptionID);
     
-    }
-    
-    
-    @ApiOperation(value = "end subscription")
-  	@PostMapping("endSubscription/{SubscriptionID}")
-  	@ResponseBody
-  	public void EndSubscription(@PathVariable Long SubscriptionID){
-		 subscriptionService.endSubscription(SubscriptionID);
-
-  	}
-    
-    
-    
-    
-    @ApiOperation(value = "Upgrade subscription To Premium")
-  	@PostMapping("ToPremium/{SubscriptionID}")
-  	@ResponseBody
-  	public void UpgradeToPremium(@PathVariable Long SubscriptionID){
-		 subscriptionService.upgradeToPremium(SubscriptionID);
-  	}
-    
-    
-    
-   
-    
-    
-    
-    @ApiOperation(value = "Upgrade subscription To Gold")
-  	@PostMapping("ToGold/{SubscriptionID}")
-  	@ResponseBody
-  	public void upgradeToGold(@PathVariable Long SubscriptionID){
-		 subscriptionService.upgradeToGold(SubscriptionID);
-  	}
-
-	// @Scheduled(cron = "@weekly")
-	@Scheduled(fixedRate = 100000)
-    public void upgr(){
-    	subscriptionService.upgradeSupscription();
     }
 }

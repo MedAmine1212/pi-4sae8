@@ -2,13 +2,13 @@ package com.pi.dev.repository;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.pi.dev.models.ERole;
 import com.pi.dev.models.Role;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
-@Repository
-public interface RoleRepository extends JpaRepository<Role, Integer> {
-  Optional<Role> findByName(ERole name);
+	  Optional<Role> findByName(ERole name);
+
 }

@@ -9,17 +9,17 @@ import javax.persistence.*;
 @Entity
 @Data
 public class Rating {
-
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ratingId;
 
+    @JsonIgnore
     @ManyToOne
-    private Post ratingPost;
+    private Post post;
 
 
     @ManyToOne
+    @JsonIgnore
     private User ratingOwner;
 
     private int rating;

@@ -1,6 +1,5 @@
 package com.pi.dev.models;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,12 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,13 +38,15 @@ public class Subscription {
 	@Column(name="idSubscription")
 
     private long subscriptionId;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	
+	private Date startDate;
+	private Date endDate;
 	private float price;
 	
 	@Enumerated(EnumType.STRING)
 	private TypeSubscription TypeSubscription;
 
+	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToOne
 	private User user ; 
 	

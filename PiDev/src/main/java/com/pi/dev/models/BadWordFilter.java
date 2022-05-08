@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
 public class BadWordFilter {
 
     static Map<String, String[]> words = new HashMap<>();
+
     static int largestWordLength = 0;
 
     public static void loadConfigs() {
@@ -116,5 +116,7 @@ public class BadWordFilter {
         }
         return input;
     }
+
+
 
 }

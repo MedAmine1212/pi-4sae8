@@ -3,21 +3,18 @@ package com.pi.dev.models;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Data
-@Getter
-@Setter
 @Entity
-public class Post implements Serializable{
+public class Post implements Serializable {
 	/**
 	* 
 	*/
@@ -30,32 +27,22 @@ public class Post implements Serializable{
 	private Date postDate;
 	private String postTitle;
 	private String postContent;
-
-	@Transient
-	private int likesCount;
-
-	@JsonIgnore
 	@ElementCollection
 	private List<String> postFiles;
 
+	@JsonIgnore
 	@ManyToOne
 	private User postOwner;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="commentPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Comment> listComments;
 
 
-	@JsonIgnore
-	@OneToMany(mappedBy="likePost", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-	private List<PostLike> listPostLikes;
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<PostLike> listLikes;
 
 
-	@JsonIgnore
-	@OneToOne(mappedBy="postPoll", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-	private PostPoll poll;
-
-	@JsonIgnore
-	@OneToMany(mappedBy="ratingPost", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="post", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Rating> listRating;
+
 }

@@ -11,10 +11,12 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Quiz implements Serializable {
-	
+public class Answers implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long quizId;
+    private Long answersId;
+    
+    
+    
 }

@@ -9,17 +9,22 @@ import java.io.Serializable;
 @Entity
 @Data
 public class PostLike implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postLikeId;
+    private Long likeId;
+
+
+    @JsonIgnore
+    @ManyToOne
+    private Post post;
 
 
     @ManyToOne
-    private Post likePost;
-
-    @ManyToOne
+    @JsonIgnore
     private User likeOwner;
 
 
